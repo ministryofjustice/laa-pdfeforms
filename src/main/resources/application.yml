@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: pdfeforms
+  datasource:
+    url: jdbc:postgresql://localhost/pdfeforms
+    username: postgres
+    password: pdfeforms
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+
+debug: false
+

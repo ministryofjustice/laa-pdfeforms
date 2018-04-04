@@ -1,12 +1,15 @@
 package com.moj.digital.laa.controller;
 
 import com.moj.digital.laa.entity.Person;
+import com.moj.digital.laa.model.PersonDTO;
 import com.moj.digital.laa.service.PersonService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "/person")
 public class PersonController {
@@ -15,20 +18,22 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping(path = "/persist")
-    public ResponseEntity<String> persistPerson(@RequestBody Person person) {
+    public ResponseEntity<String> persistPerson(@RequestBody PersonDTO person) {
+        log.debug("persistPerson invoked with person {} ",person);
         personService.save(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping(path = "/update")
-    public ResponseEntity<String> updatePerson(@RequestBody Person person) {
+    public ResponseEntity<String> updatePerson(@RequestBody PersonDTO person) {
+        log.debug("updatePerson invoked with person {} ",person);
         personService.update(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping(path = "/{ufn}")
-    public Person findPersonByUfn(@PathVariable String ufn) {
-        Person person = personService.findByUfn(ufn);
-        return person;
+    public PersonDTO findPersonByUfn(@PathVariable String ufn) {
+        log.debug("findPersonByUfn invoked with ufn {} ",ufn);
+        return personService.findByUfn(ufn);
     }
 }

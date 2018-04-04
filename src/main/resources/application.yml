@@ -15,3 +15,7 @@ spring:
 
 debug: false
 
+logging:
+  level:
+    com.moj.digital.laa : DEBUG
+

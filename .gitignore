@@ -7,6 +7,7 @@ doc/
 /doc/
 .gradle/
 /bin/
+/out/
 target/!gradle/wrapper/gradle-wrapper.jar
 
 **/.DS_Store

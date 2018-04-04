@@ -1,10 +1,11 @@
 package com.moj.digital.laa.entity;
 
+import com.moj.digital.laa.common.util.LocalDateSQLDateConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -31,11 +32,12 @@ public class Person {
     private String foreName;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @JoinColumn(name = "residence_address_id")
+    private Address residenceAddress;
 
     @Column(name = "date_of_birth", nullable = false)
-    private Date dateOfBirth;
+    @Convert(converter = LocalDateSQLDateConverter.class)
+    private LocalDate dateOfBirth;
 
     @Column(name = "ni_number", nullable = false)
     private String niNumber;
@@ -66,7 +68,7 @@ public class Person {
     private String requestSpecificSolicitor;
 
     @Column(name = "request_specific_solicitor_text", nullable = false)
-    private String requestSpecificSolicityText;
+    private String requestSpecificSolicitorText;
 
     @Column(name = "police_station_1", nullable = false)
     private String policeStation1;
@@ -90,7 +92,8 @@ public class Person {
     private String previousConviction;
 
     @Column(name = "funding_date", nullable = false)
-    private Date fundingDate;
+    @Convert(converter = LocalDateSQLDateConverter.class)
+    private LocalDate fundingDate;
 
     @Column(name = "advice_and_assistance", nullable = false)
     private String adviceAndAssistance;
@@ -120,7 +123,8 @@ public class Person {
     private String conflictCheckName;
 
     @Column(name = "conflict_check_date", nullable = false)
-    private Date conflictCheckDate;
+    @Convert(converter = LocalDateSQLDateConverter.class)
+    private LocalDate conflictCheckDate;
 
     @Column(name = "risk_assessment", nullable = false)
     private String riskAssessment;

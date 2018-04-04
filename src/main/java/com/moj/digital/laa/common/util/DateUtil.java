@@ -1,4 +1,4 @@
-package com.moj.digital.laa;
+package com.moj.digital.laa.common.util;
 
 import java.sql.Date;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package com.moj.digital.laa.model;
+package com.moj.digital.laa.model.person;
 
 import lombok.Data;
 

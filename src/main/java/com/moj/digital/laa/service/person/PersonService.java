@@ -1,16 +1,16 @@
-package com.moj.digital.laa.service;
+package com.moj.digital.laa.service.person;
 
-import com.moj.digital.laa.entity.Person;
-import com.moj.digital.laa.exception.InvalidPersonDataException;
-import com.moj.digital.laa.exception.PersonNotFoundException;
-import com.moj.digital.laa.model.PersonDTO;
-import com.moj.digital.laa.repository.PersonRepository;
+import com.moj.digital.laa.entity.person.Person;
+import com.moj.digital.laa.exception.person.InvalidPersonDataException;
+import com.moj.digital.laa.exception.person.PersonNotFoundException;
+import com.moj.digital.laa.model.person.PersonDTO;
+import com.moj.digital.laa.repository.person.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import static com.moj.digital.laa.exception.errormessage.ErrorMessage.PERSON_NOT_FOUND;
-import static com.moj.digital.laa.exception.errormessage.ErrorMessage.PERSON_PERSIST_ERROR;
+import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.PERSON_NOT_FOUND;
+import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.PERSON_PERSIST_ERROR;
 
 @Service
 @Slf4j

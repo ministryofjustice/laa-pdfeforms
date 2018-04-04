@@ -1,4 +1,4 @@
-package com.moj.digital.laa.exception.util;
+package com.moj.digital.laa.exception.common.util;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

@@ -1,4 +1,4 @@
-package com.moj.digital.laa.exception.errormessage;
+package com.moj.digital.laa.exception.common.errormessage;
 
 public enum ErrorMessage {
 

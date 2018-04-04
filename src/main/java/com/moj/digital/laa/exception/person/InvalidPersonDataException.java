@@ -1,4 +1,4 @@
-package com.moj.digital.laa.exception;
+package com.moj.digital.laa.exception.person;
 
 public class InvalidPersonDataException extends RuntimeException {
     public InvalidPersonDataException(String message, Throwable exception) {

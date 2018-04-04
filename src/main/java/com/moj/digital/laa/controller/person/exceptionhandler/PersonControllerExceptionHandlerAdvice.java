@@ -1,4 +1,4 @@
-package com.moj.digital.laa.controller.advice;
+package com.moj.digital.laa.controller.person.exceptionhandler;
 
 import com.moj.digital.laa.exception.ErrorDetails;
 import com.moj.digital.laa.exception.InvalidPersonDataException;

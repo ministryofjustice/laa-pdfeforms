@@ -1,4 +1,4 @@
-package com.moj.digital.laa.exception;
+package com.moj.digital.laa.exception.person;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,4 +1,4 @@
-package com.moj.digital.laa.exception;
+package com.moj.digital.laa.exception.common;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.moj.digital.laa.controller;
+package com.moj.digital.laa.controller.person;
 
 import com.moj.digital.laa.model.PersonDTO;
 import com.moj.digital.laa.service.PersonService;

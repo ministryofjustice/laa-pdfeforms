@@ -1,9 +1,9 @@
 package com.moj.digital.laa.controller.person.exceptionhandler;
 
-import com.moj.digital.laa.exception.ErrorDetails;
-import com.moj.digital.laa.exception.InvalidPersonDataException;
-import com.moj.digital.laa.exception.PersonNotFoundException;
-import com.moj.digital.laa.exception.util.FieldsErrorExtractor;
+import com.moj.digital.laa.exception.common.ErrorDetails;
+import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
+import com.moj.digital.laa.exception.person.InvalidPersonDataException;
+import com.moj.digital.laa.exception.person.PersonNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

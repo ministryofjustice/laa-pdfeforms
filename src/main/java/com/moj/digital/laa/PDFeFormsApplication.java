@@ -1,6 +1,6 @@
 package com.moj.digital.laa;
 
-import com.moj.digital.laa.repository.PersonRepository;
+import com.moj.digital.laa.repository.person.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

@@ -1,7 +1,8 @@
 package com.moj.digital.laa.common.config;
 
-import com.moj.digital.laa.exception.util.FieldsErrorExtractor;
+import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

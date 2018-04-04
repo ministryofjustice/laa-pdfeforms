@@ -1,7 +1,7 @@
 package com.moj.digital.laa.controller.person;
 
-import com.moj.digital.laa.model.PersonDTO;
-import com.moj.digital.laa.service.PersonService;
+import com.moj.digital.laa.model.person.PersonDTO;
+import com.moj.digital.laa.service.person.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

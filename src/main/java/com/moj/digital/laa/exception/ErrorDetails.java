@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 public class ErrorDetails implements Serializable {
     private LocalDateTime date;
     private String message;
-    private String details;
+    private String[] details;
 
-    public ErrorDetails(LocalDateTime date, String message, String details) {
+    public ErrorDetails(LocalDateTime date, String message, String... details) {
         this.date = date;
         this.message = message;
         this.details = details;

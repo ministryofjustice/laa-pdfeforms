@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RestController
 @RequestMapping(path = "/person")
@@ -17,7 +19,7 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping(path = "/persist")
-    public ResponseEntity<String> persistPerson(@RequestBody PersonDTO person) {
+    public ResponseEntity<String> persistPerson(@Valid @RequestBody PersonDTO person) {
         log.debug("persistPerson invoked with person {} ",person);
         personService.save(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();

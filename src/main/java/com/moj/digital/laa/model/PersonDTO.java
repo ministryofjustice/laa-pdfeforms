@@ -2,6 +2,7 @@ package com.moj.digital.laa.model;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
@@ -9,8 +10,10 @@ public class PersonDTO {
 
     private Long id;
 
+    @NotNull
     private String ufn;
 
+    @NotNull
     private String title;
 
     private String surname;

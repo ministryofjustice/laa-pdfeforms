@@ -1,6 +1,5 @@
 package com.moj.digital.laa.controller;
 
-import com.moj.digital.laa.entity.Person;
 import com.moj.digital.laa.model.PersonDTO;
 import com.moj.digital.laa.service.PersonService;
 import lombok.extern.slf4j.Slf4j;

@@ -3,7 +3,6 @@ package com.moj.digital.laa.exception;
 import lombok.Getter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter

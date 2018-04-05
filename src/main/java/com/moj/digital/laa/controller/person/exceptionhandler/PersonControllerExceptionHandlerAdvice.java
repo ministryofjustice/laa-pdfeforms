@@ -5,7 +5,6 @@ import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import com.moj.digital.laa.exception.person.InvalidPersonDataException;
 import com.moj.digital.laa.exception.person.PersonNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,11 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class PersonControllerExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 
-    @Autowired
     private FieldsErrorExtractor fieldsErrorExtractor;
+
+    public PersonControllerExceptionHandlerAdvice(FieldsErrorExtractor fieldsErrorExtractor){
+        this.fieldsErrorExtractor =fieldsErrorExtractor;
+    }
 
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(

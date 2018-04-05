@@ -15,26 +15,29 @@ import javax.validation.Valid;
 @RequestMapping(path = "/person")
 public class PersonController {
 
-    @Autowired
     private PersonService personService;
+
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @PostMapping(path = "/persist")
     public ResponseEntity<String> persistPerson(@Valid @RequestBody PersonDTO person) {
-        log.debug("persistPerson invoked with person {} ",person);
+        log.debug("persistPerson invoked with person {} ", person);
         personService.save(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping(path = "/update")
     public ResponseEntity<String> updatePerson(@RequestBody PersonDTO person) {
-        log.debug("updatePerson invoked with person {} ",person);
+        log.debug("updatePerson invoked with person {} ", person);
         personService.update(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping(path = "/{ufn}")
     public PersonDTO findPersonByUfn(@PathVariable String ufn) {
-        log.debug("findPersonByUfn invoked with ufn {} ",ufn);
+        log.debug("findPersonByUfn invoked with ufn {} ", ufn);
         return personService.findByUfn(ufn);
     }
 }

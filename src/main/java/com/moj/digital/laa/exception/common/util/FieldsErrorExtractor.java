@@ -1,5 +1,6 @@
 package com.moj.digital.laa.exception.common.util;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 

@@ -70,7 +70,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void persistPersonWhenInputsAreInValidShouldReturnBadRequestStatus() throws Exception {
+    public void persistPersonWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
         PersonDTO personDTO = personFromJson();
         personDTO.setTitle(null);
 
@@ -144,7 +144,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void updatePersonWhenInputsAreInValidShouldReturnBadRequestStatus() throws Exception {
+    public void updatePersonWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
 
         PersonDTO personDTO = personFromJson();
         personDTO.setTitle(null);

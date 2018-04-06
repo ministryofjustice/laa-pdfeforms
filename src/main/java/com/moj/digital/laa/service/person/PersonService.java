@@ -31,7 +31,7 @@ public class PersonService {
             personRepository.save(person);
         } catch (Exception e) {
             log.error("Could not persist person details because of exception {}", e.getMessage());
-            throw new InvalidPersonDataException(PERSON_PERSIST_ERROR.message() + e.getCause().getMessage(), e);
+            throw new InvalidPersonDataException(PERSON_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
 

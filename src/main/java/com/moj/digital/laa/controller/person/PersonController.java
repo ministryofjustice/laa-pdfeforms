@@ -29,7 +29,7 @@ public class PersonController {
     }
 
     @PutMapping(path = "/update")
-    public ResponseEntity<String> updatePerson(@RequestBody PersonDTO person) {
+    public ResponseEntity<String> updatePerson(@Valid @RequestBody PersonDTO person) {
         log.debug("updatePerson invoked with person {} ", person);
         personService.update(person);
         return ResponseEntity.status(HttpStatus.CREATED).build();

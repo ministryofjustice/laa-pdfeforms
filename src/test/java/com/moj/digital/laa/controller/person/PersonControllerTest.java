@@ -44,6 +44,19 @@ public class PersonControllerTest {
     private PersonService personService;
 
     @Test
+    public void persistPersonWhenServiceFailureOccursShouldReturnInternalServerErrorStatusCode() throws Exception {
+        doThrow(new InvalidPersonDataException("", new Exception())).when(personService).save(any(PersonDTO.class));
+        PersonDTO personDTO = personFromJson();
+
+        mockMvc.perform(post("/person/persist")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(personDTO)))
+                .andExpect(status().isInternalServerError());
+
+        verify(personService, times(1)).save(any(PersonDTO.class));
+    }
+
+    @Test
     public void persistPersonWhenInputsAreValidShouldSavePerson() throws Exception {
         doNothing().when(personService).save(any(PersonDTO.class));
         PersonDTO personDTO = personFromJson();
@@ -57,16 +70,16 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void persistPersonWhenServiceFailureOccursShouldReturnInternalServerErrorStatusCode() throws Exception {
-        doThrow(new InvalidPersonDataException("", new Exception())).when(personService).save(any(PersonDTO.class));
+    public void persistPersonWhenInputsAreInValidShouldReturnBadRequestStatus() throws Exception {
         PersonDTO personDTO = personFromJson();
+        personDTO.setTitle(null);
 
         mockMvc.perform(post("/person/persist")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(personDTO)))
-                .andExpect(status().isInternalServerError());
+                .andExpect(status().isBadRequest());
 
-        verify(personService, times(1)).save(any(PersonDTO.class));
+        verify(personService, never()).save(any(PersonDTO.class));
     }
 
     @Test
@@ -96,11 +109,29 @@ public class PersonControllerTest {
         verify(personService, times(1)).findByUfn("UFN1");
     }
 
+
+
+    @Test
+    public void updatePersonWhenInputsAreValidShouldSavePerson() throws Exception {
+        doNothing().when(personService).update(any(PersonDTO.class));
+
+        PersonDTO personDTO = personFromJson();
+        personDTO.setUfn("UFN1");
+
+        mockMvc.perform(put("/person/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(personDTO)))
+                .andExpect(status().isCreated());
+
+        verify(personService, times(1)).update(any(PersonDTO.class));
+
+    }
+
     @Test
     public void updatePersonWhenNotAbleToLocatePersonShouldReturnNotFoundStatusCode() throws Exception {
         doThrow(new PersonNotFoundException("")).when(personService).update(any(PersonDTO.class));
 
-        PersonDTO personDTO = new PersonDTO();
+        PersonDTO personDTO = personFromJson();
         personDTO.setUfn("UFN1");
 
         mockMvc.perform(put("/person/update")
@@ -113,19 +144,17 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void updatePersonWhenInputsAreValidShouldSavePerson() throws Exception {
-        doNothing().when(personService).update(any(PersonDTO.class));
+    public void updatePersonWhenInputsAreInValidShouldReturnBadRequestStatus() throws Exception {
 
-        PersonDTO personDTO = new PersonDTO();
-        personDTO.setUfn("UFN1");
+        PersonDTO personDTO = personFromJson();
+        personDTO.setTitle(null);
 
         mockMvc.perform(put("/person/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(personDTO)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isBadRequest());
 
-        verify(personService, times(1)).update(any(PersonDTO.class));
-
+        verify(personService, never()).update(any(PersonDTO.class));
     }
 
     private PersonDTO personFromJson() throws IOException {

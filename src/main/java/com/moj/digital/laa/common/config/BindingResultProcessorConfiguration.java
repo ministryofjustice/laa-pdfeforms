@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BindingResultProcessorConfiguration {
 
-    @Bean
-    public FieldsErrorExtractor bindingResultProcessor(){
-        return new FieldsErrorExtractor();
-    }
+//    @Bean
+//    public FieldsErrorExtractor bindingResultProcessor(){
+//        return new FieldsErrorExtractor();
+//    }
 }

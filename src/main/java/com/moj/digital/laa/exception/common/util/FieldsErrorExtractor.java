@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.moj.digital.laa.common.constants.StandardString.COLON_WITH_SPACE;
 
+@Component
 public class FieldsErrorExtractor {
 
     public String[] extract(BindingResult bindingResult) {

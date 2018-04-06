@@ -24,8 +24,8 @@ public class PersonControllerExceptionHandlerAdvice extends ResponseEntityExcept
 
     private FieldsErrorExtractor fieldsErrorExtractor;
 
-    public PersonControllerExceptionHandlerAdvice(FieldsErrorExtractor fieldsErrorExtractor){
-        this.fieldsErrorExtractor =fieldsErrorExtractor;
+    public PersonControllerExceptionHandlerAdvice(FieldsErrorExtractor fieldsErrorExtractor) {
+        this.fieldsErrorExtractor = fieldsErrorExtractor;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PersonControllerExceptionHandlerAdvice extends ResponseEntityExcept
 
 
     @ExceptionHandler(value = InvalidPersonDataException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorDetails handleInvalidPersonDataException(InvalidPersonDataException ivpe) {
         log.debug("handleInvalidPersonDataException invoked ");
@@ -50,10 +50,11 @@ public class PersonControllerExceptionHandlerAdvice extends ResponseEntityExcept
     }
 
     @ExceptionHandler(value = PersonNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorDetails handlePersonNotFoundException(PersonNotFoundException pnfe) {
         log.debug("handleInvalidPersonDataException invoked ");
-        return new ErrorDetails(LocalDateTime.now(), pnfe.getMessage(), pnfe.getCause().getMessage());
+        return new ErrorDetails(LocalDateTime.now(), pnfe.getMessage());
     }
 
 }

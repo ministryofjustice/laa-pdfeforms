@@ -35,4 +35,5 @@ dependencies {
 	compileOnly "org.projectlombok:lombok"
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('com.h2database:h2')
 }

@@ -8,37 +8,37 @@ import com.moj.digital.laa.exception.person.InvalidPersonDataException;
 import com.moj.digital.laa.exception.person.PersonNotFoundException;
 import com.moj.digital.laa.model.person.PersonDTO;
 import com.moj.digital.laa.service.person.PersonService;
+import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @Import({FieldsErrorExtractor.class})
+@ComponentScan(basePackages = "com.moj.digital.laa.util")
 public class PersonControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private JsonUtil jsonUtil;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private MockMvc mockMvc;
 
     @MockBean
     private PersonService personService;
@@ -46,7 +46,7 @@ public class PersonControllerTest {
     @Test
     public void persistPersonWhenServiceFailureOccursShouldReturnInternalServerErrorStatusCode() throws Exception {
         doThrow(new InvalidPersonDataException("", new Exception())).when(personService).save(any(PersonDTO.class));
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
 
         mockMvc.perform(post("/person/persist")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -59,7 +59,7 @@ public class PersonControllerTest {
     @Test
     public void persistPersonWhenInputsAreValidShouldSavePerson() throws Exception {
         doNothing().when(personService).save(any(PersonDTO.class));
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
 
         mockMvc.perform(post("/person/persist")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +71,7 @@ public class PersonControllerTest {
 
     @Test
     public void persistPersonWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
         personDTO.setTitle(null);
 
         mockMvc.perform(post("/person/persist")
@@ -110,12 +110,11 @@ public class PersonControllerTest {
     }
 
 
-
     @Test
     public void updatePersonWhenInputsAreValidShouldSavePerson() throws Exception {
         doNothing().when(personService).update(any(PersonDTO.class));
 
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
         personDTO.setUfn("UFN1");
 
         mockMvc.perform(put("/person/update")
@@ -131,7 +130,7 @@ public class PersonControllerTest {
     public void updatePersonWhenNotAbleToLocatePersonShouldReturnNotFoundStatusCode() throws Exception {
         doThrow(new PersonNotFoundException("")).when(personService).update(any(PersonDTO.class));
 
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
         personDTO.setUfn("UFN1");
 
         mockMvc.perform(put("/person/update")
@@ -146,7 +145,7 @@ public class PersonControllerTest {
     @Test
     public void updatePersonWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
 
-        PersonDTO personDTO = personFromJson();
+        PersonDTO personDTO = personDTOFromJson();
         personDTO.setTitle(null);
 
         mockMvc.perform(put("/person/update")
@@ -157,13 +156,11 @@ public class PersonControllerTest {
         verify(personService, never()).update(any(PersonDTO.class));
     }
 
-    private PersonDTO personFromJson() throws IOException {
-        InputStream is = this.getClass().getResourceAsStream("/integrationtest/person/person.json");
-        PersonDTO personDTO = objectMapper.readValue(is, PersonDTO.class);
-        return personDTO;
+    private PersonDTO personDTOFromJson() throws IOException {
+        return jsonUtil.personDTOFromJson();
     }
 
-    private String asJsonString(final PersonDTO personDTO) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(personDTO);
+    private String asJsonString(PersonDTO personDTO) throws JsonProcessingException {
+        return jsonUtil.asJsonString(personDTO);
     }
 }

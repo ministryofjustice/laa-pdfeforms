@@ -15,5 +15,4 @@ public class AddressDTO {
 
     private String postCode;
 
-    private String type;
 }

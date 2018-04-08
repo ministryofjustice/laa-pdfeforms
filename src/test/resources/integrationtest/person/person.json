@@ -5,8 +5,8 @@
   "foreName": "Smith",
   "residenceAddress": {
     "addressLine1": "100 ABC Court",
-    "addressLine2": null,
-    "addressLine3": null,
+    "addressLine2": "line1",
+    "addressLine3": "line2",
     "postCode": "TR10 R11"
   },
   "dateOfBirth": "1988-01-22",
@@ -16,8 +16,8 @@
   "telephoneNumber": "+441234567890",
   "correspondenceAddress": {
     "addressLine1": "100 ABC Court",
-    "addressLine2": null,
-    "addressLine3": null,
+    "addressLine2": "line1",
+    "addressLine3": "line2",
     "postCode": "TR10 R11"
   },
   "ethnicity": "British",

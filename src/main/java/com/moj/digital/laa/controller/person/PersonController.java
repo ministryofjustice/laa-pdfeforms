@@ -3,7 +3,6 @@ package com.moj.digital.laa.controller.person;
 import com.moj.digital.laa.model.person.PersonDTO;
 import com.moj.digital.laa.service.person.PersonService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

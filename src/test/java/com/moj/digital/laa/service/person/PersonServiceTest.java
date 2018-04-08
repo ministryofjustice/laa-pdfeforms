@@ -1,27 +1,24 @@
 package com.moj.digital.laa.service.person;
 
 import com.moj.digital.laa.entity.person.Person;
-import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import com.moj.digital.laa.exception.person.InvalidPersonDataException;
 import com.moj.digital.laa.exception.person.PersonNotFoundException;
 import com.moj.digital.laa.model.person.PersonDTO;
-import org.junit.Test;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import com.moj.digital.laa.repository.person.PersonRepository;
+import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -45,7 +42,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    public void saveWhenThereIsNoInternalErrorPersonShouldBeSave(){
+    public void saveWhenThereIsNoInternalErrorPersonShouldBeSaved() {
         PersonDTO personDTO = new PersonDTO();
         personService.save(personDTO);
     }
@@ -60,5 +57,26 @@ public class PersonServiceTest {
     public void findByUfnWhenAnInValidUFNIsSentShouldThrowAnException() {
         when(personRepository.findByUfn("UFN1")).thenReturn(null);
         personService.findByUfn("UFN1");
+    }
+
+    @Test(expected = InvalidPersonDataException.class)
+    public void updateWhenPersonWhenServiceFailureOccursShouldThrowException() {
+        when(personRepository.findByUfn("UFN1")).thenReturn(new Person());
+        when(personRepository.save(any(Person.class))).thenThrow(new RuntimeException(""));
+
+        PersonDTO personDTOtoBeUpdated = new PersonDTO();
+        personDTOtoBeUpdated.setUfn("UFN1");
+
+        personService.update(personDTOtoBeUpdated);
+    }
+
+    @Test
+    public void updateWhenThereIsNoInternalErrorPersonShouldBeSaved() {
+        when(personRepository.findByUfn("UFN1")).thenReturn(new Person());
+
+        PersonDTO personDTOtoBeUpdated = new PersonDTO();
+        personDTOtoBeUpdated.setUfn("UFN1");
+
+        personService.update(personDTOtoBeUpdated);
     }
 }

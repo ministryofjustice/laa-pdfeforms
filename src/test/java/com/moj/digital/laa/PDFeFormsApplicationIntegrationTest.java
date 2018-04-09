@@ -55,8 +55,7 @@ public class PDFeFormsApplicationIntegrationTest {
         PersonDTO personDTO = personDTOFromJson();
         personDTO.setUfn("UFN3");
 
-        ResponseEntity<String> createResult = testRestTemplate.postForEntity
-                ("/person/persist", httpEntity(personDTO), String.class);
+        testRestTemplate.postForEntity("/person/persist", httpEntity(personDTO), String.class);
 
         personDTO.setUfn("UFN3");
         ResponseEntity<String> updateResult = testRestTemplate.exchange("/person/update", HttpMethod.PUT, httpEntity(personDTO), String.class);

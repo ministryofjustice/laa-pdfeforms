@@ -88,7 +88,7 @@ public class PDFeFormsApplicationIntegrationTest {
     }
 
     @Test
-    public void findPersonByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() throws Exception {
+    public void findPersonByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() {
 
         ResponseEntity<PersonDTO> result = testRestTemplate.getForEntity("/person/UFN6", PersonDTO.class);
 

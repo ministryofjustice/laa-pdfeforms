@@ -2,7 +2,6 @@ package com.moj.digital.laa.controller.person;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import com.moj.digital.laa.exception.person.InvalidPersonDataException;
 import com.moj.digital.laa.exception.person.PersonNotFoundException;
@@ -14,7 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -30,8 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
-@Import({FieldsErrorExtractor.class})
-@ComponentScan(basePackages = "com.moj.digital.laa.util")
+@Import({FieldsErrorExtractor.class,JsonUtil.class})
 public class PersonControllerTest {
 
     @Autowired

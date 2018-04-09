@@ -20,8 +20,11 @@ import java.io.IOException;
 @ComponentScan(basePackages = "com.moj.digital.laa.util")
 public class PersonRepositoryTest {
 
+    public static final String UFN_189 = "UFN189";
+
     @Autowired
     private JsonUtil jsonUtil;
+
 
     @Autowired
     private TestEntityManager testEntityManager;
@@ -33,11 +36,11 @@ public class PersonRepositoryTest {
     @Test
     public void findByUfnWhenAValidUFNIsSentShouldReturnPerson() throws IOException {
         Person person = jsonUtil.personFromJson();
-        person.setUfn("UFN189");
+        person.setUfn(UFN_189);
 
         testEntityManager.persistAndFlush(person);
 
-        Person retrievedPersonObjectFromDB = personRepository.findByUfn("UFN189");
+        Person retrievedPersonObjectFromDB = personRepository.findByUfn(UFN_189);
         assertThat(person.getUfn()).isEqualTo(retrievedPersonObjectFromDB.getUfn());
     }
 }

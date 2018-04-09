@@ -1,3 +1,4 @@
+# Note : This is for development only, eventully the yml file(s) will be externalized in a git repository
 spring:
   application:
     name: pdfeforms

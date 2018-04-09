@@ -24,19 +24,20 @@ public class PersonController {
     public ResponseEntity<String> persistPerson(@Valid @RequestBody PersonDTO person) {
         log.debug("persistPerson invoked with person {} ", person);
         personService.save(person);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return new ResponseEntity(String.format("Person with UFN %s created", person.getUfn()), HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update")
     public ResponseEntity<String> updatePerson(@Valid @RequestBody PersonDTO person) {
         log.debug("updatePerson invoked with person {} ", person);
         personService.update(person);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return new ResponseEntity(String.format("Person with UFN %s updated", person.getUfn()), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{ufn}")
-    public PersonDTO findPersonByUfn(@PathVariable String ufn) {
+    public ResponseEntity<PersonDTO> findPersonByUfn(@PathVariable String ufn) {
         log.debug("findPersonByUfn invoked with ufn {} ", ufn);
-        return personService.findByUfn(ufn);
+        PersonDTO personDTO = personService.findByUfn(ufn);
+        return new ResponseEntity(personDTO, HttpStatus.OK);
     }
 }

@@ -1,4 +1,4 @@
-                          PDF eForms Architecture, Design and Development Document
+## PDF eForms Architecture, Design and Development Document
                           
 
 **Overview**
@@ -7,7 +7,7 @@
 **Purpose of this document**
 	Purpose of this document is to capture all relevant information that may correspond to this implementation both non- technical/business and technical requirements so that this acts a single place of reference for anyone to understand the need, objective of this implementation and to know how it's being perceived at the time of this write up, implementation nuances.
 
-Architecture
+**Architecture**
 
 
 

@@ -9,8 +9,7 @@
 
 **Architecture**
 
-    - [Image](./PdfeFormsArchitecture.png)
-
+    [Image](./PdfeFormsArchitecture.jpeg)
 
 **Sate Machine**
 	To be identified and a diagram to be pasted in here

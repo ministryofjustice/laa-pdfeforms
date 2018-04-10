@@ -1,4 +1,4 @@
-package com.moj.digital.laa;
+package com.moj.digital.laa.integrationtest;
 
 import com.moj.digital.laa.model.person.PersonDTO;
 import com.moj.digital.laa.util.JsonUtil;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(JsonUtil.class)
 @AutoConfigureTestDatabase
-public class PDFeFormsApplicationIntegrationTest {
+public class PersonIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

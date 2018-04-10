@@ -9,7 +9,7 @@
 
 **Architecture**
 
-    [Image](./PdfeFormsArchitecture.jpeg)
+    ![architecture](https://github.com/ministryofjustice/laa-pdfeforms/blob/master/PdfeFormsArchitecture.jpeg)
 
 **Sate Machine**
 	To be identified and a diagram to be pasted in here

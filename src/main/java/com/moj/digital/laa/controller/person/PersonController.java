@@ -8,8 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/person")
 public class PersonController {
@@ -35,9 +38,11 @@ public class PersonController {
     }
 
     @GetMapping(path = "/{ufn}")
-    public ResponseEntity<PersonDTO> findPersonByUfn(@PathVariable String ufn) {
+    public ResponseEntity<List<PersonDTO>> findPersonByUfn(@PathVariable String ufn) {
         log.debug("findPersonByUfn invoked with ufn {} ", ufn);
         PersonDTO personDTO = personService.findByUfn(ufn);
-        return new ResponseEntity(personDTO, HttpStatus.OK);
+        List<PersonDTO> personDTOS = new ArrayList<>();
+        personDTOS.add(personDTO);
+        return new ResponseEntity(personDTOS, HttpStatus.OK);
     }
 }

@@ -29,7 +29,7 @@ public class Person {
     private String surname;
 
     @Column(name = "forename", nullable = false)
-    private String foreName;
+    private String forename;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "residence_address_id")

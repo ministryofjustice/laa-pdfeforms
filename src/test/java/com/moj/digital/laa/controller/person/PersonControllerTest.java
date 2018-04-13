@@ -83,14 +83,14 @@ public class PersonControllerTest {
     public void findPersonByUfnWhenValidUFNPassedShouldReturnCorrespondingPerson() throws Exception {
         PersonDTO personDTO = new PersonDTO();
         personDTO.setUfn("UFN1");
-        personDTO.setForeName("David");
+        personDTO.setForename("David");
 
         given(personService.findByUfn("UFN1")).willReturn(personDTO);
 
         mockMvc.perform(get("/person/UFN1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("ufn").value("UFN1"))
-                .andExpect(jsonPath("foreName").value("David"));
+                .andExpect(jsonPath("forename").value("David"));
 
         verify(personService, times(1)).findByUfn("UFN1");
 

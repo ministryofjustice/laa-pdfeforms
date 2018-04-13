@@ -61,7 +61,7 @@ public class PersonTest {
         assertThat(personDTO.getEmploymentStatus()).isEqualTo(person.getEmploymentStatus());
         assertThat(personDTO.getEthnicity()).isEqualTo(person.getEthnicity());
         assertThat(personDTO.getExistingClient()).isEqualTo(person.getExistingClient());
-        assertThat(personDTO.getForeName()).isEqualTo(person.getForeName());
+        assertThat(personDTO.getForename()).isEqualTo(person.getForename());
         assertThat(personDTO.getFundingDate()).isEqualTo(person.getFundingDate());
         assertThat(personDTO.getId()).isEqualTo(person.getId());
         assertThat(personDTO.getMagistrateCourt()).isEqualTo(person.getMagistrateCourt());

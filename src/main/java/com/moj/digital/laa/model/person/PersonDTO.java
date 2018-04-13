@@ -18,7 +18,7 @@ public class PersonDTO {
 
     private String surname;
 
-    private String foreName;
+    private String forename;
 
     private AddressDTO residenceAddress;
 

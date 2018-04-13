@@ -1,0 +1,23 @@
+<div id="search-component">
+    <h4>Hero Search</h4>
+   
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+   
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>UFN</td>
+            <td>Forename</td>
+            <td>Surname</td>
+        </tr>
+        </thead>
+      
+        <tbody>
+            <tr *ngFor="let person of persons$ | async">
+                <td>{{ person.ufn }}</td>
+                <td>{{ person.forename }}</td>
+                <td>{{ person.surname }}</td>
+            </tr>
+        </tbody>
+      </table>
+  </div>

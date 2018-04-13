@@ -1,0 +1,155 @@
+<div class="container">
+  <h3>Registration Form</h3>
+
+  <div>
+    <form (ngSubmit)="registerPerson()" #personForm="ngForm">
+
+      <div>
+          <label for="UFN">UFN</label>
+          <input type="text" [(ngModel)]="person.ufn" name='ufn'/>
+      </div>
+      <br>
+      <div class="form-group">
+          <label for="title">Title</label>
+          <select class="form-control" name="title" [(ngModel)]="person.title">
+            <option *ngFor="let title of staticData.titleStaticValues" [value]="title">{{title}}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label for="Forename">Forename</label>
+          <input type="text" [(ngModel)]="person.forename" name='forename'/>
+      </div>
+      <br>
+      <div>
+          <label for="Surname">Surname</label>
+          <input type="text" [(ngModel)]="person.surname" name='surname'/>
+      </div>
+      <br>
+      <div>
+          <label>Address</label>
+          <br><br>
+          <div>
+            <label for="Address Line1">Address Line 1</label>
+            <input type="text" [(ngModel)]="person.residenceAddress.addressLine1" name='surname'/>
+        </div>
+        <br>
+        <div>
+            <label for="Address Line2">Address Line 2</label>
+            <input type="text" [(ngModel)]="person.residenceAddress.addressLine2" name='surname'/>
+        </div>
+        <br>
+        <div>
+            <label for="Address Line3">Address Line3</label>
+            <input type="text" [(ngModel)]="person.residenceAddress.addressLine3" name='surname'/>
+        </div>
+        <br>
+        <div>
+            <label for="Post Code">Post Code</label>
+            <input type="text" [(ngModel)]="person.residenceAddress.postCode" name='surname'/>
+        </div>
+        <br>
+      </div>
+      
+      <div>
+          <label for="Date Of Birth">Date Of Birth</label>
+          <input type="text" [(ngModel)]="person.dateOfBirth" name='dateOrBirth'/>
+      </div>
+      <br>
+      <div>
+          <label for="NI Number">NI Number</label>
+          <input type="text" [(ngModel)]="person.niNumber" name='niNumber'/>
+      </div>
+      <br>
+      <div>
+          <label for="Employment Status">Employment Status</label>
+          <select class="form-control" name="employmentStatus" [(ngModel)]="person.employmentStatus" required>
+            <option *ngFor="let value of staticData.employmentStatusValues" [value]="value">{{value}}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label for="Relationship Status">Relationship Status</label>
+          <select class="form-control" name="relationshipStatus" [(ngModel)]="person.relationshipStatus" required>
+            <option *ngFor="let value of staticData.relationshipStatusValues" [value]="value">{{value}}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label for="Telephone Number">Telephone Number</label>
+          <input type="text" [(ngModel)]="person.telephoneNumber" name='telephoneNumber'/>
+      </div>
+      <br>
+      <div>
+        <label>Correspondence Address</label>
+        <br><br>
+        <div>
+            <label for="Address Line1">Address Line 1</label>
+            <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='surname'/>
+        </div>
+        <br>
+        <div>
+            <label for="Address Line2">Address Line 2</label>
+            <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='surname'/>
+        </div>
+        <br>
+          <div>
+            <label for="Address Line3">Address Line3</label>
+            <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='surname'/>
+        </div>
+        <br>
+        <div>
+            <label for="Post Code">Post Code</label>
+            <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='surname'/>
+        </div>
+        <br>
+      </div>
+      <br>
+      <div>
+          <label for="Source Of Busniness">Source Of Busniness</label>
+          <select class="form-control" name="sourceOfBusiness" [(ngModel)]="person.sourceOfBusiness" required>
+            <option *ngFor="let value of staticData.sourceOfBusinessValues" [value]="source">{{value}}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label for="existingClient">
+              <input type="checkbox" name="existingClient" ng-model="person.existingClient" ng-true-value="Y" ng-false-value="N">
+              Existing Client(Y/N)?
+          </label>
+      </div>
+      <br>
+      <div>
+          <label>
+              <input type="checkbox" name="requestSpecificSolicitor" ng-model="person.requestSpecificSolicitor" ng-true-value="Y" ng-false-value="N">
+              Request Specific Solicitor(Y/N)?
+          </label>
+      </div>
+      <br>
+      <div>
+          <label for="Request Specific Solicitor Text">Request Specific Solicitor Text</label>
+          <input type="text" [(ngModel)]="person.requestSpecificSolicitorText" name='requestSpecificSolicitorText'/>
+      </div>
+      <br>
+      <div>
+          <label for="Ethnicity">Ethnicity</label>
+          <select class="form-control" name="ethnicity" [(ngModel)]="person.ethnicity" required>
+            <option *ngFor="let value of staticData.ethnicityValues" [value]="value">{{value}}</option>
+          </select>
+      </div>
+      <br>
+      <div>
+          <label for="Disability">Disability</label>
+          <br>
+          <div *ngFor="let value of staticData.disabilityValues">
+              <label for="{{value}}">{{value}}
+                <input type="checkbox" name="disability" id="{{value}}"  (change) = "updateDisability(value,$event)">
+            </label>
+          </div>
+      </div>
+      <br>
+    <div><button type="submit" class="btn btn-success">Submit</button></div>
+
+    </form>    
+  </div>
+</div>

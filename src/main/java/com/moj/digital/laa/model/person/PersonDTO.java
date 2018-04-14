@@ -50,6 +50,8 @@ public class PersonDTO {
 
     private String crownCourt;
 
+    private String otherCourt;
+
     private String nationality;
 
     private String venue;
@@ -80,7 +82,7 @@ public class PersonDTO {
 
     private LocalDate conflictCheckDate;
 
-    private String riskAssessment;
+    private String riskAssessmentDone;
 
     private String coAccused;
 

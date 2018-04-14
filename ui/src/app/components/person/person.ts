@@ -20,8 +20,10 @@ export class Person {
     policeStation1 : string;
     magistrateCourt : string;
     crownCourt : string;
+    otherCourt : string;
     nationality : string;
     venue : string;
+    venueOther : string;
     allegation : string;
     previousConviction : string;
     fundingDate : Date;

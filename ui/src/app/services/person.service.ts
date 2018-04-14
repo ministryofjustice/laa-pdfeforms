@@ -15,7 +15,7 @@ export class PersonService {
   constructor(private http : HttpClient) { }
 
   registerPerson(person : Person): Observable<Object>{
-    console.log('received person in service ',person);
+    console.log('received person in service ',JSON.stringify(person));
     const uri = 'http://localhost:8080/person/persist';
     return this.http.post(uri,person)
       .pipe(

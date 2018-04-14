@@ -21,9 +21,7 @@ export class CreatePersonComponent {
   surname : String;
 
   registerPerson(){
-    console.log('registerPerson called in create person component ',this.person);
     this.personService.registerPerson(this.person).subscribe(res => console.log('person component ',res));
-    console.log('response from person service received ');
   }
 
   updateDisability(value,event) {

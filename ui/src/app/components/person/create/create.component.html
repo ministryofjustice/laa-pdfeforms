@@ -116,13 +116,14 @@
             <br>
             <div>
                 <label for="existingClient">
-                    <input type="checkbox" name="existingClient" [(ngModel)]="person.existingClient" > Existing Client(Y/N) 
+                    <input type="checkbox" name="existingClient" (change)="updateExistingClient($event)" > Existing Client(Y/N) 
                 </label>
             </div>
             <br>
             <div>
                 <label>
-                    <input type="checkbox" name="requestSpecificSolicitor" [(ngModel)]="person.requestSpecificSolicitor"> Request Specific Solicitor(Y/N)?
+                    <input type="checkbox" name="requestSpecificSolicitor" 
+                    (change)="updateRequestSpecificSolicitor($event)"> Request Specific Solicitor(Y/N)?
                 </label>
             </div>
             <br>
@@ -192,7 +193,8 @@
             <br>
             <div>
                 <label for="Previous Conviction(Y/N)?">
-                    <input type="checkbox" name="previousConviction" [(ngModel)]="person.previousConviction"> Previous Conviction(Y/N)?
+                    <input type="checkbox" name="previousConviction" 
+                    (click)="updatePreviousConviction($event)"> Previous Conviction(Y/N)?
                 </label>
             </div>
             <br>
@@ -238,7 +240,8 @@
             <br>
             <div>
                 <label for="Conflict Check(Y/N)?">
-                    <input type="checkbox" name="conflictCheck" [(ngModel)]="person.conflictCheck"> Conflict Check(Y/N)?
+                    <input type="checkbox" name="conflictCheck" 
+                    (click)="updateConflictCheck($event)"> Conflict Check(Y/N)?
                 </label>
             </div>
             <br>
@@ -254,10 +257,13 @@
             <br>
             <div>
                 <label for="Risk Assessment Done(Y/N)?">
-                    <input type="checkbox" name="riskAssessmentDone" ng-model="person.riskAssessmentDone" ng-true-value="Y" ng-false-value="N"> Risk Assessment Done(Y/N)?
+                    <input type="checkbox" name="riskAssessmentDone" 
+                    (click)="updateRiskAssessmentDone($event)"> Risk Assessment Done(Y/N)?
                     <br>
-                    <input type="radio" value="Standard" name="riskAssessmentType" [ngModel]="person.riskAssessmentType"> Standard
-                    <input type="radio" value="Non Standard" name="riskAssessmentType" [ngModel]="person.riskAssessmentType"> Non Standard
+                    <input type="radio" value="Standard" name="riskAssessmentType" 
+                    (click)="updateRiskAssessmentType($value,$event)"> Standard
+                    <input type="radio" value="Non Standard" name="riskAssessmentType" 
+                    (click)="updateRiskAssessmentType($value,$event)"> Non Standard
                 </label>
             </div>
             <br> 
@@ -267,7 +273,7 @@
             </div>
             <br>
             <div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </form>
     </div>

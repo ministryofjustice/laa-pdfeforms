@@ -3,6 +3,7 @@ import { PersonService } from './../../../services/person.service';
 
 import { Component } from '@angular/core';
 import { Person } from './../person'
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create',
@@ -13,9 +14,21 @@ export class CreatePersonComponent {
   constructor(private personService: PersonService) { }
   staticData = new CommonData();
   person = new Person();
+  serversideErrors : {};
 
   registerPerson() {
-    this.personService.registerPerson(this.person).subscribe(res => console.log('person component ', res));
+    this.personService.registerPerson(this.person).subscribe(
+      data => console.log('person component ', data),
+      (err: HttpErrorResponse) => {
+        if(err.error.details != null){
+          console.log("error ",JSON.stringify(err.error.details));
+          this.serversideErrors = err.error.details;
+        }else {
+          console.log('server side error ',err.message);
+          this.serversideErrors = [err.message];
+        }
+      }
+    );
   }
 
   updateDisability(value, event) {

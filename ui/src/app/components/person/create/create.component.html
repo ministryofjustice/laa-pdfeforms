@@ -1,17 +1,27 @@
-<div class="container">
+<div>
     <h3>Registration Form</h3>
 
     <div>
+        <div *ngIf="serversideErrors">
+            <font color='red'>
+                <p *ngFor="let error of serversideErrors">{{error}}</p>
+            </font>
+        </div>
         <form (ngSubmit)="registerPerson()" #personForm="ngForm">
 
             <div>
                 <label for="UFN">UFN</label>
-                <input type="text" [(ngModel)]="person.ufn" name='ufn' />
+                <input type="text" [(ngModel)]="person.ufn" name='ufn' #ufn="ngModel" required/>
+            </div>
+            <div *ngIf="ufn.errors && ufn.touched">
+                <p *ngIf="ufn.errors.required">
+                    <font color='red'> UFN is required</font>
+                </p>
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <label for="Title">Title</label>
-                <select class="form-control" name="title" [(ngModel)]="person.title">
+                <select name="title" [(ngModel)]="person.title">
                     <option *ngFor="let title of staticData.titleStaticValues" [value]="title">{{title}}</option>
                 </select>
             </div>
@@ -64,14 +74,14 @@
             <br>
             <div>
                 <label for="Employment Status">Employment Status</label>
-                <select class="form-control" name="employmentStatus" [(ngModel)]="person.employmentStatus" required>
+                <select name="employmentStatus" [(ngModel)]="person.employmentStatus" required>
                     <option *ngFor="let value of staticData.employmentStatusValues" [value]="value">{{value}}</option>
                 </select>
             </div>
             <br>
             <div>
                 <label for="Relationship Status">Relationship Status</label>
-                <select class="form-control" name="relationshipStatus" [(ngModel)]="person.relationshipStatus" required>
+                <select name="relationshipStatus" [(ngModel)]="person.relationshipStatus" required>
                     <option *ngFor="let value of staticData.relationshipStatusValues" [value]="value">{{value}}</option>
                 </select>
             </div>
@@ -109,21 +119,20 @@
             <br>
             <div>
                 <label for="Source Of Busniness">Source Of Busniness</label>
-                <select class="form-control" name="sourceOfBusiness" [(ngModel)]="person.sourceOfBusiness" required>
+                <select name="sourceOfBusiness" [(ngModel)]="person.sourceOfBusiness" required>
                     <option *ngFor="let value of staticData.sourceOfBusinessValues" [value]="value">{{value}}</option>
                 </select>
             </div>
             <br>
             <div>
                 <label for="existingClient">
-                    <input type="checkbox" name="existingClient" (change)="updateExistingClient($event)" > Existing Client(Y/N) 
+                    <input type="checkbox" name="existingClient" (change)="updateExistingClient($event)"> Existing Client(Y/N)
                 </label>
             </div>
             <br>
             <div>
                 <label>
-                    <input type="checkbox" name="requestSpecificSolicitor" 
-                    (change)="updateRequestSpecificSolicitor($event)"> Request Specific Solicitor(Y/N)?
+                    <input type="checkbox" name="requestSpecificSolicitor" (change)="updateRequestSpecificSolicitor($event)"> Request Specific Solicitor(Y/N)?
                 </label>
             </div>
             <br>
@@ -134,7 +143,7 @@
             <br>
             <div>
                 <label for="Ethnicity">Ethnicity</label>
-                <select class="form-control" name="ethnicity" [(ngModel)]="person.ethnicity" required>
+                <select name="ethnicity" [(ngModel)]="person.ethnicity" required>
                     <option *ngFor="let value of staticData.ethnicityValues" [value]="value">{{value}}</option>
                 </select>
             </div>
@@ -174,9 +183,9 @@
                 <input type="text" [(ngModel)]="person.nationality" name='nationality' />
             </div>
             <br>
-            <div class="form-group">
+            <div>
                 <label for="Venue">Venue</label>
-                <select class="form-control" name="venue" [(ngModel)]="person.venue">
+                <select name="venue" [(ngModel)]="person.venue">
                     <option *ngFor="let value of staticData.venueValues" [value]="value">{{value}}</option>
                 </select>
             </div>
@@ -193,8 +202,7 @@
             <br>
             <div>
                 <label for="Previous Conviction(Y/N)?">
-                    <input type="checkbox" name="previousConviction" 
-                    (click)="updatePreviousConviction($event)"> Previous Conviction(Y/N)?
+                    <input type="checkbox" name="previousConviction" (click)="updatePreviousConviction($event)"> Previous Conviction(Y/N)?
                 </label>
             </div>
             <br>
@@ -240,8 +248,7 @@
             <br>
             <div>
                 <label for="Conflict Check(Y/N)?">
-                    <input type="checkbox" name="conflictCheck" 
-                    (click)="updateConflictCheck($event)"> Conflict Check(Y/N)?
+                    <input type="checkbox" name="conflictCheck" (click)="updateConflictCheck($event)"> Conflict Check(Y/N)?
                 </label>
             </div>
             <br>
@@ -257,23 +264,20 @@
             <br>
             <div>
                 <label for="Risk Assessment Done(Y/N)?">
-                    <input type="checkbox" name="riskAssessmentDone" 
-                    (click)="updateRiskAssessmentDone($event)"> Risk Assessment Done(Y/N)?
+                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessmentDone($event)"> Risk Assessment Done(Y/N)?
                     <br>
-                    <input type="radio" value="Standard" name="riskAssessmentType" 
-                    (click)="updateRiskAssessmentType($value,$event)"> Standard
-                    <input type="radio" value="Non Standard" name="riskAssessmentType" 
-                    (click)="updateRiskAssessmentType($value,$event)"> Non Standard
+                    <input type="radio" value="Standard" name="riskAssessmentType" (click)="updateRiskAssessmentType($value,$event)"> Standard
+                    <input type="radio" value="Non Standard" name="riskAssessmentType" (click)="updateRiskAssessmentType($value,$event)"> Non Standard
                 </label>
             </div>
-            <br> 
+            <br>
             <div>
                 <label for="Co Accused">Co Accused</label>
                 <input type="text" [(ngModel)]="person.coAccused" name='coAccused' />
             </div>
             <br>
             <div>
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit">Save</button>
             </div>
         </form>
     </div>

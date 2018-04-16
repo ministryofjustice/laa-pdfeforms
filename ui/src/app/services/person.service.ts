@@ -17,11 +17,11 @@ export class PersonService {
   registerPerson(person : Person): Observable<Object>{
     console.log('received person in service ',JSON.stringify(person));
     const uri = 'http://localhost:8080/person/persist';
-    return this.http.post(uri,person)
-      .pipe(
-        tap(_ => console.log('created ',_)),
-        catchError(this.handleError('registerPerson',"some value"))
-      );
+    return this.http.post(uri,person);
+      // .pipe(
+      //   tap(_ => console.log('created ',_)),
+      //   catchError(this.handleError('registerPerson',"some value"))
+      // );
   }
 
   searchPersons(term:string): Observable<Person[]> {
@@ -30,7 +30,8 @@ export class PersonService {
     if(!term.trim()){
       return of([]);
     }
-    return this.http.get<Person[]>(uri).pipe
+    return this.http.get<Person[]>(uri)
+    .pipe
     (
       tap(persons => console.log(`found persons matching "${term}"`)),
       catchError(this.handleError('searchPersons',[]))

@@ -37,7 +37,8 @@ export class Person {
     conflictCheck : string;
     conflictCheckName : string;
     conflictCheckDate : Date;
-    riskAssessment : string;
+    riskAssessmentDone : string;
+    riskAssessmentType : string;
     coAccused : string;
     disabilityOptions = [];
     disability;

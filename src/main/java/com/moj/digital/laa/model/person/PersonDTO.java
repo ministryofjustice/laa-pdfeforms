@@ -2,6 +2,7 @@ package com.moj.digital.laa.model.person;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -10,10 +11,9 @@ public class PersonDTO {
 
     private Long id;
 
-    @NotNull
     private String ufn;
 
-    @NotNull
+    @NotEmpty(message = "Cannot be null or empty")
     private String title;
 
     private String surname;
@@ -50,7 +50,7 @@ public class PersonDTO {
 
     private String crownCourt;
 
-    private String otherCourt;
+    //private String otherCourt;
 
     private String nationality;
 

@@ -7,7 +7,11 @@ import com.moj.digital.laa.model.person.PersonDTO;
 import com.moj.digital.laa.repository.person.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.PERSON_NOT_FOUND;
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.PERSON_PERSIST_ERROR;
@@ -28,6 +32,11 @@ public class PersonService {
         log.debug("save person called with person {}", personDTO);
         try {
             Person person = modelMapper.map(personDTO, Person.class);
+
+            person.getDisabilities().stream().forEach(disability -> {
+                disability.setPerson(person);
+            });
+            
             personRepository.save(person);
         } catch (Exception e) {
             log.error("Could not persist person details because of exception {}", e.getMessage());
@@ -43,6 +52,16 @@ public class PersonService {
             throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND.message(), ufn));
         }
         return modelMapper.map(person, PersonDTO.class);
+    }
+
+    public List<PersonDTO> findByUfnContaining(String ufn) {
+        log.debug("Find by UFN containing called with UFN {}", ufn);
+        List<Person> personList = personRepository.findByUfnContaining(ufn);
+
+        Type targetType = new TypeToken<List<PersonDTO>>() {
+        }.getType();
+
+        return modelMapper.map(personList, targetType);
     }
 
     public void update(PersonDTO personDTO) {

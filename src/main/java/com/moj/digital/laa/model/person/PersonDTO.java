@@ -3,8 +3,8 @@ package com.moj.digital.laa.model.person;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class PersonDTO {
@@ -85,5 +85,7 @@ public class PersonDTO {
     private String riskAssessmentDone;
 
     private String coAccused;
+
+    private List<DisabilityDTO> disabilities;
 
 }

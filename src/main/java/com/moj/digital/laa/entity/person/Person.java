@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -15,7 +16,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_generator")
-    @SequenceGenerator(name = "person_generator", sequenceName = "person_seq", allocationSize = 1)
+    @SequenceGenerator(name = "person_generator", sequenceName = "Person_Seq", allocationSize = 1)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
@@ -132,5 +133,7 @@ public class Person {
     @Column(name = "co_accused", nullable = false)
     private String coAccused;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Disability> disabilities;
 }
 

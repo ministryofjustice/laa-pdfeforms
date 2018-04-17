@@ -9,12 +9,14 @@ import { appRoutes } from "./routerConfig";
 import { HomeComponent } from './components/person/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { PersonService } from './services/person.service';
+import { EditComponent } from './components/person/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreatePersonComponent,
-    HomeComponent
+    HomeComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

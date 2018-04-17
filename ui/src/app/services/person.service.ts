@@ -12,36 +12,69 @@ const httpOptions = {
 @Injectable()
 export class PersonService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  registerPerson(person : Person): Observable<Object>{
-    console.log('received person in service ',JSON.stringify(person));
+  registerPerson(person: Person): Observable<Object> {
     const uri = 'http://localhost:8080/person/persist';
-    return this.http.post(uri,person);
-      // .pipe(
-      //   tap(_ => console.log('created ',_)),
-      //   catchError(this.handleError('registerPerson',"some value"))
-      // );
+    var message;
+    this.http.post(uri, person).subscribe(
+      res => {
+        console.log(res);
+        message = res;
+      },
+      error => {
+        console.log(error);
+        message = error;
+      }
+    );
+    return of(message);
   }
 
-  searchPersons(term:string): Observable<Person[]> {
-    const uri = `http://localhost:8080/person/${term}`;
+  updatePerson(person: Person): Observable<Object> {
+    const uri = 'http://localhost:8080/person/update';
+    var message;
+    this.http.put(uri, person).subscribe(
+      res => {
+        console.log(res);
+        message = res;
+      },
+      error => {
+        console.log(error);
+        message = error;
+      }
+    );
+    return of(message);
+  }
+ 
+  searchPersons(term: string): Observable<Person[]> {
+    const uri = `http://localhost:8080/person/containingUfn/${term}`;
 
-    if(!term.trim()){
+    if (!term.trim()) {
       return of([]);
     }
     return this.http.get<Person[]>(uri)
-    .pipe
-    (
-      tap(persons => console.log(`found persons matching "${term}"`)),
-      catchError(this.handleError('searchPersons',[]))
-    );
+      .pipe
+      (
+      tap(persons => console.log(`found ${persons.length} persons matching "${term}"`)),
+      catchError(this.handleError('searchPersons', []))
+      );
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  editPerson(ufn: String): Observable<Person> {
+    console.log('ufn in edit component ',ufn)
+    const uri = `http://localhost:8080/person/${ufn}`;
+
+    if (!ufn.trim()) {
+      return of();
+    }
+
+    return this.http.get<Person>(uri);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: HttpErrorResponse): Observable<T> => {
       console.error(error.status);
-      console.log('operation ',operation);
+      console.log('operation ', operation);
       console.log(error.message)
       return of(result as T);
     };

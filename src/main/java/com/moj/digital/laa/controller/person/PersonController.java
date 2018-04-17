@@ -38,11 +38,14 @@ public class PersonController {
     }
 
     @GetMapping(path = "/{ufn}")
-    public ResponseEntity<List<PersonDTO>> findPersonByUfn(@PathVariable String ufn) {
+    public ResponseEntity<PersonDTO> findPersonByUfn(@PathVariable String ufn) {
         log.debug("findPersonByUfn invoked with ufn {} ", ufn);
-        PersonDTO personDTO = personService.findByUfn(ufn);
-        List<PersonDTO> personDTOS = new ArrayList<>();
-        personDTOS.add(personDTO);
-        return new ResponseEntity(personDTOS, HttpStatus.OK);
+        return new ResponseEntity(personService.findByUfn(ufn), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/containingUfn/{ufn}")
+    public ResponseEntity<List<PersonDTO>> findPersonByUfnContaining(@PathVariable String ufn) {
+        log.debug("findPersonByUfn invoked with ufn {} ", ufn);
+        return new ResponseEntity<List<PersonDTO>>(personService.findByUfnContaining(ufn), HttpStatus.OK);
     }
 }

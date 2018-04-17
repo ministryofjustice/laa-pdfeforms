@@ -82,4 +82,3 @@ A system built this way will greatly reduce the redundant data entry and ensure 
 - As this will be an Angular based implementation, the front end will be non- functional on browsers that do not support standard javascript features, and in browsers where javascript support is disabled.
 
 
-			

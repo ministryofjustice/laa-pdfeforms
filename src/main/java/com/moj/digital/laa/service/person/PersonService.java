@@ -36,10 +36,11 @@ public class PersonService {
             person.getDisabilities().stream().forEach(disability -> {
                 disability.setPerson(person);
             });
-            
+
+            log.debug("Person to be updated {}",person);
             personRepository.save(person);
         } catch (Exception e) {
-            log.error("Could not persist person details because of exception {}", e.getMessage());
+            log.error("Could not persist person details because of exception {}", e);
             throw new InvalidPersonDataException(PERSON_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }

@@ -21,6 +21,14 @@ public class Disability {
     @JoinColumn(name="person_id", nullable = false)
     private Person person;
 
-    @Column(name="disability_option", nullable = false)
+    @Column(name="disability_option")
     private String disabilityOption;
+
+    @Override
+    public String toString() {
+        return "Disability{" +
+                "id=" + id +
+                ", disabilityOption='" + disabilityOption + '\'' +
+                '}';
+    }
 }

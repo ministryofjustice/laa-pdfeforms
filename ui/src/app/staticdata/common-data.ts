@@ -1,6 +1,6 @@
 export class CommonData {
     
-    titleStaticValues = ['Mr','Miss','Mrs','Other'];
+    titleStaticValues = ['','Mr','Miss','Mrs','Other'];
     
     employmentStatusValues  = ['Working','Unemployed'];
     

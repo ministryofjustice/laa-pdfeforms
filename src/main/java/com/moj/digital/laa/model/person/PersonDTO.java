@@ -84,6 +84,8 @@ public class PersonDTO {
 
     private String riskAssessmentDone;
 
+    private String riskAssessmentType;
+
     private String coAccused;
 
     private List<DisabilityDTO> disabilities;

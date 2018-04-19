@@ -264,12 +264,19 @@
             <br>
             <div>
                 <label for="Risk Assessment Done(Y/N)?">
-                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessmentDone($event)"> Risk Assessment Done(Y/N)?
+                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessmentDone($event)"
+                    > Risk Assessment Done(Y/N)?
                     <br>
-                    <input type="radio" value="Standard" name="riskAssessmentType" (click)="updateRiskAssessmentType($value,$event)"> Standard
-                    <input type="radio" value="Non Standard" name="riskAssessmentType" (click)="updateRiskAssessmentType($value,$event)"> Non Standard
+  
+                    <input type="radio" value="Standard" name="riskAssessmentType" 
+                    [(ngModel)]="person.riskAssessmentType"> Standard
+  
+                    <input type="radio" value="Non Standard" name="riskAssessmentType" 
+                    [(ngModel)]="person.riskAssessmentType"> Non Standard
+  
                 </label>
             </div>
+  
             <br>
             <div>
                 <label for="Co Accused">Co Accused</label>

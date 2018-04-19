@@ -2,3 +2,4 @@ databaseChangeLog:
     - include:
         file: db/changelog/changes/v001.sql
         file: db/changelog/changes/v002.sql
+        file: db/changelog/changes/v003.sql

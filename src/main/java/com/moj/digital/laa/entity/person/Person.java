@@ -127,8 +127,11 @@ public class Person {
     @Convert(converter = LocalDateSQLDateConverter.class)
     private LocalDate conflictCheckDate;
 
-    @Column(name = "risk_assessment", nullable = false)
-    private String riskAssessment;
+    @Column(name = "risk_assessment_done", nullable = false)
+    private String riskAssessmentDone;
+
+    @Column(name = "risk_assessment_type", nullable = false)
+    private String riskAssessmentType;
 
     @Column(name = "co_accused", nullable = false)
     private String coAccused;

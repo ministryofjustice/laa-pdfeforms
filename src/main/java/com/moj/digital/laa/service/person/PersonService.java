@@ -34,7 +34,7 @@ public class PersonService {
             Person person = modelMapper.map(personDTO, Person.class);
 
             person.getDisabilities().stream().forEach(disability -> {
-                disability.setPersonID(person.getId());
+                disability.setPersonID(person);
             });
 
             log.debug("Person to be updated {}",person);

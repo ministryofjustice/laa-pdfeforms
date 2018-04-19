@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonService } from '../../../services/person.service';
-import { CommonData } from '../../../staticdata/common-data';
-import { Person } from '../person';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Disabilities } from '../Disabilities';
+import { CrudBaseComponent } from '../common/CrudBaseComponent';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PersonService } from '../../../services/person.service';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent implements OnInit {
+export class EditComponent extends CrudBaseComponent implements OnInit{
 
+  constructor(protected route: ActivatedRoute, protected router: Router, protected personService: PersonService) {
+    super();
+  }
 
-  constructor(private route: ActivatedRoute, private router: Router, private personService: PersonService) { }
-  staticData = new CommonData();
-  person = new Person();
-  disabilityOptions = new Array<Disabilities>();
-  serversideErrors: {};
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.personService.editPerson(params['ufn']).subscribe(editablePerson => {
+        console.log('edit person received ', editablePerson);
+        this.person = editablePerson;
+        this.populateDisabilityOptions();
+      });
+    });
+  }
 
   updatePerson() {
 
@@ -39,98 +45,6 @@ export class EditComponent implements OnInit {
         }
       }
     );
-  }
-
-  private popluateDisabilies() {
-    this.person.disabilities = new Array<Disabilities>();
-
-    this.disabilityOptions.forEach(option => {
-
-      if (option.selected) {
-        var disability = new Disabilities();
-        disability.id = option.id;
-        disability.personID = option.personID;
-        disability.disabilityOption = option.disabilityOption;
-        this.person.disabilities.push(disability);
-      }
-
-    });
-  }
-
-  updateDisability(value, event) {
-
-    console.log('value ', value, " checked status ", event.target.checked);
-    console.log('disabilityOptions ', this.disabilityOptions);
-    var notFound = true;
-
-    this.disabilityOptions.forEach(option => {
-
-      if (option.disabilityOption === value) {
-        option.selected = event.target.checked;
-        notFound = false;
-      }
-
-    });
-
-    if (notFound && event.target.checked) {
-      var newDisabilityOption = new Disabilities();
-      newDisabilityOption.selected = true;
-      newDisabilityOption.personID = this.person.id;
-      newDisabilityOption.disabilityOption = value;
-      this.disabilityOptions.push(newDisabilityOption);
-    }
-
-  }
-
-  updateExistingClient(event) {
-    if (event.target.checked) {
-      this.person.existingClient = "Y";
-    } else {
-      this.person.existingClient = "N";
-    }
-  }
-
-
-  updateRequestSpecificSolicitor(event) {
-    if (event.target.checked) {
-      this.person.requestSpecificSolicitor = "Y";
-    } else {
-      this.person.requestSpecificSolicitor = "N";
-    }
-  }
-
-  updatePreviousConviction(event) {
-    if (event.target.checked) {
-      this.person.previousConviction = "Y";
-    } else {
-      this.person.previousConviction = "N";
-    }
-  }
-
-  updateConflictCheck(event) {
-    if (event.target.checked) {
-      this.person.conflictCheck = "Y";
-    } else {
-      this.person.conflictCheck = "N";
-    }
-  }
-
-  updateRiskAssessmentDone(event) {
-    if (event.target.checked) {
-      this.person.riskAssessmentDone = "Y";
-    } else {
-      this.person.riskAssessmentDone = "N";
-    }
-  }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.personService.editPerson(params['ufn']).subscribe(editablePerson => {
-        console.log('edit person received ', editablePerson);
-        this.person = editablePerson;
-        this.populateDisabilityOptions();
-      });
-    });
   }
 
   private populateDisabilityOptions() {

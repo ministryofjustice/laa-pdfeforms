@@ -17,10 +17,10 @@ public class Disability {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    //@ManyToOne
-    //@JoinColumn(name="person_id", nullable = false)
-    @Column(name="person_id")
-    private Long personID;
+    @ManyToOne
+    @JoinColumn(name="person_id", nullable = false)
+    //@Column(name="person_id")
+    private Person personID;
 
     @Column(name="disability_option")
     private String disabilityOption;

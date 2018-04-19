@@ -1,3 +1,4 @@
+import { Disabilities } from './../Disabilities';
 import { CommonData } from './../../../staticdata/common-data';
 import { PersonService } from './../../../services/person.service';
 
@@ -14,31 +15,44 @@ export class CreatePersonComponent {
   constructor(private personService: PersonService) { }
   staticData = new CommonData();
   person = new Person();
-  serversideErrors : {};
+  disabilityOptions = [];
+  serversideErrors: {};
 
   registerPerson() {
+    this.popluateDisabilies();
+    console.log('register person called in created component with person ', this.person);
     this.personService.registerPerson(this.person).subscribe(
       data => console.log('person component ', data),
       (err: HttpErrorResponse) => {
-        if(err.error.details != null){
-          console.log("error ",JSON.stringify(err.error.details));
+        if (err.error.details != null) {
+          console.log("error ", JSON.stringify(err.error.details));
           this.serversideErrors = err.error.details;
-        }else {
-          console.log('server side error ',err.message);
+        } else {
+          console.log('server side error ', err.message);
           this.serversideErrors = [err.message];
         }
       }
     );
   }
 
+  popluateDisabilies() {
+    this.disabilityOptions.forEach(option => {
+      console.log('selected option ',option);
+      var d = new Disabilities();
+      d.disabilityOption = option;
+      console.log('d ',d);
+      this.person.disabilities.push(d);
+      console.log(JSON.stringify(this.person.disabilities));
+    });
+  }
   updateDisability(value, event) {
 
     if (event.target.checked) {
-      this.person.disabilityOptions.push(value);
+      this.disabilityOptions.push(value);
     } else {
-      var index = this.person.disabilityOptions.indexOf(value);
+      var index = this.disabilityOptions.indexOf(value);
       if (index > -1) {
-        this.person.disabilityOptions.splice(index, 1);
+        this.disabilityOptions.splice(index, 1);
       }
     }
   }

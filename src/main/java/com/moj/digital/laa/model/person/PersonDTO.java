@@ -87,5 +87,4 @@ public class PersonDTO {
     private String coAccused;
 
     private List<DisabilityDTO> disabilities;
-
 }

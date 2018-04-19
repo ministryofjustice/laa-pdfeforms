@@ -1,6 +1,8 @@
 import { Address } from './Address';
+import { Disabilities } from './Disabilities';
 
 export class Person {
+    id : number;
     ufn : string;
     title : string;
     forename : string;
@@ -40,7 +42,7 @@ export class Person {
     riskAssessmentDone : string;
     riskAssessmentType : string;
     coAccused : string;
-    disabilityOptions = [];
-    disability;
+    disabilities = new Array<Disabilities>();
     constructor(){}
+
 }

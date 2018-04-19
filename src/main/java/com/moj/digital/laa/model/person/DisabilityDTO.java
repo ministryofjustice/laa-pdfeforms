@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DisabilityDTO {
     private Long id;
-    private String ufn;
+    private Long personID;
     private String disabilityOption;
 }

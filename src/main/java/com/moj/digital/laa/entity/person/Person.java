@@ -133,7 +133,7 @@ public class Person {
     @Column(name = "co_accused", nullable = false)
     private String coAccused;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personID", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Disability> disabilities;
 }
 

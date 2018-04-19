@@ -4,6 +4,7 @@ import { CommonData } from '../../../staticdata/common-data';
 import { Person } from '../person';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Disabilities } from '../Disabilities';
 
 @Component({
   selector: 'app-edit',
@@ -16,9 +17,13 @@ export class EditComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private personService: PersonService) { }
   staticData = new CommonData();
   person = new Person();
+  disabilityOptions = new Array<Disabilities>();
   serversideErrors: {};
 
   updatePerson() {
+
+    this.popluateDisabilies();
+
     this.personService.updatePerson(this.person).subscribe(
       data => {
         console.log('Update person component ', data);
@@ -36,25 +41,55 @@ export class EditComponent implements OnInit {
     );
   }
 
+  private popluateDisabilies() {
+    this.person.disabilities = new Array<Disabilities>();
+
+    this.disabilityOptions.forEach(option => {
+
+      if (option.selected) {
+        var disability = new Disabilities();
+        disability.id = option.id;
+        disability.personID = option.personID;
+        disability.disabilityOption = option.disabilityOption;
+        this.person.disabilities.push(disability);
+      }
+
+    });
+  }
+
   updateDisability(value, event) {
 
-    if (event.target.checked) {
-      this.person.disabilityOptions.push(value);
-    } else {
-      var index = this.person.disabilityOptions.indexOf(value);
-      if (index > -1) {
-        this.person.disabilityOptions.splice(index, 1);
+    console.log('value ', value, " checked status ", event.target.checked);
+    console.log('disabilityOptions ', this.disabilityOptions);
+    var notFound = true;
+
+    this.disabilityOptions.forEach(option => {
+
+      if (option.disabilityOption === value) {
+        option.selected = event.target.checked;
+        notFound = false;
       }
+
+    });
+
+    if (notFound && event.target.checked) {
+      var newDisabilityOption = new Disabilities();
+      newDisabilityOption.selected = true;
+      newDisabilityOption.personID = this.person.id;
+      newDisabilityOption.disabilityOption = value;
+      this.disabilityOptions.push(newDisabilityOption);
     }
+
   }
 
   updateExistingClient(event) {
     if (event.target.checked) {
       this.person.existingClient = "Y";
     } else {
-      this.person.existingClient = "NÍ";
+      this.person.existingClient = "N";
     }
   }
+
 
   updateRequestSpecificSolicitor(event) {
     if (event.target.checked) {
@@ -88,18 +123,70 @@ export class EditComponent implements OnInit {
     }
   }
 
-  updateRiskAssessmentType(value, event) {
-    this.person.riskAssessmentType = event.target.value;
-  }
-
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.personService.editPerson(params['ufn']).subscribe(editablePerson => {
-        console.log('edit person received ',editablePerson);
+        console.log('edit person received ', editablePerson);
         this.person = editablePerson;
+        this.populateDisabilityOptions();
       });
     });
   }
 
+  private populateDisabilityOptions() {
+    this.disabilityOptions = new Array<Disabilities>();
+
+    this.person.disabilities.forEach(option => {
+
+      var disability = new Disabilities();
+      disability.id = option.id;
+      disability.personID = option.personID;
+      disability.disabilityOption = option.disabilityOption;
+      disability.selected = true;
+      this.disabilityOptions.push(disability);
+
+    });
+
+  }
+
+  private isYes(value) {
+    if (value === "Y") {
+      return true;
+    }
+    return false;
+  }
+
+  isExistingClient() {
+    return this.isYes(this.person.existingClient);
+  }
+
+  isrequestSpecificSolicitor() {
+    return this.isYes(this.person.requestSpecificSolicitor);
+  }
+
+  isPreviousConviction() {
+    return this.isYes(this.person.previousConviction);
+  }
+
+  isConflictCheck() {
+    return this.isYes(this.person.conflictCheck);
+  }
+
+  isRiskAssessmentDone() {
+    return this.isYes(this.person.riskAssessmentDone);
+  }
+
+  isDisabilityOption(value) {
+
+    var foundChecked = false;
+
+    this.disabilityOptions.forEach(option => {
+      if (option.disabilityOption === value && option.selected) {
+        foundChecked = true;
+      }
+    })
+
+    return foundChecked;
+  }
 
 }

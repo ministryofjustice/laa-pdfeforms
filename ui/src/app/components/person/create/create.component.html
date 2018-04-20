@@ -37,7 +37,7 @@
             </div>
             <br>
             <div>
-                <label>Address</label>
+                <label>Residence Address</label>
                 <br>
                 <br>
                 <div>
@@ -64,7 +64,11 @@
 
             <div>
                 <label for="Date Of Birth">Date Of Birth</label>
-                <input type="text" [(ngModel)]="person.dateOfBirth" name='dateOrBirth' />
+                <input type="text" [(ngModel)]="person.dateOfBirth" name='dateOrBirth' (blur)="populateAge()" />
+            </div>
+            <div>
+                <label for="Age">Age</label>
+                <input type="text" [(ngModel)]="person.age" name='age' readonly/>
             </div>
             <br>
             <div>
@@ -94,25 +98,31 @@
             <div>
                 <label>Correspondence Address</label>
                 <br>
+                <div>
+                    <label for="Same As ReisdenceAddress">
+                        <input type="checkbox" name="sameAsReisdenceAddress" (change)="updateCorrespondanceAddress($event)"> Same As Reisdence Address(Y/N)
+                    </label>
+                </div>
+
                 <br>
                 <div>
                     <label for="Address Line1">Address Line 1</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='surname' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='ca.addressLine1' [disabled]="this.person.sameAsResidenceAddress"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line2">Address Line 2</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='surname' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='ca.addressLine2' [disabled]="this.person.sameAsResidenceAddress"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line3">Address Line3</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='surname' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='ca. addressLine3' [disabled]="this.person.sameAsResidenceAddress"/>
                 </div>
                 <br>
                 <div>
                     <label for="Post Code">Post Code</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='surname' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='ca.postCode' [disabled]="this.person.sameAsResidenceAddress"/>
                 </div>
                 <br>
             </div>
@@ -192,7 +202,7 @@
             <br>
             <div>
                 <label for="Venue Other">Venue Other</label>
-                <input type="text" [(ngModel)]="person.venueOther" name='venueOther' [disabled]="venueOtherDisabled"/>
+                <input type="text" [(ngModel)]="person.venueOther" name='venueOther' [disabled]="venueOtherDisabled" />
             </div>
             <br>
             <div>
@@ -264,19 +274,16 @@
             <br>
             <div>
                 <label for="Risk Assessment Done(Y/N)?">
-                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessment($event)"
-                    > Risk Assessment Done(Y/N)?
+                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessment($event)"> Risk Assessment Done(Y/N)?
                     <br>
-  
-                    <input type="radio" value="Standard" name="riskAssessmentType" 
-                    [(ngModel)]="person.riskAssessmentType" [disabled]="riskAssessmentTypeSelectionDisabled"> Standard
-  
-                    <input type="radio" value="Non Standard" name="riskAssessmentType" 
-                    [(ngModel)]="person.riskAssessmentType" disabled> Non Standard
-  
+
+                    <input type="radio" value="Standard" name="riskAssessmentType" [(ngModel)]="person.riskAssessmentType" [disabled]="riskAssessmentTypeSelectionDisabled"> Standard
+
+                    <input type="radio" value="Non Standard" name="riskAssessmentType" [(ngModel)]="person.riskAssessmentType" disabled> Non Standard
+
                 </label>
             </div>
-  
+
             <br>
             <div>
                 <label for="Co Accused">Co Accused</label>

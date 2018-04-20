@@ -40,6 +40,9 @@ public class Person {
     @Convert(converter = LocalDateSQLDateConverter.class)
     private LocalDate dateOfBirth;
 
+    @Column(name="age", nullable = false)
+    private Integer age;
+
     @Column(name = "ni_number", nullable = false)
     private String niNumber;
 

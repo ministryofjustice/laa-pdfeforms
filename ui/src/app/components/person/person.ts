@@ -9,10 +9,12 @@ export class Person {
     surname : string;
     residenceAddress = new Address();
     dateOfBirth : Date;
+    age : number;
     niNumber : string;
     employmentStatus : string;
     relationshipStatus : string;
     telephoneNumber : string;
+    sameAsResidenceAddress : boolean;
     correspondenceAddress = new Address() ;
     ethnicity : string ;
     sourceOfBusiness : string;

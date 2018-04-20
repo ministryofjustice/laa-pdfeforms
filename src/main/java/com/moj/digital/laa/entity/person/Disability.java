@@ -19,7 +19,6 @@ public class Disability {
 
     @ManyToOne
     @JoinColumn(name="person_id", nullable = false)
-    //@Column(name="person_id")
     private Person personID;
 
     @Column(name="disability_option")

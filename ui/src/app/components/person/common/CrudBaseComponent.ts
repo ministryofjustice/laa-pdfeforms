@@ -14,6 +14,7 @@ export class CrudBaseComponent {
     protected serversideErrors: {};
     protected riskAssessmentTypeSelectionDisabled = true;
     protected venueOtherDisabled = true;
+    protected sameAsResidenceAddress: boolean;
 
     popluateDisabilies() {
         this.person.disabilities = new Array<Disabilities>();
@@ -111,7 +112,7 @@ export class CrudBaseComponent {
     }
 
     populateVenueOtherInputField() {
-        console.log('this.person.venue ',this.person.venue);
+        console.log('this.person.venue ', this.person.venue);
         if (this.person.venue === "Other") {
             this.venueOtherDisabled = false;
         } else {
@@ -123,6 +124,35 @@ export class CrudBaseComponent {
     venueSelected(value) {
         console.log('selected ', value);
         this.populateVenueOtherInputField();
+    }
+
+    populateAge() {
+
+        console.log('dob ', this.person.dateOfBirth);
+        var diff = (new Date().getTime() - new Date(this.person.dateOfBirth).getTime());
+        diff /= (1000 * 60 * 60 * 24 * 365.25);
+        var calculatedAge = Math.round(diff);
+
+        if (calculatedAge > 0)
+            this.person.age = calculatedAge;
+
+        console.log('age ', calculatedAge);
+    }
+
+    updateCorrespondanceAddress(event) {
+        this.person.sameAsResidenceAddress = event.target.checked;
+        if (event.target.checked) {
+            this.person.correspondenceAddress.addressLine1 = this.person.residenceAddress.addressLine1;
+            this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;
+            this.person.correspondenceAddress.addressLine3 = this.person.residenceAddress.addressLine3;
+            this.person.correspondenceAddress.postCode = this.person.residenceAddress.postCode;
+        } else {
+            this.person.correspondenceAddress.addressLine1 = undefined;
+            this.person.correspondenceAddress.addressLine2 = undefined;
+            this.person.correspondenceAddress.addressLine3 = undefined;
+            this.person.correspondenceAddress.postCode = undefined;
+            
+        }
     }
 
 }

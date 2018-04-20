@@ -24,6 +24,8 @@ public class PersonDTO {
 
     private LocalDate dateOfBirth;
 
+    private int age;
+
     private String niNumber;
 
     private String employmentStatus;

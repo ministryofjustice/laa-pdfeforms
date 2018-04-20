@@ -4,3 +4,4 @@ databaseChangeLog:
         file: db/changelog/changes/v002.sql
         file: db/changelog/changes/v003.sql
         file: db/changelog/changes/v004.sql
+        file: db/changelog/changes/v005.sql

@@ -5,14 +5,16 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { PersonService } from "../../../services/person.service";
 import { CommonData } from "../../../staticdata/common-data";
 
-export class CrudBaseComponent  {
+export class CrudBaseComponent {
 
 
     protected disabilityOptions = new Array<Disabilities>();
     protected person = new Person();
     protected staticData = new CommonData();
     protected serversideErrors: {};
-  
+    protected riskAssessmentTypeSelectionDisabled = true;
+    protected venueOtherDisabled = true;
+
     popluateDisabilies() {
         this.person.disabilities = new Array<Disabilities>();
 
@@ -28,35 +30,32 @@ export class CrudBaseComponent  {
 
         });
 
-        console.log('this.person.disabilities ',this.person.disabilities);
+        console.log('this.person.disabilities ', this.person.disabilities);
     }
 
     updateDisability(value, event) {
-
-        //console.log('value ', value, " checked status ", event.target.checked);
-        //console.log('disabilityOptions ', this.disabilityOptions);
         var notFound = true;
-    
+
         this.disabilityOptions.forEach(option => {
-    
-          if (option.disabilityOption === value) {
-            option.selected = event.target.checked;
-            notFound = false;
-          }
-    
+
+            if (option.disabilityOption === value) {
+                option.selected = event.target.checked;
+                notFound = false;
+            }
+
         });
-    
+
         if (notFound && event.target.checked) {
-          var newDisabilityOption = new Disabilities();
-          newDisabilityOption.selected = true;
-          newDisabilityOption.personID = this.person.id;
-          newDisabilityOption.disabilityOption = value;
-          this.disabilityOptions.push(newDisabilityOption);
+            var newDisabilityOption = new Disabilities();
+            newDisabilityOption.selected = true;
+            newDisabilityOption.personID = this.person.id;
+            newDisabilityOption.disabilityOption = value;
+            this.disabilityOptions.push(newDisabilityOption);
         }
-    
-        console.log('disabilityOptions after update ',this.disabilityOptions);
-      }
-    
+
+        console.log('disabilityOptions after update ', this.disabilityOptions);
+    }
+
     updateExistingClient(event) {
         if (event.target.checked) {
             this.person.existingClient = "Y";
@@ -90,13 +89,40 @@ export class CrudBaseComponent  {
         }
     }
 
-    updateRiskAssessmentDone(event) {
+    updateRiskAssessment(event) {
+
         if (event.target.checked) {
             this.person.riskAssessmentDone = "Y";
+            this.riskAssessmentTypeSelectionDisabled = false;
         } else {
             this.person.riskAssessmentDone = "N";
+            this.riskAssessmentTypeSelectionDisabled = true;
+            this.person.riskAssessmentType = undefined;
         }
     }
 
+    populateRiskAssessmentType() {
+
+        if (this.person.riskAssessmentDone === "N") {
+            this.person.riskAssessmentType = undefined;
+        }
+
+        console.log('before submit this.person.riskAssessmentType ', this.person.riskAssessmentType);
+    }
+
+    populateVenueOtherInputField() {
+        console.log('this.person.venue ',this.person.venue);
+        if (this.person.venue === "Other") {
+            this.venueOtherDisabled = false;
+        } else {
+            this.venueOtherDisabled = true;
+            this.person.venueOther = undefined;
+        }
+    }
+
+    venueSelected(value) {
+        console.log('selected ', value);
+        this.populateVenueOtherInputField();
+    }
 
 }

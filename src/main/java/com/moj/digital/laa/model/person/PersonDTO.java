@@ -56,6 +56,8 @@ public class PersonDTO {
 
     private String venue;
 
+    private String venueOther;
+
     private String allegation;
 
     private String previousConviction;

@@ -86,6 +86,9 @@ public class Person {
     @Column(name = "venue", nullable = false)
     private String venue;
 
+    @Column(name = "venue_other")
+    private String venueOther;
+
     @Column(name = "allegation", nullable = false)
     private String allegation;
 

@@ -21,7 +21,9 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
       this.personService.editPerson(params['ufn']).subscribe(editablePerson => {
         console.log('edit person received ', editablePerson);
         this.person = editablePerson;
-        this.populateDisabilityOptions();
+        this.initializeDisabilityOptions();
+        this.initializeRiskAssessmentTypeSelectionDisabled();
+        this.initiateVenueOtherInputField();
       });
     });
   }
@@ -29,6 +31,7 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
   updatePerson() {
 
     this.popluateDisabilies();
+    this.populateRiskAssessmentType();
 
     this.personService.updatePerson(this.person).subscribe(
       data => {
@@ -47,7 +50,13 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
     );
   }
 
-  private populateDisabilityOptions() {
+  private initializeRiskAssessmentTypeSelectionDisabled(){
+    if(this.person.riskAssessmentDone === "Y"){
+      this.riskAssessmentTypeSelectionDisabled = false;
+    }
+  }
+
+  private initializeDisabilityOptions() {
     this.disabilityOptions = new Array<Disabilities>();
 
     this.person.disabilities.forEach(option => {
@@ -61,6 +70,10 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
 
     });
 
+  }
+
+  private initiateVenueOtherInputField(){
+    this.populateVenueOtherInputField();
   }
 
   private isYes(value) {

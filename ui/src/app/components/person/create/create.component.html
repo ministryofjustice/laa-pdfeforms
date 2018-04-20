@@ -185,14 +185,14 @@
             <br>
             <div>
                 <label for="Venue">Venue</label>
-                <select name="venue" [(ngModel)]="person.venue">
+                <select name="venue" [(ngModel)]="person.venue" (change)="venueSelected($event.target.value)">
                     <option *ngFor="let value of staticData.venueValues" [value]="value">{{value}}</option>
                 </select>
             </div>
             <br>
             <div>
                 <label for="Venue Other">Venue Other</label>
-                <input type="text" [(ngModel)]="person.venueOther" name='venueOther' />
+                <input type="text" [(ngModel)]="person.venueOther" name='venueOther' [disabled]="venueOtherDisabled"/>
             </div>
             <br>
             <div>
@@ -264,15 +264,15 @@
             <br>
             <div>
                 <label for="Risk Assessment Done(Y/N)?">
-                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessmentDone($event)"
+                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessment($event)"
                     > Risk Assessment Done(Y/N)?
                     <br>
   
                     <input type="radio" value="Standard" name="riskAssessmentType" 
-                    [(ngModel)]="person.riskAssessmentType"> Standard
+                    [(ngModel)]="person.riskAssessmentType" [disabled]="riskAssessmentTypeSelectionDisabled"> Standard
   
                     <input type="radio" value="Non Standard" name="riskAssessmentType" 
-                    [(ngModel)]="person.riskAssessmentType"> Non Standard
+                    [(ngModel)]="person.riskAssessmentType" disabled> Non Standard
   
                 </label>
             </div>

@@ -1,0 +1,1 @@
+alter table person add column venue_other varchar(50);

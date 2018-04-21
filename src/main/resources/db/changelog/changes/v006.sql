@@ -1,0 +1,1 @@
+alter table person add column same_as_residence_address char(1);

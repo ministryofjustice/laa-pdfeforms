@@ -36,6 +36,8 @@ public class PersonDTO {
 
     private AddressDTO correspondenceAddress;
 
+    private String sameAsResidenceAddress;
+
     private String ethnicity;
 
     private String sourceOfBusiness;

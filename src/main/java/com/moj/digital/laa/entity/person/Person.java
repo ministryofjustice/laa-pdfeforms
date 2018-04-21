@@ -40,7 +40,7 @@ public class Person {
     @Convert(converter = LocalDateSQLDateConverter.class)
     private LocalDate dateOfBirth;
 
-    @Column(name="age", nullable = false)
+    @Column(name = "age", nullable = false)
     private Integer age;
 
     @Column(name = "ni_number", nullable = false)
@@ -58,6 +58,9 @@ public class Person {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "correspondence_address_id")
     private Address correspondenceAddress;
+
+    @Column(name = "same_as_residence_address", nullable = false)
+    private String sameAsResidenceAddress;
 
     @Column(name = "ethnicity", nullable = false)
     private String ethnicity;

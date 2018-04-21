@@ -14,7 +14,7 @@ export class Person {
     employmentStatus : string;
     relationshipStatus : string;
     telephoneNumber : string;
-    sameAsResidenceAddress : boolean;
+    sameAsResidenceAddress : string;
     correspondenceAddress = new Address() ;
     ethnicity : string ;
     sourceOfBusiness : string;

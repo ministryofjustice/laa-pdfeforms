@@ -17,10 +17,14 @@ export class CreatePersonComponent extends CrudBaseComponent {
   }
 
   registerPerson() {
+    this.serversideErrors = undefined;
     this.popluateDisabilies();
     console.log('register person called in created component with person ', this.person);
     this.personService.registerPerson(this.person).subscribe(
-      data => console.log('person component ', data),
+      data => {
+        console.log('person component ', data);
+        this.router.navigate(['home']);
+      },
       (err: HttpErrorResponse) => {
         if (err.error.details != null) {
           console.log("error ", JSON.stringify(err.error.details));

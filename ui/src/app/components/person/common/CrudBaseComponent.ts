@@ -14,7 +14,7 @@ export class CrudBaseComponent {
     protected serversideErrors: {};
     protected riskAssessmentTypeSelectionDisabled = true;
     protected venueOtherDisabled = true;
-    protected sameAsResidenceAddress: boolean;
+    protected sameAsResidenceAddressFlag: boolean;
 
     popluateDisabilies() {
         this.person.disabilities = new Array<Disabilities>();
@@ -127,7 +127,6 @@ export class CrudBaseComponent {
     }
 
     populateAge() {
-
         console.log('dob ', this.person.dateOfBirth);
         var diff = (new Date().getTime() - new Date(this.person.dateOfBirth).getTime());
         diff /= (1000 * 60 * 60 * 24 * 365.25);
@@ -140,7 +139,13 @@ export class CrudBaseComponent {
     }
 
     updateCorrespondanceAddress(event) {
-        this.person.sameAsResidenceAddress = event.target.checked;
+        
+        if(event.target.checked){
+            this.person.sameAsResidenceAddress = "Y";
+        }else {
+            this.person.sameAsResidenceAddress = "N";
+        }
+
         if (event.target.checked) {
             this.person.correspondenceAddress.addressLine1 = this.person.residenceAddress.addressLine1;
             this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;

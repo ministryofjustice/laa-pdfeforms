@@ -97,25 +97,31 @@
             <div>
                 <label>Correspondence Address</label>
                 <br>
+                <div>
+                    <label for="Same As ReisdenceAddress">
+                        <input type="checkbox" name="sameAsResidenceAddressFlag" [(ngModel)]="sameAsResidenceAddressFlag" (change)="updateCorrespondanceAddress($event)"> Same As Reisdence Address(Y/N)
+                    </label>
+                </div>
+
                 <br>
                 <div>
                     <label for="Address Line1">Address Line 1</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='ca.addressLine1' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='ca.addressLine1' [disabled]="sameAsResidenceAddressFlag"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line2">Address Line 2</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='ca.addressLine2' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='ca.addressLine2' [disabled]="sameAsResidenceAddressFlag"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line3">Address Line3</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='ca.addressLine3' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='ca. addressLine3' [disabled]="sameAsResidenceAddressFlag"/>
                 </div>
                 <br>
                 <div>
                     <label for="Post Code">Post Code</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='ca.postCode' />
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='ca.postCode' [disabled]="sameAsResidenceAddressFlag"/>
                 </div>
                 <br>
             </div>

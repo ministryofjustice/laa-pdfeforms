@@ -24,6 +24,7 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
         this.initializeDisabilityOptions();
         this.initializeRiskAssessmentTypeSelectionDisabled();
         this.initiateVenueOtherInputField();
+        this.initializeSameAsResidenceAddressFlag();
       });
     });
   }
@@ -48,6 +49,14 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
         }
       }
     );
+  }
+
+  private initializeSameAsResidenceAddressFlag(){
+    if(this.person.sameAsResidenceAddress === "Y"){
+      this.sameAsResidenceAddressFlag = true;
+    } else {
+      this.sameAsResidenceAddressFlag = false;
+    }
   }
 
   private initializeRiskAssessmentTypeSelectionDisabled(){

@@ -2,7 +2,7 @@
   "ufn": "UFN10",
   "title": "Mr",
   "surname": "Joe",
-  "foreName": "Smith",
+  "forename": "Smith",
   "residenceAddress": {
     "addressLine1": "100 ABC Court",
     "addressLine2": "line1",
@@ -44,5 +44,10 @@
   "conflictCheckName": "None",
   "conflictCheckDate": "2018-04-05",
   "riskAssessment": "N",
-  "coAccused": "None"
+  "coAccused": "None",
+  "disabilities": [
+    {
+      "disabilityOption": "Option3"
+    }
+  ]
 }

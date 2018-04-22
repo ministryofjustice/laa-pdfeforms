@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -95,4 +96,9 @@ public class PersonDTO {
     private String coAccused;
 
     private List<DisabilityDTO> disabilities;
+
+    public List<DisabilityDTO> getDisabilities() {
+        return disabilities == null ? new ArrayList<>():disabilities;
+    }
+
 }

@@ -59,7 +59,7 @@ public class PersonIntegrationTest {
 
         personDTO.setUfn("UFN3");
         ResponseEntity<String> updateResult = testRestTemplate.exchange("/person/update", HttpMethod.PUT, httpEntity(personDTO), String.class);
-        assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
     }
 
     @Test

@@ -14,6 +14,9 @@ spring:
     properties:
       hibernate.jdbc.lob.non_contextual_creation: true
 
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
 debug: false
 
 logging:

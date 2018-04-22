@@ -117,7 +117,7 @@ public class PersonControllerTest {
         mockMvc.perform(put("/person/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(personDTO)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isAccepted());
 
         verify(personService, times(1)).update(any(PersonDTO.class));
 

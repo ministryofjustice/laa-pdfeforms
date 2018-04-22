@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -147,5 +148,9 @@ public class Person {
 
     @OneToMany(mappedBy = "personID", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Disability> disabilities;
+
+    public List<Disability> getDisabilities() {
+        return disabilities == null ? new ArrayList<>():disabilities;
+    }
 }
 

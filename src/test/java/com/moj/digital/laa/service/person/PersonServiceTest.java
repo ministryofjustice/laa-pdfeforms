@@ -17,7 +17,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -49,8 +52,33 @@ public class PersonServiceTest {
 
     @Test
     public void findByUfnWhenAValidUFNIsSentShouldReturnPerson() {
-        when(personRepository.findByUfn("UFN1")).thenReturn(new Person());
-        personService.findByUfn("UFN1");
+        Person person = new Person();
+        person.setUfn("UFN1");
+
+        when(personRepository.findByUfn("UFN1")).thenReturn(person);
+        PersonDTO personDTO = personService.findByUfn("UFN1");
+        assertThat(personDTO.getUfn()).isEqualTo(person.getUfn());
+    }
+
+    @Test
+    public void findByUfnContainingWhenAValidUFNIsSentShouldReturnMatchingPersons() {
+        List<Person> listOfPersons = new ArrayList<>();
+
+        Person person1 = new Person();
+        person1.setUfn("UFN1");
+
+        Person person2 = new Person();
+        person2.setUfn("UFN2");
+
+        listOfPersons.add(person1);
+        listOfPersons.add(person2);
+
+        when(personRepository.findByUfnContaining("UFN")).thenReturn(listOfPersons);
+        List<PersonDTO> personDTOs = personService.findByUfnContaining("UFN");
+
+        assertThat(listOfPersons.size()).isEqualTo(personDTOs.size());
+        assertThat(listOfPersons.get(0).getUfn()).isEqualTo(personDTOs.get(0).getUfn());
+        assertThat(listOfPersons.get(1).getUfn()).isEqualTo(personDTOs.get(1).getUfn());
     }
 
     @Test(expected = PersonNotFoundException.class)

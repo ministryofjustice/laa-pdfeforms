@@ -1,9 +1,9 @@
 package com.moj.digital.laa.model.person;
 
 import lombok.Data;
-import org.springframework.http.HttpStatus;
+import lombok.Getter;
 
-@Data
+@Getter
 public class ResponseWrapper {
     private final String responseMessage;
 

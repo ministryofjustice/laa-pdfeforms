@@ -36,27 +36,27 @@
             </div>
             <br>
             <div>
-                <label>Address</label>
+                <label>Residence Address</label>
                 <br>
                 <br>
                 <div>
                     <label for="Address Line1">Address Line 1</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine1" name='addressLine1' />
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine1" name='addressLine1' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line2">Address Line 2</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine2" name='addressLine2' />
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine2" name='addressLine2' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
                 </div>
                 <br>
                 <div>
                     <label for="Address Line3">Address Line3</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine3" name='addressLine3' />
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine3" name='addressLine3' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
                 </div>
                 <br>
                 <div>
                     <label for="Post Code">Post Code</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.postCode" name='postCode' />
+                    <input type="text" [(ngModel)]="person.residenceAddress.postCode" name='postCode' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
                 </div>
                 <br>
             </div>

@@ -139,7 +139,7 @@ export class CrudBaseComponent {
     }
 
     updateCorrespondanceAddress(event) {
-        
+
         if(event.target.checked){
             this.person.sameAsResidenceAddress = "Y";
         }else {
@@ -151,12 +151,15 @@ export class CrudBaseComponent {
             this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;
             this.person.correspondenceAddress.addressLine3 = this.person.residenceAddress.addressLine3;
             this.person.correspondenceAddress.postCode = this.person.residenceAddress.postCode;
-        } else {
-            this.person.correspondenceAddress.addressLine1 = undefined;
-            this.person.correspondenceAddress.addressLine2 = undefined;
-            this.person.correspondenceAddress.addressLine3 = undefined;
-            this.person.correspondenceAddress.postCode = undefined;
-            
+        } 
+    }
+
+    updateCorrespondanceAddressOnResidenceAddressChange(){
+        if(this.sameAsResidenceAddressFlag){
+            this.person.correspondenceAddress.addressLine1 = this.person.residenceAddress.addressLine1;
+            this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;
+            this.person.correspondenceAddress.addressLine3 = this.person.residenceAddress.addressLine3;
+            this.person.correspondenceAddress.postCode = this.person.residenceAddress.postCode;
         }
     }
 

@@ -2,7 +2,11 @@
     <h4>Person Search</h4>
    
     <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-   
+    <div *ngIf="serversideErrors">
+        <font color='red'>
+            <p *ngFor="let error of serversideErrors">{{error}}</p>
+        </font>
+    </div>
     <br><br>
     <table border="1">
         <thead> 

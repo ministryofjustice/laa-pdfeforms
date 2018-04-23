@@ -30,7 +30,7 @@ export class PersonService {
 
   searchPersons(term: string): Observable<Person[]> {
     const uri = `${this.API_URL}/person/containingUfn/${term}`;
-    console.log('search URI ',uri);
+    console.log('search URI ', uri);
 
     if (!term.trim()) {
       return of([]);

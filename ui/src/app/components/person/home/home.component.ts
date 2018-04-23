@@ -15,19 +15,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  private persons$ : Observable<Person[]>;
+  private persons$: Observable<Person[]>;
   private searchTerms = new Subject<String>();
   private serversideErrors: {};
-  
-  constructor(private personService : PersonService) { }
 
-  search(term: String){
-    console.log('search term ',term);
+  constructor(private personService: PersonService) { }
 
-    if(this.serversideErrors !== undefined){
+  search(term: String) {
+    console.log('search term ', term);
+
+    if (this.serversideErrors !== undefined) {
       this.startSearch();
-    } 
-    
+    }
+
     this.searchTerms.next(term);
   }
 
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.startSearch();
   }
 
-  private startSearch(){
+  private startSearch() {
     this.searchTerms.pipe(
 
       // wait 300ms after each keystroke before considering the term
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
           this.serversideErrors = err.error.details;
         } else {
           console.log('server side error ', err);
-          this.serversideErrors = ['Unable to fetch information from the server',err.message];
+          this.serversideErrors = ['Unable to fetch information from the server', err.message];
         }
       }
     );

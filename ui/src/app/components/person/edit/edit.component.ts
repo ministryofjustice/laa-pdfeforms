@@ -10,7 +10,7 @@ import { PersonService } from '../../../services/person.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent extends CrudBaseComponent implements OnInit{
+export class EditComponent extends CrudBaseComponent implements OnInit {
 
   constructor(protected route: ActivatedRoute, protected router: Router, protected personService: PersonService) {
     super();
@@ -29,8 +29,7 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
     });
   }
 
-  updatePerson() {
-
+  private updatePerson() {
     this.popluateDisabilies();
     this.populateRiskAssessmentType();
 
@@ -51,16 +50,16 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
     );
   }
 
-  private initializeSameAsResidenceAddressFlag(){
-    if(this.person.sameAsResidenceAddress === "Y"){
+  private initializeSameAsResidenceAddressFlag() {
+    if (this.person.sameAsResidenceAddress === "Y") {
       this.sameAsResidenceAddressFlag = true;
     } else {
       this.sameAsResidenceAddressFlag = false;
     }
   }
 
-  private initializeRiskAssessmentTypeSelectionDisabled(){
-    if(this.person.riskAssessmentDone === "Y"){
+  private initializeRiskAssessmentTypeSelectionDisabled() {
+    if (this.person.riskAssessmentDone === "Y") {
       this.riskAssessmentTypeSelectionDisabled = false;
     }
   }
@@ -78,10 +77,9 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
       this.disabilityOptions.push(disability);
 
     });
-
   }
 
-  private initiateVenueOtherInputField(){
+  private initiateVenueOtherInputField() {
     this.populateVenueOtherInputField();
   }
 
@@ -92,27 +90,27 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
     return false;
   }
 
-  isExistingClient() {
+  private isExistingClient() {
     return this.isYes(this.person.existingClient);
   }
 
-  isrequestSpecificSolicitor() {
+  private isrequestSpecificSolicitor() {
     return this.isYes(this.person.requestSpecificSolicitor);
   }
 
-  isPreviousConviction() {
+  private isPreviousConviction() {
     return this.isYes(this.person.previousConviction);
   }
 
-  isConflictCheck() {
+  private isConflictCheck() {
     return this.isYes(this.person.conflictCheck);
   }
 
-  isRiskAssessmentDone() {
+  private isRiskAssessmentDone() {
     return this.isYes(this.person.riskAssessmentDone);
   }
 
-  isDisabilityOption(value) {
+  private isDisabilityOption(value) {
 
     var foundChecked = false;
 
@@ -124,5 +122,4 @@ export class EditComponent extends CrudBaseComponent implements OnInit{
 
     return foundChecked;
   }
-
 }

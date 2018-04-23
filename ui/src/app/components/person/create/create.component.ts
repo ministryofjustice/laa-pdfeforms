@@ -11,7 +11,6 @@ import { PersonService } from '../../../services/person.service';
 })
 export class CreatePersonComponent extends CrudBaseComponent {
 
-
   constructor(protected route: ActivatedRoute, protected router: Router, protected personService: PersonService) {
     super();
   }

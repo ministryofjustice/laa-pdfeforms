@@ -6,8 +6,6 @@ import { PersonService } from "../../../services/person.service";
 import { CommonData } from "../../../staticdata/common-data";
 
 export class CrudBaseComponent {
-
-
     protected disabilityOptions = new Array<Disabilities>();
     protected person = new Person();
     protected staticData = new CommonData();
@@ -16,7 +14,7 @@ export class CrudBaseComponent {
     protected venueOtherDisabled = true;
     protected sameAsResidenceAddressFlag: boolean;
 
-    popluateDisabilies() {
+    protected popluateDisabilies() {
         this.person.disabilities = new Array<Disabilities>();
 
         this.disabilityOptions.forEach(option => {
@@ -33,8 +31,27 @@ export class CrudBaseComponent {
 
         console.log('this.person.disabilities ', this.person.disabilities);
     }
+    
+    protected populateRiskAssessmentType() {
 
-    updateDisability(value, event) {
+        if (this.person.riskAssessmentDone === "N") {
+            this.person.riskAssessmentType = undefined;
+        }
+
+        console.log('before submit this.person.riskAssessmentType ', this.person.riskAssessmentType);
+    }
+
+    protected populateVenueOtherInputField() {
+        console.log('this.person.venue ', this.person.venue);
+        if (this.person.venue === "Other") {
+            this.venueOtherDisabled = false;
+        } else {
+            this.venueOtherDisabled = true;
+            this.person.venueOther = undefined;
+        }
+    }
+
+    private updateDisability(value, event) {
         var notFound = true;
 
         this.disabilityOptions.forEach(option => {
@@ -57,7 +74,7 @@ export class CrudBaseComponent {
         console.log('disabilityOptions after update ', this.disabilityOptions);
     }
 
-    updateExistingClient(event) {
+    private updateExistingClient(event) {
         if (event.target.checked) {
             this.person.existingClient = "Y";
         } else {
@@ -65,8 +82,7 @@ export class CrudBaseComponent {
         }
     }
 
-
-    updateRequestSpecificSolicitor(event) {
+    private updateRequestSpecificSolicitor(event) {
         if (event.target.checked) {
             this.person.requestSpecificSolicitor = "Y";
         } else {
@@ -74,7 +90,7 @@ export class CrudBaseComponent {
         }
     }
 
-    updatePreviousConviction(event) {
+    private updatePreviousConviction(event) {
         if (event.target.checked) {
             this.person.previousConviction = "Y";
         } else {
@@ -82,7 +98,7 @@ export class CrudBaseComponent {
         }
     }
 
-    updateConflictCheck(event) {
+    private updateConflictCheck(event) {
         if (event.target.checked) {
             this.person.conflictCheck = "Y";
         } else {
@@ -90,7 +106,7 @@ export class CrudBaseComponent {
         }
     }
 
-    updateRiskAssessment(event) {
+    private updateRiskAssessment(event) {
 
         if (event.target.checked) {
             this.person.riskAssessmentDone = "Y";
@@ -102,31 +118,13 @@ export class CrudBaseComponent {
         }
     }
 
-    populateRiskAssessmentType() {
 
-        if (this.person.riskAssessmentDone === "N") {
-            this.person.riskAssessmentType = undefined;
-        }
-
-        console.log('before submit this.person.riskAssessmentType ', this.person.riskAssessmentType);
-    }
-
-    populateVenueOtherInputField() {
-        console.log('this.person.venue ', this.person.venue);
-        if (this.person.venue === "Other") {
-            this.venueOtherDisabled = false;
-        } else {
-            this.venueOtherDisabled = true;
-            this.person.venueOther = undefined;
-        }
-    }
-
-    venueSelected(value) {
+    private venueSelected(value) {
         console.log('selected ', value);
         this.populateVenueOtherInputField();
     }
 
-    populateAge() {
+    private populateAge() {
         console.log('dob ', this.person.dateOfBirth);
         var diff = (new Date().getTime() - new Date(this.person.dateOfBirth).getTime());
         diff /= (1000 * 60 * 60 * 24 * 365.25);
@@ -138,11 +136,11 @@ export class CrudBaseComponent {
         console.log('age ', calculatedAge);
     }
 
-    updateCorrespondanceAddress(event) {
+    private updateCorrespondanceAddress(event) {
 
-        if(event.target.checked){
+        if (event.target.checked) {
             this.person.sameAsResidenceAddress = "Y";
-        }else {
+        } else {
             this.person.sameAsResidenceAddress = "N";
         }
 
@@ -151,11 +149,11 @@ export class CrudBaseComponent {
             this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;
             this.person.correspondenceAddress.addressLine3 = this.person.residenceAddress.addressLine3;
             this.person.correspondenceAddress.postCode = this.person.residenceAddress.postCode;
-        } 
+        }
     }
 
-    updateCorrespondanceAddressOnResidenceAddressChange(){
-        if(this.sameAsResidenceAddressFlag){
+    private updateCorrespondanceAddressOnResidenceAddressChange() {
+        if (this.sameAsResidenceAddressFlag) {
             this.person.correspondenceAddress.addressLine1 = this.person.residenceAddress.addressLine1;
             this.person.correspondenceAddress.addressLine2 = this.person.residenceAddress.addressLine2;
             this.person.correspondenceAddress.addressLine3 = this.person.residenceAddress.addressLine3;

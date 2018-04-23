@@ -41,29 +41,33 @@
                 <br>
                 <div>
                     <label for="Address Line1">Address Line 1</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine1" name='addressLine1' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine1" name='addressLine1' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Address Line2">Address Line 2</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine2" name='addressLine2' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine2" name='addressLine2' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Address Line3">Address Line3</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine3" name='addressLine3' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
+                    <input type="text" [(ngModel)]="person.residenceAddress.addressLine3" name='addressLine3' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Post Code">Post Code</label>
-                    <input type="text" [(ngModel)]="person.residenceAddress.postCode" name='postCode' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"/>
+                    <input type="text" [(ngModel)]="person.residenceAddress.postCode" name='postCode' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                    />
                 </div>
                 <br>
             </div>
 
             <div>
                 <label for="Date Of Birth">Date Of Birth</label>
-                <input type="text" [(ngModel)]="person.dateOfBirth" name='dateOrBirth' (blur)="populateAge()"/>
+                <input type="text" [(ngModel)]="person.dateOfBirth" name='dateOrBirth' (blur)="populateAge()" />
             </div>
             <div>
                 <label for="Age">Age</label>
@@ -106,22 +110,26 @@
                 <br>
                 <div>
                     <label for="Address Line1">Address Line 1</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='ca.addressLine1' [disabled]="sameAsResidenceAddressFlag"/>
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine1" name='ca.addressLine1' [disabled]="sameAsResidenceAddressFlag"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Address Line2">Address Line 2</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='ca.addressLine2' [disabled]="sameAsResidenceAddressFlag"/>
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine2" name='ca.addressLine2' [disabled]="sameAsResidenceAddressFlag"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Address Line3">Address Line3</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='ca. addressLine3' [disabled]="sameAsResidenceAddressFlag"/>
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.addressLine3" name='ca. addressLine3' [disabled]="sameAsResidenceAddressFlag"
+                    />
                 </div>
                 <br>
                 <div>
                     <label for="Post Code">Post Code</label>
-                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='ca.postCode' [disabled]="sameAsResidenceAddressFlag"/>
+                    <input type="text" [(ngModel)]="person.correspondenceAddress.postCode" name='ca.postCode' [disabled]="sameAsResidenceAddressFlag"
+                    />
                 </div>
                 <br>
             </div>

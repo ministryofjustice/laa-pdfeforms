@@ -2,8 +2,8 @@ package com.moj.digital.laa.exception.common.errormessage;
 
 public enum ErrorMessage {
 
-    PERSON_NOT_FOUND("No person found in the system with the given identifier %s"),
-    PERSON_PERSIST_ERROR("Error whilst persisting person information");
+    CLIENT_NOT_FOUND("No client found in the system with the given identifier %s"),
+    CLIENT_PERSIST_ERROR("Error whilst persisting client information");
 
     private String message;
 

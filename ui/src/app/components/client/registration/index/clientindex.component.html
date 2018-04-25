@@ -1,0 +1,33 @@
+<div id="search-component">
+    <h4>Person Search</h4>
+
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <div *ngIf="serversideErrors">
+        <font color='red'>
+            <p *ngFor="let error of serversideErrors">{{error}}</p>
+        </font>
+    </div>
+    <br>
+    <br>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>UFN</td>
+                <td>Forename</td>
+                <td>Surname</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let client of persons$ | async">
+                <td>{{ client.ufn }}</td>
+                <td>{{ client.forename }}</td>
+                <td>{{ client.surname }}</td>
+                <td>
+                    <a [routerLink]="['/edit',client.ufn]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

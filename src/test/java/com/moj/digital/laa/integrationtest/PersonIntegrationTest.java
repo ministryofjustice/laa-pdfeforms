@@ -1,6 +1,6 @@
 package com.moj.digital.laa.integrationtest;
 
-import com.moj.digital.laa.model.person.PersonDTO;
+import com.moj.digital.laa.model.client.ClientDTO;
 import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,83 +29,83 @@ public class PersonIntegrationTest {
     private JsonUtil jsonUtil;
 
     @Test
-    public void persistPersonWhenInputsAreValidShouldSavePerson() throws Exception {
-        PersonDTO personDTO = personDTOFromJson();
-        personDTO.setUfn("UFN1");
+    public void persistClientWhenInputsAreValidShouldSaveClient() throws Exception {
+        ClientDTO clientDTO = clientDTOFromJson();
+        clientDTO.setUfn("UFN1");
         ResponseEntity<String> result = testRestTemplate.postForEntity
-                ("/person/persist", httpEntity(personDTO), String.class);
+                ("/client/register", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
     @Test
-    public void persistPersonShouldNotAllowPersonsWithSameUFNTobeSaved() throws Exception {
-        PersonDTO personDTO = personDTOFromJson();
-        personDTO.setUfn("UFN2");
+    public void persistClientShouldNotAllowClientsWithSameUFNTobeSaved() throws Exception {
+        ClientDTO clientDTO = clientDTOFromJson();
+        clientDTO.setUfn("UFN2");
         testRestTemplate.postForEntity
-                ("/person/persist", httpEntity(personDTO), String.class);
+                ("/client/register", httpEntity(clientDTO), String.class);
 
-        personDTO.setUfn("UFN2");
+        clientDTO.setUfn("UFN2");
         ResponseEntity<String> result = testRestTemplate.postForEntity
-                ("/person/persist", httpEntity(personDTO), String.class);
+                ("/client/register", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Test
-    public void updatePersonWhenTryingToUpdateAnExistingPersonShouldReturnCreatedStatusCode() throws Exception {
-        PersonDTO personDTO = personDTOFromJson();
-        personDTO.setUfn("UFN3");
+    public void updateClientWhenTryingToUpdateAnExistingClientShouldReturnCreatedStatusCode() throws Exception {
+        ClientDTO clientDTO = clientDTOFromJson();
+        clientDTO.setUfn("UFN3");
 
-        testRestTemplate.postForEntity("/person/persist", httpEntity(personDTO), String.class);
+        testRestTemplate.postForEntity("/client/register", httpEntity(clientDTO), String.class);
 
-        personDTO.setUfn("UFN3");
-        ResponseEntity<String> updateResult = testRestTemplate.exchange("/person/update", HttpMethod.PUT, httpEntity(personDTO), String.class);
+        clientDTO.setUfn("UFN3");
+        ResponseEntity<String> updateResult = testRestTemplate.exchange("/client/update", HttpMethod.PUT, httpEntity(clientDTO), String.class);
         assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
     }
 
     @Test
-    public void updatePersonWhenTryingToUpdateANonExistingPersonShouldReturnNotFoundHttpStatusCode() throws Exception {
-        PersonDTO personDTO = personDTOFromJson();
-        personDTO.setUfn("UFN4");
+    public void updateClientWhenTryingToUpdateANonExistingClientShouldReturnNotFoundHttpStatusCode() throws Exception {
+        ClientDTO clientDTO = clientDTOFromJson();
+        clientDTO.setUfn("UFN4");
 
-        ResponseEntity<String> updateResult = testRestTemplate.exchange("/person/update", HttpMethod.PUT, httpEntity(personDTO), String.class);
+        ResponseEntity<String> updateResult = testRestTemplate.exchange("/client/update", HttpMethod.PUT, httpEntity(clientDTO), String.class);
         assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test
-    public void findPersonByUfnWhenValidUFNPassedShouldReturnCorrespondingPerson() throws Exception {
-        PersonDTO personDTO = personDTOFromJson();
-        personDTO.setUfn("UFN5");
+    public void findClientByUfnWhenValidUFNPassedShouldReturnCorrespondingClient() throws Exception {
+        ClientDTO clientDTO = clientDTOFromJson();
+        clientDTO.setUfn("UFN5");
 
-        testRestTemplate.postForEntity("/person/persist", httpEntity(personDTO), String.class);
+        testRestTemplate.postForEntity("/client/register", httpEntity(clientDTO), String.class);
 
-        ResponseEntity<PersonDTO> result = testRestTemplate.getForEntity("/person/UFN5", PersonDTO.class);
+        ResponseEntity<ClientDTO> result = testRestTemplate.getForEntity("/client/UFN5", ClientDTO.class);
 
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        PersonDTO foundPerson = result.getBody();
-        assertThat(personDTO.getUfn()).isEqualTo(foundPerson.getUfn());
+        ClientDTO foundClient = result.getBody();
+        assertThat(clientDTO.getUfn()).isEqualTo(foundClient.getUfn());
     }
 
     @Test
-    public void findPersonByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() {
+    public void findClientByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() {
 
-        ResponseEntity<PersonDTO> result = testRestTemplate.getForEntity("/person/UFN6", PersonDTO.class);
+        ResponseEntity<ClientDTO> result = testRestTemplate.getForEntity("/client/UFN6", ClientDTO.class);
 
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 
-        PersonDTO foundPerson = result.getBody();
-        assertThat(foundPerson.getUfn()).isNull();
+        ClientDTO foundClient = result.getBody();
+        assertThat(foundClient.getUfn()).isNull();
     }
 
 
-    private PersonDTO personDTOFromJson() throws IOException {
-        return jsonUtil.personDTOFromJson();
+    private ClientDTO clientDTOFromJson() throws IOException {
+        return jsonUtil.clientDTOFromJson();
     }
 
-    private HttpEntity<String> httpEntity(PersonDTO personDTO) throws IOException {
+    private HttpEntity<String> httpEntity(ClientDTO clientDTO) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        return new HttpEntity<>(jsonUtil.asJsonString(personDTO), headers);
+        return new HttpEntity<>(jsonUtil.asJsonString(clientDTO), headers);
     }
 
 }

@@ -13,8 +13,8 @@ public class ErrorMessageTest {
 
     @Test
     public void testEnumElements() {
-        assertThat(ErrorMessage.PERSON_NOT_FOUND.message()).isEqualTo("No person found in the system with the given identifier %s");
-        assertThat(ErrorMessage.PERSON_PERSIST_ERROR.message()).isEqualTo("Error whilst persisting person information");
+        assertThat(ErrorMessage.CLIENT_NOT_FOUND.message()).isEqualTo("No client found in the system with the given identifier %s");
+        assertThat(ErrorMessage.CLIENT_PERSIST_ERROR.message()).isEqualTo("Error whilst persisting client information");
     }
 
 }

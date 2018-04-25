@@ -1,22 +1,22 @@
-
-import { CreatePersonComponent } from './components/person/create/create.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { appRoutes } from "./routerConfig";
-import { HomeComponent } from './components/person/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
-import { PersonService } from './services/person.service';
-import { EditComponent } from './components/person/edit/edit.component';
+import { appRoutes } from './common/route/routerConfig';
+import { CreateClientRegistrationComponent } from './components/client/registration/create/createclientregistration.component';
+import { EditClientRegistrationComponent } from './components/client/registration/edit/editclientregistration.component';
+import { ClientRegistrationIndexComponent } from './components/client/registration/index/clientindex.component';
+import { ClientRegistrationService } from './services/client/registration/clientregistration.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatePersonComponent,
-    HomeComponent,
-    EditComponent
+    CreateClientRegistrationComponent,
+    EditClientRegistrationComponent,
+    ClientRegistrationIndexComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { EditComponent } from './components/person/edit/edit.component';
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PersonService],
+  providers: [ClientRegistrationService],
   bootstrap: [AppComponent]
 })
 

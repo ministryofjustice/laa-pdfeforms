@@ -1,0 +1,304 @@
+<div class="grid-row">
+    <form (ngSubmit)="registerClient()" #clientForm="ngForm">
+
+        <div class="column-one-third">
+
+            <div class="form-group">
+                <label class="form-label" for="UFN">UFN</label>
+                <input class="form-control" type="text" [(ngModel)]="client.ufn" name='ufn' #ufn="ngModel" required/>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Title">Title</label>
+                <select class="form-control" name="title" [(ngModel)]="client.title">
+                    <option *ngFor="let title of staticData.titleStaticValues" [value]="title">{{title}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Forename">Forename</label>
+                <input class="form-control" type="text" [(ngModel)]="client.forename" name='forename' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Surname">Surname</label>
+                <input class="form-control" type="text" [(ngModel)]="client.surname" name='surname' />
+            </div>
+
+            <div class="form-group">
+                <fieldset class="inline">
+                    <legend>
+                        <h1 class="heading-small">
+                            Residence Address
+                        </h1>
+                    </legend>
+                    <div class="form-group">
+                        <label class="form-label" for="Address Line1">Address Line 1</label>
+                        <input class="form-control" type="text" [(ngModel)]="client.residenceAddress.addressLine1" name='addressLine1' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="Address Line2">Address Line 2</label>
+                        <input class="form-control" type="text" [(ngModel)]="client.residenceAddress.addressLine2" name='addressLine2' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="Address Line3">Address Line3</label>
+                        <input class="form-control" type="text" [(ngModel)]="client.residenceAddress.addressLine3" name='addressLine3' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="Post Code">Post Code</label>
+                        <input class="form-control" type="text" [(ngModel)]="client.residenceAddress.postCode" name='postCode' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                        />
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Date Of Birth">Date Of Birth</label>
+                <input class="form-control" type="text" [(ngModel)]="client.dateOfBirth" name='dateOrBirth' (blur)="populateAge()" />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Age">Age</label>
+                <input class="form-control" type="text" [(ngModel)]="client.age" name='age' readonly/>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="NI Number">NI Number</label>
+                <input class="form-control" type="text" [(ngModel)]="client.niNumber" name='niNumber' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Employment Status">Employment Status</label>
+                <select class="form-control" name="employmentStatus" [(ngModel)]="client.employmentStatus" required>
+                    <option *ngFor="let value of staticData.employmentStatusValues" [value]="value">{{value}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Relationship Status">Relationship Status</label>
+                <select class="form-control" name="relationshipStatus" [(ngModel)]="client.relationshipStatus" required>
+                    <option *ngFor="let value of staticData.relationshipStatusValues" [value]="value">{{value}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Telephone Number">Telephone Number</label>
+                <input class="form-control" type="text" [(ngModel)]="client.telephoneNumber" name='telephoneNumber' />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Nationality">Nationality</label>
+                <input class="form-control" type="text" [(ngModel)]="client.nationality" name='nationality' />
+            </div>
+
+        </div>
+
+        <div class="column-one-third">
+            <div class="form-group">
+                <fieldset>
+                    <legend>
+                        <h1 class="heading-small">Correspondence Address</h1>
+                    </legend>
+                    <div class="form-group">
+                        <label class="form-label" for="sameAsResidenceAddressFlag">
+                            <input type="checkbox" id="sameAsResidenceAddressFlag" [(ngModel)]="sameAsResidenceAddressFlag" (change)="updateCorrespondanceAddress($event)">Same As ReisdenceAddress
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Address Line1">Address Line 1</label>
+                <input class="form-control" type="text" [(ngModel)]="client.correspondenceAddress.addressLine1" name='ca.addressLine1' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Address Line2">Address Line 2</label>
+                <input class="form-control" type="text" [(ngModel)]="client.correspondenceAddress.addressLine2" name='ca.addressLine2' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Address Line3">Address Line3</label>
+                <input class="form-control" type="text" [(ngModel)]="client.correspondenceAddress.addressLine3" name='ca.addressLine3' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Post Code">Post Code</label>
+                <input class="form-control" type="text" [(ngModel)]="client.correspondenceAddress.postCode" name='ca.postCode' (blur)="updateCorrespondanceAddressOnResidenceAddressChange()"
+                />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Source Of Busniness">Source Of Busniness</label>
+                <select class="form-control" name="sourceOfBusiness" [(ngModel)]="client.sourceOfBusiness" required>
+                    <option *ngFor="let value of staticData.sourceOfBusinessValues" [value]="value">{{value}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="existingClient">
+                    <input type="checkbox" name="existingClient" (change)="updateExistingClient($event)"> Existing Client(Y/N)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="form-label">
+                    <input type="checkbox" name="requestSpecificSolicitor" (change)="updateRequestSpecificSolicitor($event)"> Request Specific Solicitor(Y/N)?
+                </label>
+                <input class="form-control" type="text" [(ngModel)]="client.requestSpecificSolicitorText" name='requestSpecificSolicitorText'>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Allegation">Allegation</label>
+                <input class="form-control" type="text" [(ngModel)]="client.allegation" name='allegation' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Previous Conviction(Y/N)?">
+                    <input type="checkbox" name="previousConviction" (click)="updatePreviousConviction($event)"> Previous Conviction(Y/N)?
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Conflict Check(Y/N)?">
+                    <input type="checkbox" name="conflictCheck" (click)="updateConflictCheck($event)"> Conflict Check(Y/N)?
+                </label>
+                <div class="form-group">
+                    <div class="grid-row">
+                        <div class="column-one-quarter">
+                            <label class="form-label" for="Conflict Check Date">Date</label>
+                        </div>
+                        <div class="column-three-quarters">
+                            <input class="form-control" type="text" [(ngModel)]="client.conflictCheckDate" name='conflictCheckDate' minlength="10">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="grid-row">
+                        <div class="column-one-quarter">
+                            <label class="form-label" for="Conflict Check Name">Name</label>
+                        </div>
+                        <div class="column-three-quarters">
+                            <input class="form-control" type="text" [(ngModel)]="client.conflictCheckName" name='conflictCheckName'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Risk Assessment Done(Y/N)?">
+                    <input type="checkbox" name="riskAssessmentDone" (click)="updateRiskAssessment($event)"> Risk Assessment Done(Y/N)?
+                </label>
+                <div class="grid-row">
+                    <div class="column-one-half">
+                        <label class="form-label" for="riskAssessmentType">
+                            <input type="radio" value="Standard" name="riskAssessmentType" [(ngModel)]="client.riskAssessmentType" [disabled]="riskAssessmentTypeSelectionDisabled"> Standard
+                        </label>
+                    </div>
+                    <div class="column-one-half">
+
+                        <label class="form-label" for="riskAssessmentType">
+                            <input type="radio" value="Non Standard" name="riskAssessmentType" [(ngModel)]="client.riskAssessmentType" disabled> Non Standard
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="Co Accused">Co Accused</label>
+                <input class="form-control" type="text" [(ngModel)]="client.coAccused" name='coAccused' />
+            </div>
+
+
+        </div>
+
+        <div class="column-one-third">
+            <div class="form-group">
+                <label class="form-label" for="Ethnicity">Ethnicity</label>
+                <select class="form-control" name="ethnicity" [(ngModel)]="client.ethnicity" required>
+                    <option *ngFor="let value of staticData.ethnicityValues" [value]="value">{{value}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Disability">Disability</label>
+                <div *ngFor="let value of staticData.disabilityValues">
+                    <label class="form-label" for="{{value}}">{{value}}
+                        <input type="checkbox" name="disability" id="{{value}}" (change)="updateDisability(value,$event)">
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Police Station">Police Stattion</label>
+                <input class="form-control" type="text" [(ngModel)]="client.policeStation1" name='policeStation1' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Magistrate Court">Magistrate Court</label>
+                <input class="form-control" type="text" [(ngModel)]="client.magistrateCourt" name='magistrateCourt' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Crown Court">Crown Court</label>
+                <input class="form-control" type="text" [(ngModel)]="client.crownCourt" name='crownCourt' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Other Court">Other Court</label>
+                <input class="form-control" type="text" [(ngModel)]="client.otherCourt" name='otherCourt' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Venue">Venue</label>
+                <select class="form-control" name="venue" [(ngModel)]="client.venue" (change)="venueSelected($event.target.value)">
+                    <option *ngFor="let value of staticData.venueValues" [value]="value">{{value}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Venue Other">Venue Other</label>
+                <input class="form-control" type="text" [(ngModel)]="client.venueOther" name='venueOther' [disabled]="venueOtherDisabled"
+                />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Funding Date">Funding Date</label>
+                <input class="form-control" type="text" [(ngModel)]="client.fundingDate" name='fundingDate' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Advice And Assistance">Advice And Assistance</label>
+                <input class="form-control" type="text" [(ngModel)]="client.adviceAndAssistance" name='adviceAndAssistance' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Proof Of Benefits Requested">Proof Of Benefits Requested</label>
+                <input class="form-control" type="text" [(ngModel)]="client.proofOfBenefitsRequested" name='proofOfBenefitsRequested' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Police Station">Police Station</label>
+                <input class="form-control" type="text" [(ngModel)]="client.policeStation2" name='policeStation2' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Pre Order Work">Pre Order Work</label>
+                <input class="form-control" type="text" [(ngModel)]="client.preOrderWork" name='preOrderWork' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Rep Order Applied For">Rep Order Applied For</label>
+                <input class="form-control" type="text" [(ngModel)]="client.repOrderAppliedFor" name='repOrderAppliedFor' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="Rep Order Granted">Rep Order Granted</label>
+                <input class="form-control" type="text" [(ngModel)]="client.repOrderGranted" name='repOrderGranted' />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="CRM3 Advocate">CRM3 Advocate</label>
+                <input class="form-control" type="text" [(ngModel)]="client.crm3Advocate" name='crm3Advocate' />
+            </div>
+        </div>
+
+    </form>
+</div>

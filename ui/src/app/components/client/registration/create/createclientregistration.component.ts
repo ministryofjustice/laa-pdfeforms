@@ -6,7 +6,7 @@ import { RegisterClientBaseComponent } from '../../common/RegisterClientBaseComp
 
 @Component({
   selector: 'app-create',
-  templateUrl: './createclientregistration.component.html',
+  templateUrl: './createclientregistration.component.1.html',
   styleUrls: ['./createclientregistration.component.css']
 })
 export class CreateClientRegistrationComponent extends RegisterClientBaseComponent {

@@ -1,33 +1,56 @@
-<div id="search-component">
-    <h4>Person Search</h4>
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <div id="search-component" [class.error-summary]="serversideErrors">
 
-    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-    <div *ngIf="serversideErrors">
-        <font color='red'>
-            <p *ngFor="let error of serversideErrors">{{error}}</p>
-        </font>
+            <div class="form-group">
+                <fieldset class="inline">
+                    <legend>
+                        <h1 class="heading-small">
+                            Search clients
+                        </h1>
+                    </legend>
+                    <input [ngClass]="{'form-control':true,'form-control-error':serversideErrors}" #searchBox id="search-box" (keyup)="search(searchBox.value)"
+                        type="text" />
+                </fieldset>
+            </div>
+
+            <div *ngIf="serversideErrors">
+                <span *ngFor="let error of serversideErrors" class="error-message">{{error}}</span>
+            </div>
+
+            <div *ngIf="(persons$ | async)?.length > 0 ; else noRecordFound">
+                <table>
+                    <caption class="heading-small">Matching Clients</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">UFN</th>
+                            <th scope="col">Forename</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let client of persons$ | async">
+                            <td>{{ client.ufn }}</td>
+                            <td>{{ client.forename }}</td>
+                            <td>{{ client.surname }}</td>
+                            <td>
+                                <a [routerLink]="['/edit',client.ufn]">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #noRecordFound>
+                <div *ngIf="(searchBox.value) && !serversideErrors">
+                    <div class="panel panel-border-wide">
+                        <p class="lede">
+                            No matching client record found.
+                        </p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
-    <br>
-    <br>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>UFN</td>
-                <td>Forename</td>
-                <td>Surname</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr *ngFor="let client of persons$ | async">
-                <td>{{ client.ufn }}</td>
-                <td>{{ client.forename }}</td>
-                <td>{{ client.surname }}</td>
-                <td>
-                    <a [routerLink]="['/edit',client.ufn]">Edit</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>

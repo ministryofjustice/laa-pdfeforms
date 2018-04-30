@@ -56,7 +56,7 @@ export class ClientRegistrationIndexComponent implements OnInit {
           this.serversideErrors = err.error.details;
         } else {
           console.log('server side error ', err);
-          this.serversideErrors = ['Unable to fetch information from the server', err.message];
+          this.serversideErrors = ['Unable to fetch information from the server','Please try again later'];
         }
       }
     );

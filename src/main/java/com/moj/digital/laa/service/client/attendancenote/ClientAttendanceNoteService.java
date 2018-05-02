@@ -1,8 +1,8 @@
 package com.moj.digital.laa.service.client.attendancenote;
 
 import com.moj.digital.laa.entity.client.attendancenote.AttendanceNote;
-import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
-import com.moj.digital.laa.exception.client.attendance.AttendanceNoteNotFoundException;
+import com.moj.digital.laa.exception.client.attendancenote.ClientAttendanceNoteNotFoundException;
+import com.moj.digital.laa.exception.client.attendancenote.InvalidClientAttendanceNoteDataException;
 import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;
 import com.moj.digital.laa.repository.client.attendancenote.ClientAttendanceNoteRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -29,19 +29,19 @@ public class ClientAttendanceNoteService {
     }
 
     public void save(AttendanceNoteDTO attendanceNoteDTO) {
-        log.debug("save attendance note called with client ufn {}", attendanceNoteDTO.getUfn());
+        log.debug("save attendance note called with {}", attendanceNoteDTO);
         try {
             AttendanceNote attendanceNote = modelMapper.map(attendanceNoteDTO, AttendanceNote.class);
             log.debug("Attendance note to be updated {}", attendanceNote);
             clientAttendanceNoteRepository.save(attendanceNote);
         } catch (Exception e) {
             log.error("Could not persist attendance note details because of exception {}", e);
-            throw new InvalidClientRegistrationDataException(CLIENT_PERSIST_ERROR.message() + e.getMessage(), e);
+            throw new InvalidClientAttendanceNoteDataException(CLIENT_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
 
-    public List<AttendanceNoteDTO> findByUfnContaining(String ufn) {
-        log.debug("Find by UFN containing called with UFN {}", ufn);
+    public List<AttendanceNoteDTO> findByUfn(String ufn) {
+        log.debug("findByUfn called with UFN {}", ufn);
         List<AttendanceNote> attendanceNoteList = clientAttendanceNoteRepository.findByUfn(ufn);
 
         Type targetType = new TypeToken<List<AttendanceNoteDTO>>() {
@@ -51,11 +51,11 @@ public class ClientAttendanceNoteService {
     }
 
     public AttendanceNoteDTO findById(Long id) {
-        log.debug("Find attendance note by id called with id {}", id);
+        log.debug("findById called with id {}", id);
         Optional<AttendanceNote> attendanceNote = clientAttendanceNoteRepository.findById(id);
         if (!attendanceNote.isPresent()) {
             log.warn("Could not identify attendance note with id {}", id);
-            throw new AttendanceNoteNotFoundException(String.format(ATTENDANCE_NOTE_NOT_FOUND.message(), id));
+            throw new ClientAttendanceNoteNotFoundException(String.format(ATTENDANCE_NOTE_NOT_FOUND.message(), id));
         }
         return modelMapper.map(attendanceNote.get(), AttendanceNoteDTO.class);
     }

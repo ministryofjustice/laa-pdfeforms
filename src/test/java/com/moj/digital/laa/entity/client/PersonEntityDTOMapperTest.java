@@ -1,5 +1,7 @@
 package com.moj.digital.laa.entity.client;
 
+import com.moj.digital.laa.entity.client.registration.Address;
+import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.model.client.AddressDTO;
 import com.moj.digital.laa.model.client.ClientDTO;
 import com.moj.digital.laa.util.JsonUtil;

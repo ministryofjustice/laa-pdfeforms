@@ -13,3 +13,5 @@ databaseChangeLog:
         file: db/changelog/changes/v006.sql
     - include:
         file: db/changelog/changes/v007.sql
+    - include:
+        file: db/changelog/changes/v008.sql

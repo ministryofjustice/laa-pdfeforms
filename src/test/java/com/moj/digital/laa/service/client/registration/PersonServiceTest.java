@@ -1,6 +1,6 @@
 package com.moj.digital.laa.service.client.registration;
 
-import com.moj.digital.laa.entity.client.Person;
+import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
 import com.moj.digital.laa.exception.client.ClientNotFoundException;
 import com.moj.digital.laa.model.client.ClientDTO;

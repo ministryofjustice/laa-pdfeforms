@@ -1,4 +1,4 @@
-package com.moj.digital.laa.model.client;
+package com.moj.digital.laa.model.client.registration;
 
 import lombok.Data;
 

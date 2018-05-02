@@ -15,7 +15,7 @@ public class AttendanceNote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_attendance_note_generator")
-    @SequenceGenerator(name = "client_attendance_note_generator", sequenceName = "attendance_note_Seq", allocationSize = 1)
+    @SequenceGenerator(name = "client_attendance_note_generator", sequenceName = "attendance_note_seq", allocationSize = 1)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
@@ -73,4 +73,7 @@ public class AttendanceNote {
 
     @Column(name="other_disabilities")
     private String otherDisabilities;
+
+    @Column(name="instruction_notes")
+    private String instructionNotes;
 }

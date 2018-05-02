@@ -1,4 +1,4 @@
-package com.moj.digital.laa.entity.client;
+package com.moj.digital.laa.entity.client.registration;
 
 import lombok.Data;
 

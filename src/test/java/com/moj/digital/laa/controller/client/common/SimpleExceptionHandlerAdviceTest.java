@@ -1,10 +1,10 @@
-package com.moj.digital.laa.controller.client.registration.exceptionhandler;
+package com.moj.digital.laa.controller.client.common;
 
-
+import com.moj.digital.laa.controller.client.common.SimpleExceptionHandlerAdvice;
+import com.moj.digital.laa.exception.client.common.EntityNotFoundException;
+import com.moj.digital.laa.exception.client.common.InvalidInputDataException;
 import com.moj.digital.laa.exception.common.ErrorDetails;
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
-import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
-import com.moj.digital.laa.exception.client.ClientNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,14 +28,14 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PersonRegistrationControllerExceptionHandlerAdviceTest {
+public class SimpleExceptionHandlerAdviceTest {
 
-    private ClientRegistrationControllerExceptionHandlerAdvice clientRegistrationControllerExceptionHandlerAdvice;
+    private SimpleExceptionHandlerAdvice simpleExceptionHandlerAdvice;
 
     @Before
     public void setup() {
         FieldsErrorExtractor fieldsErrorExtractor = new FieldsErrorExtractor();
-        clientRegistrationControllerExceptionHandlerAdvice = new ClientRegistrationControllerExceptionHandlerAdvice(fieldsErrorExtractor);
+        simpleExceptionHandlerAdvice = new SimpleExceptionHandlerAdvice(fieldsErrorExtractor);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class PersonRegistrationControllerExceptionHandlerAdviceTest {
 
         given(ex.getBindingResult()).willReturn(bindingResult);
 
-        ResponseEntity<Object> response = clientRegistrationControllerExceptionHandlerAdvice.handleMethodArgumentNotValid(ex, headers, HttpStatus.OK, request);
+        ResponseEntity<Object> response = simpleExceptionHandlerAdvice.handleMethodArgumentNotValid(ex, headers, HttpStatus.OK, request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody().getClass()).isEqualTo(ErrorDetails.class);
@@ -72,17 +72,17 @@ public class PersonRegistrationControllerExceptionHandlerAdviceTest {
     }
 
     @Test
-    public void handleInvalidClientDataExceptionShouldContainErrorDetails() {
-        InvalidClientRegistrationDataException ivpe = new InvalidClientRegistrationDataException("CustomMessage", new Exception("ExceptionCauseMessage"));
-        ErrorDetails errorDetails = clientRegistrationControllerExceptionHandlerAdvice.handleInvalidClientDataException(ivpe);
+    public void handleInvalidInputDataExceptionShouldContainErrorDetails() {
+        InvalidInputDataException ivpe = new InvalidInputDataException("CustomMessage", new Exception("ExceptionCauseMessage"));
+        ErrorDetails errorDetails = simpleExceptionHandlerAdvice.handleInvalidInputDataException(ivpe);
         assertThat(errorDetails.getMessage()).isEqualTo("CustomMessage");
         assertThat(errorDetails.getDetails()[0]).isEqualTo("ExceptionCauseMessage");
     }
 
     @Test
-    public void handleClientNotFoundExceptionShouldContainErrorDetails() {
-        ClientNotFoundException pnfe = new ClientNotFoundException("CustomMessage");
-        ErrorDetails errorDetails = clientRegistrationControllerExceptionHandlerAdvice.handleClientNotFoundException(pnfe);
+    public void handleEntityNotFoundExceptionShouldContainErrorDetails() {
+        EntityNotFoundException enfe = new EntityNotFoundException("CustomMessage");
+        ErrorDetails errorDetails = simpleExceptionHandlerAdvice.handleEntityNotFoundException(enfe);
         assertThat(errorDetails.getMessage()).isEqualTo("CustomMessage");
 
     }

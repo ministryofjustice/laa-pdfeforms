@@ -26,5 +26,5 @@ public class AttendanceNoteDTO {
     private String waiting;
     private Double mileage;
     private String otherDisabilities;
-
+    private String instructionNotes;
 }

@@ -2,7 +2,7 @@ create sequence attendance_note_Seq increment by 1 start with 100;
 
 create table attendance_note(
 	id bigint primary key not null,
-	ufn varchar(50) unique not null,
+	ufn varchar(50) not null references person(ufn),
 	attendance_date date,
 	status char(1),
 	free_earner varchar(50),
@@ -19,5 +19,6 @@ create table attendance_note(
 	advoc varchar(50),
 	waiting varchar(50),
 	mileage numeric,
-	other_disabilities varchar(50)
+	other_disabilities varchar(50),
+	instruction_notes varchar(1000)
 );

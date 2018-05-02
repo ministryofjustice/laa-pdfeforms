@@ -3,7 +3,7 @@ package com.moj.digital.laa.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moj.digital.laa.common.config.MapperConfiguration;
-import com.moj.digital.laa.entity.client.Person;
+import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.model.client.ClientDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

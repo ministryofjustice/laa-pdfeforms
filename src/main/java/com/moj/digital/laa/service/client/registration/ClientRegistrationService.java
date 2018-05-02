@@ -1,9 +1,9 @@
 package com.moj.digital.laa.service.client.registration;
 
-import com.moj.digital.laa.entity.client.Person;
-import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
-import com.moj.digital.laa.exception.client.ClientNotFoundException;
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.entity.client.registration.Person;
+import com.moj.digital.laa.exception.client.registration.ClientNotFoundException;
+import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.repository.client.registration.ClientRegistrationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

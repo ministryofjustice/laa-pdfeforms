@@ -1,6 +1,6 @@
 package com.moj.digital.laa.repository.client.registration;
 
-import com.moj.digital.laa.entity.client.Person;
+import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;

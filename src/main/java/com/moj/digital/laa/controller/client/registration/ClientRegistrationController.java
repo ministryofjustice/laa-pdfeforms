@@ -1,6 +1,6 @@
 package com.moj.digital.laa.controller.client.registration;
 
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.model.common.ResponseWrapper;
 import com.moj.digital.laa.service.client.registration.ClientRegistrationService;
 import lombok.extern.slf4j.Slf4j;

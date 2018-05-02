@@ -1,4 +1,4 @@
-package com.moj.digital.laa.entity.client;
+package com.moj.digital.laa.entity.client.registration;
 
 import com.moj.digital.laa.common.util.LocalDateSQLDateConverter;
 import lombok.Data;

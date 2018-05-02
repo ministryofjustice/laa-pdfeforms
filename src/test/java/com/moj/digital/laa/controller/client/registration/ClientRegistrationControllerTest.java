@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest({ClientRegistrationController.class})
+@WebMvcTest(ClientRegistrationController.class)
 @Import({FieldsErrorExtractor.class,JsonUtil.class})
 public class ClientRegistrationControllerTest {
 

@@ -2,6 +2,7 @@ package com.moj.digital.laa.service.client.attendance;
 
 import com.moj.digital.laa.entity.client.attendance.Attendance;
 import com.moj.digital.laa.exception.client.attendance.ClientAttendanceNotFoundException;
+import com.moj.digital.laa.exception.client.attendance.InvalidClientAttendanceDataException;
 import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
 import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
 import com.moj.digital.laa.repository.client.attendance.ClientAttendanceRepository;
@@ -36,7 +37,7 @@ public class ClientAttendanceService {
             clientAttendanceRepository.save(attendance);
         } catch (Exception e) {
             log.error("Could not persist attendance details because of exception {}", e);
-            throw new InvalidClientRegistrationDataException(ATTENDANCE_PERSIST_ERROR.message() + e.getMessage(), e);
+            throw new InvalidClientAttendanceDataException(ATTENDANCE_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
 

@@ -8,7 +8,7 @@ public class ErrorMessageTest {
 
     @Test
     public void testNumberOfElements() {
-        assertThat(ErrorMessage.values().length).isEqualTo(2);
+        assertThat(ErrorMessage.values().length).isEqualTo(6);
     }
 
     @Test

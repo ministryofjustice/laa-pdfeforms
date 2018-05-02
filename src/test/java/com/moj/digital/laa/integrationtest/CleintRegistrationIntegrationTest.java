@@ -1,6 +1,6 @@
 package com.moj.digital.laa.integrationtest;
 
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(JsonUtil.class)
 @AutoConfigureTestDatabase
-public class PersonIntegrationTest {
+public class CleintRegistrationIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

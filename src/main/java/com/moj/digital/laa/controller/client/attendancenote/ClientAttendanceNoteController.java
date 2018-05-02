@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/client")
+@RequestMapping(path = "/client/attendanceNote")
 public class ClientAttendanceNoteController {
 
     private final ClientAttendanceNoteService clientAttendanceNoteService;
@@ -26,7 +26,7 @@ public class ClientAttendanceNoteController {
         this.clientAttendanceNoteService = clientAttendanceNoteService;
     }
 
-    @PostMapping(path = "/attendanceNote/make")
+    @PostMapping(path = "/make")
     public ResponseEntity<ResponseWrapper> makeAttendanceNote(@Valid @RequestBody AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("makeAttendanceNote invoked with attendance note {} ", attendanceNoteDTO);
         clientAttendanceNoteService.save(attendanceNoteDTO);
@@ -34,7 +34,7 @@ public class ClientAttendanceNoteController {
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/attendanceNote/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseWrapper> updateAttendanceNote(@Valid @RequestBody AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("updateAttendance invoked with attendance note {} ", attendanceNoteDTO);
         clientAttendanceNoteService.update(attendanceNoteDTO);
@@ -42,13 +42,13 @@ public class ClientAttendanceNoteController {
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(path = "/attendanceNote/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<ClientDTO> findAttendanceNoteById(@PathVariable Long id) {
         log.debug("findAttendanceById invoked with id {} ", id);
         return new ResponseEntity(clientAttendanceNoteService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/attendanceNotes/{ufn}")
+    @GetMapping(path = "/{ufn}")
     public ResponseEntity<List<AttendanceNoteDTO>> findAttendanceNoteByUfn(@PathVariable String ufn) {
         log.debug("findAttendanceByUfn invoked with ufn {} ", ufn);
         return new ResponseEntity<List<AttendanceNoteDTO>>(clientAttendanceNoteService.findByUfn(ufn), HttpStatus.OK);

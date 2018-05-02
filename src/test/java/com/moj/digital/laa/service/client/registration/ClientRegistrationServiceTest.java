@@ -1,9 +1,9 @@
 package com.moj.digital.laa.service.client.registration;
 
 import com.moj.digital.laa.entity.client.registration.Person;
-import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
-import com.moj.digital.laa.exception.client.ClientNotFoundException;
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.exception.client.registration.ClientNotFoundException;
+import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.repository.client.registration.ClientRegistrationRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 @Import({ModelMapper.class})
-public class PersonServiceTest {
+public class ClientRegistrationServiceTest {
 
     private ClientRegistrationService clientRegistrationService;
 

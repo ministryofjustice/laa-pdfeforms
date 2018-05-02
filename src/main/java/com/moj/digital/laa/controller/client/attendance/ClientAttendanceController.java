@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping(path = "/client")
+@RequestMapping(path = "/client/attendance")
 public class ClientAttendanceController {
 
     private final ClientAttendanceService clientAttendanceService;
@@ -26,7 +26,7 @@ public class ClientAttendanceController {
         this.clientAttendanceService = clientAttendanceService;
     }
 
-    @PostMapping(path = "/attendance/make")
+    @PostMapping(path = "/make")
     public ResponseEntity<ResponseWrapper> makeAttendance(@Valid @RequestBody AttendanceDTO attendanceDTO) {
         log.debug("makeAttendance invoked with attendance {} ", attendanceDTO);
         clientAttendanceService.save(attendanceDTO);
@@ -34,7 +34,7 @@ public class ClientAttendanceController {
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/attendance/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseWrapper> updateAttendance(@Valid @RequestBody AttendanceDTO attendanceDTO) {
         log.debug("updateAttendance invoked with attendance note {} ", attendanceDTO);
         clientAttendanceService.update(attendanceDTO);
@@ -42,13 +42,13 @@ public class ClientAttendanceController {
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(path = "/attendance/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<ClientDTO> findAttendanceById(@PathVariable Long id) {
         log.debug("findAttendanceById invoked with id {} ", id);
         return new ResponseEntity(clientAttendanceService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/attendances/{ufn}")
+    @GetMapping(path = "/{ufn}")
     public ResponseEntity<List<AttendanceDTO>> findAttendancesByUfn(@PathVariable String ufn) {
         log.debug("findAttendanceByUfn invoked with ufn {} ", ufn);
         return new ResponseEntity<List<AttendanceDTO>>(clientAttendanceService.findByUfn(ufn), HttpStatus.OK);

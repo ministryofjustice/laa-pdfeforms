@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moj.digital.laa.common.config.MapperConfiguration;
 import com.moj.digital.laa.entity.client.registration.Person;
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestComponent;

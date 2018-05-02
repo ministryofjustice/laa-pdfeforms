@@ -1,6 +1,8 @@
 package com.moj.digital.laa.exception.client.registration;
 
-public class ClientNotFoundException extends RuntimeException {
+import com.moj.digital.laa.exception.client.common.EntityNotFoundException;
+
+public class ClientNotFoundException extends EntityNotFoundException {
     public ClientNotFoundException(String message) {
         super(message);
     }

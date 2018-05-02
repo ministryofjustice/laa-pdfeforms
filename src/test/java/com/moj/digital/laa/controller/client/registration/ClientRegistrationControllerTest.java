@@ -2,10 +2,10 @@ package com.moj.digital.laa.controller.client.registration;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.moj.digital.laa.exception.client.registration.ClientNotFoundException;
+import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
-import com.moj.digital.laa.exception.client.InvalidClientRegistrationDataException;
-import com.moj.digital.laa.exception.client.ClientNotFoundException;
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.service.client.registration.ClientRegistrationService;
 import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
@@ -27,9 +27,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest({ClientRegistrationController.class})
 @Import({FieldsErrorExtractor.class,JsonUtil.class})
-public class PersonRegistrationControllerTest {
+public class ClientRegistrationControllerTest {
 
     @Autowired
     private JsonUtil jsonUtil;

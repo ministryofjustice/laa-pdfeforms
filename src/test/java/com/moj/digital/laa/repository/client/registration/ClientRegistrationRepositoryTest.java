@@ -18,7 +18,7 @@ import java.io.IOException;
 @DataJpaTest
 @JsonTest
 @ComponentScan(basePackages = "com.moj.digital.laa.util")
-public class PersonRepositoryTest {
+public class ClientRegistrationRepositoryTest {
 
     public static final String UFN_189 = "UFN189";
 

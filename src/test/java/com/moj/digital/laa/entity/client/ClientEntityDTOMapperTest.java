@@ -2,8 +2,8 @@ package com.moj.digital.laa.entity.client;
 
 import com.moj.digital.laa.entity.client.registration.Address;
 import com.moj.digital.laa.entity.client.registration.Person;
-import com.moj.digital.laa.model.client.AddressDTO;
-import com.moj.digital.laa.model.client.ClientDTO;
+import com.moj.digital.laa.model.client.registration.AddressDTO;
+import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.util.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +16,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @JsonTest
 @ComponentScan(basePackages = "com.moj.digital.laa.util")
-public class PersonEntityDTOMapperTest {
+public class ClientEntityDTOMapperTest {
 
     @Autowired
     private JsonUtil jsonUtil;

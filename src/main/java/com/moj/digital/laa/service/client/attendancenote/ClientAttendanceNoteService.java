@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOTE_NOT_FOUND;
+import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOTE_PERSIST_ERROR;
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.CLIENT_PERSIST_ERROR;
 
 @Service
@@ -36,7 +37,7 @@ public class ClientAttendanceNoteService {
             clientAttendanceNoteRepository.save(attendanceNote);
         } catch (Exception e) {
             log.error("Could not persist attendance note details because of exception {}", e);
-            throw new InvalidClientAttendanceNoteDataException(CLIENT_PERSIST_ERROR.message() + e.getMessage(), e);
+            throw new InvalidClientAttendanceNoteDataException(ATTENDANCE_NOTE_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
 

@@ -14,8 +14,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOTE_NOT_FOUND;
-import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.CLIENT_PERSIST_ERROR;
+import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOT_FOUND;
+import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_PERSIST_ERROR;
 
 @Service
 @Slf4j
@@ -36,7 +36,7 @@ public class ClientAttendanceService {
             clientAttendanceRepository.save(attendance);
         } catch (Exception e) {
             log.error("Could not persist attendance details because of exception {}", e);
-            throw new InvalidClientRegistrationDataException(CLIENT_PERSIST_ERROR.message() + e.getMessage(), e);
+            throw new InvalidClientRegistrationDataException(ATTENDANCE_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
 
@@ -55,7 +55,7 @@ public class ClientAttendanceService {
         Optional<Attendance> attendanceNote = clientAttendanceRepository.findById(id);
         if (!attendanceNote.isPresent()) {
             log.warn("Could not identify attendance with id {}", id);
-            throw new ClientAttendanceNotFoundException(String.format(ATTENDANCE_NOTE_NOT_FOUND.message(), id));
+            throw new ClientAttendanceNotFoundException(String.format(ATTENDANCE_NOT_FOUND.message(), id));
         }
         return modelMapper.map(attendanceNote.get(), AttendanceDTO.class);
     }

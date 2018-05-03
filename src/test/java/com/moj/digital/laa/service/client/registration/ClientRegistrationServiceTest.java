@@ -84,7 +84,7 @@ public class ClientRegistrationServiceTest {
     }
 
     @Test(expected = InvalidClientRegistrationDataException.class)
-    public void updateWhenClientWhenServiceFailureOccursShouldThrowException() {
+    public void updateWhenServiceFailureOccursShouldThrowException() {
         when(clientRegistrationRepository.findByUfn("UFN1")).thenReturn(new Person());
         when(clientRegistrationRepository.save(any(Person.class))).thenThrow(new RuntimeException(""));
 

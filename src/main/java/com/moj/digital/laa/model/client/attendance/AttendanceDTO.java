@@ -2,11 +2,14 @@ package com.moj.digital.laa.model.client.attendance;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 public class AttendanceDTO {
 
     private Long id;
 
+    @NotEmpty
     private String ufn;
 
     private String scope;

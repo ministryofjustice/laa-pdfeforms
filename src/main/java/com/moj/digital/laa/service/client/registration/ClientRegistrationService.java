@@ -55,7 +55,7 @@ public class ClientRegistrationService {
         return modelMapper.map(client, ClientDTO.class);
     }
 
-    public List<ClientDTO> findByUfnContaining(String ufn) {
+    public List<ClientDTO> findClientByUfnContaining(String ufn) {
         log.debug("Find by UFN containing called with UFN {}", ufn);
         List<Person> clientList = clientRegistrationRepository.findByUfnContaining(ufn);
 

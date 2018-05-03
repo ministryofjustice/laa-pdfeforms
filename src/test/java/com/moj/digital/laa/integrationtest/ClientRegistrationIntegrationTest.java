@@ -20,7 +20,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(JsonTestUtil.class)
 @AutoConfigureTestDatabase
-public class CleintRegistrationIntegrationTest {
+public class ClientRegistrationIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

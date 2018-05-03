@@ -50,6 +50,6 @@ public class ClientRegistrationController {
     @GetMapping(path = "/containingUfn/{ufn}")
     public ResponseEntity<List<ClientDTO>> findClientByUfnContaining(@PathVariable String ufn) {
         log.debug("findClientByUfn invoked with ufn {} ", ufn);
-        return new ResponseEntity<List<ClientDTO>>(clientRegistrationService.findByUfnContaining(ufn), HttpStatus.OK);
+        return new ResponseEntity<List<ClientDTO>>(clientRegistrationService.findClientByUfnContaining(ufn), HttpStatus.OK);
     }
 }

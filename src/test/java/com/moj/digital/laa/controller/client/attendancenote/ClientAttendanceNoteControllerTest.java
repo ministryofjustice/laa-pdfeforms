@@ -1,10 +1,10 @@
-package com.moj.digital.laa.controller.client.attendance;
+package com.moj.digital.laa.controller.client.attendancenote;
 
 import com.moj.digital.laa.exception.client.attendance.ClientAttendanceNotFoundException;
-import com.moj.digital.laa.exception.client.attendance.InvalidClientAttendanceDataException;
+import com.moj.digital.laa.exception.client.attendancenote.InvalidClientAttendanceNoteDataException;
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
-import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
-import com.moj.digital.laa.service.client.attendance.ClientAttendanceService;
+import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;
+import com.moj.digital.laa.service.client.attendancenote.ClientAttendanceNoteService;
 import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,20 +24,13 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ClientAttendanceController.class)
+@WebMvcTest(ClientAttendanceNoteController.class)
 @Import({FieldsErrorExtractor.class, JsonTestUtil.class})
-
-public class ClientAttendanceControllerTest {
-
+public class ClientAttendanceNoteControllerTest {
     @Autowired
     private JsonTestUtil jsonTestUtil;
 
@@ -45,85 +38,85 @@ public class ClientAttendanceControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ClientAttendanceService clientAttendanceService;
+    private ClientAttendanceNoteService clientAttendanceNoteService;
 
     @Test
     public void persistAttendanceWhenServiceFailureOccursShouldReturnInternalServerErrorStatusCode() throws Exception {
-        doThrow(new InvalidClientAttendanceDataException("", new Exception())).when(clientAttendanceService).save(any(AttendanceDTO.class));
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        doThrow(new InvalidClientAttendanceNoteDataException("", new Exception())).when(clientAttendanceNoteService).save(any(AttendanceNoteDTO.class));
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
 
-        mockMvc.perform(post("/client/attendance/make")
+        mockMvc.perform(post("/client/attendanceNote/make")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isInternalServerError());
 
-        verify(clientAttendanceService, times(1)).save(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, times(1)).save(any(AttendanceNoteDTO.class));
     }
 
     @Test
     public void persistAttendanceWhenInputsAreValidShouldSaveAttendance() throws Exception {
-        doNothing().when(clientAttendanceService).save(any(AttendanceDTO.class));
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        doNothing().when(clientAttendanceNoteService).save(any(AttendanceNoteDTO.class));
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
 
-        mockMvc.perform(post("/client/attendance/make")
+        mockMvc.perform(post("/client/attendanceNote/make")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isCreated());
 
-        verify(clientAttendanceService, times(1)).save(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, times(1)).save(any(AttendanceNoteDTO.class));
     }
 
     @Test
     public void persistAttendanceWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
         attendanceDTO.setUfn(null);
 
-        mockMvc.perform(post("/client/attendance/make")
+        mockMvc.perform(post("/client/attendanceNote/make")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isBadRequest());
 
-        verify(clientAttendanceService, never()).save(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, never()).save(any(AttendanceNoteDTO.class));
     }
 
     @Test
     public void findAttendanceByIDWhenValidUFNPassedShouldReturnCorrespondingAttendance() throws Exception {
-        AttendanceDTO attendanceDTO = new AttendanceDTO();
+        AttendanceNoteDTO attendanceDTO = new AttendanceNoteDTO();
         attendanceDTO.setUfn("UFN1");
         attendanceDTO.setId(12L);
 
-        given(clientAttendanceService.findById(12L)).willReturn(attendanceDTO);
+        given(clientAttendanceNoteService.findById(12L)).willReturn(attendanceDTO);
 
-        mockMvc.perform(get("/client/attendance/forID/12"))
+        mockMvc.perform(get("/client/attendanceNote/forID/12"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(12L))
                 .andExpect(jsonPath("ufn").value("UFN1"));
 
-        verify(clientAttendanceService, times(1)).findById(12L);
+        verify(clientAttendanceNoteService, times(1)).findById(12L);
 
     }
 
     @Test
     public void findAttendanceByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() throws Exception {
-        given(clientAttendanceService.findById(12L)).willThrow(new ClientAttendanceNotFoundException(""));
+        given(clientAttendanceNoteService.findById(12L)).willThrow(new ClientAttendanceNotFoundException(""));
 
-        mockMvc.perform(get("/client/attendance/forID/12"))
+        mockMvc.perform(get("/client/attendanceNote/forID/12"))
                 .andExpect(status().isNotFound());
 
-        verify(clientAttendanceService, times(1)).findById(12L);
+        verify(clientAttendanceNoteService, times(1)).findById(12L);
     }
 
 
     @Test
     public void findAttendancesByUfnWhenValidUFNPassedShouldReturnListOfMatchingRecords() throws Exception {
-        List<AttendanceDTO> attendanceDTOList = new ArrayList<>();
+        List<AttendanceNoteDTO> attendanceDTOList = new ArrayList<>();
 
-        AttendanceDTO attendanceDTO1 = new AttendanceDTO();
+        AttendanceNoteDTO attendanceDTO1 = new AttendanceNoteDTO();
         attendanceDTO1.setUfn("UFN1");
         attendanceDTO1.setId(12L);
 
 
-        AttendanceDTO attendanceDTO2 = new AttendanceDTO();
+        AttendanceNoteDTO attendanceDTO2 = new AttendanceNoteDTO();
         attendanceDTO2.setUfn("UFN1");
         attendanceDTO2.setId(13L);
 
@@ -131,9 +124,9 @@ public class ClientAttendanceControllerTest {
         attendanceDTOList.add(attendanceDTO1);
         attendanceDTOList.add(attendanceDTO2);
 
-        given(clientAttendanceService.findByUfn("UFN1")).willReturn(attendanceDTOList);
+        given(clientAttendanceNoteService.findByUfn("UFN1")).willReturn(attendanceDTOList);
 
-        mockMvc.perform(get("/client/attendance/allForUFN/UFN1"))
+        mockMvc.perform(get("/client/attendanceNote/allForUFN/UFN1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.*", hasSize(2)))
@@ -142,40 +135,40 @@ public class ClientAttendanceControllerTest {
                 .andExpect(jsonPath("$.[0].ufn", equalTo("UFN1")))
                 .andExpect(jsonPath("$.[1].ufn", equalTo("UFN1")));
 
-        verify(clientAttendanceService, times(1)).findByUfn("UFN1");
+        verify(clientAttendanceNoteService, times(1)).findByUfn("UFN1");
 
     }
 
     @Test
     public void updateAttendanceWhenInputsAreValidShouldSaveAttendance() throws Exception {
-        doNothing().when(clientAttendanceService).update(any(AttendanceDTO.class));
+        doNothing().when(clientAttendanceNoteService).update(any(AttendanceNoteDTO.class));
 
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
         attendanceDTO.setUfn("UFN1");
 
-        mockMvc.perform(put("/client/attendance/update")
+        mockMvc.perform(put("/client/attendanceNote/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isAccepted());
 
-        verify(clientAttendanceService, times(1)).update(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, times(1)).update(any(AttendanceNoteDTO.class));
 
     }
 
 
     @Test
     public void updateAttendanceWhenNotAbleToLocateAttendanceShouldReturnNotFoundStatusCode() throws Exception {
-        doThrow(new ClientAttendanceNotFoundException("")).when(clientAttendanceService).update(any(AttendanceDTO.class));
+        doThrow(new ClientAttendanceNotFoundException("")).when(clientAttendanceNoteService).update(any(AttendanceNoteDTO.class));
 
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
         attendanceDTO.setUfn("UFN1");
 
-        mockMvc.perform(put("/client/attendance/update")
+        mockMvc.perform(put("/client/attendanceNote/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isNotFound());
 
-        verify(clientAttendanceService, times(1)).update(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, times(1)).update(any(AttendanceNoteDTO.class));
 
     }
 
@@ -183,16 +176,16 @@ public class ClientAttendanceControllerTest {
     @Test
     public void updateAttendanceWhenInputsAreInValidShouldReturnBadRequestStatusCode() throws Exception {
 
-        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
         attendanceDTO.setUfn(null);
 
-        mockMvc.perform(put("/client/attendance/update")
+        mockMvc.perform(put("/client/attendanceNote/update")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonTestUtil.asJsonString(attendanceDTO)))
                 .andExpect(status().isBadRequest());
 
-        verify(clientAttendanceService, never()).update(any(AttendanceDTO.class));
+        verify(clientAttendanceNoteService, never()).update(any(AttendanceNoteDTO.class));
     }
-
+    
 
 }

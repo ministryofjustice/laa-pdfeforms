@@ -2,13 +2,17 @@ package com.moj.digital.laa.model.client.attendancenote;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
 @Data
 public class AttendanceNoteDTO {
 
     private Long id;
+
+    @NotEmpty
     private String ufn;
+
     private LocalDate attendanceDate;
     private String status;
     private String freeEarner;

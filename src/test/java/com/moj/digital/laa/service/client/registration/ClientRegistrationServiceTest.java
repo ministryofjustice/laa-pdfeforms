@@ -70,7 +70,7 @@ public class ClientRegistrationServiceTest {
         listOfClients.add(client2);
 
         when(clientRegistrationRepository.findByUfnContaining("UFN")).thenReturn(listOfClients);
-        List<ClientDTO> clientDTOS = clientRegistrationService.findByUfnContaining("UFN");
+        List<ClientDTO> clientDTOS = clientRegistrationService.findClientByUfnContaining("UFN");
 
         assertThat(listOfClients.size()).isEqualTo(clientDTOS.size());
         assertThat(listOfClients.get(0).getUfn()).isEqualTo(clientDTOS.get(0).getUfn());

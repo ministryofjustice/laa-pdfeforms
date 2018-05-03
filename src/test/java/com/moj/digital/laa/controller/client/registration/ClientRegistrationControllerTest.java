@@ -19,10 +19,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -106,6 +111,37 @@ public class ClientRegistrationControllerTest {
         verify(clientRegistrationService, times(1)).findByUfn("UFN1");
     }
 
+    @Test
+    public void findClientByUfnContainingWhenValidUFNPassedShouldReturnListOfMatchingRecords() throws Exception {
+        List<ClientDTO> clientDTOList = new ArrayList<>();
+
+        ClientDTO clientDTO1 = new ClientDTO();
+        clientDTO1.setUfn("UFN12");
+        clientDTO1.setId(12L);
+
+
+        ClientDTO clientDTO2 = new ClientDTO();
+        clientDTO2.setUfn("UFN13");
+        clientDTO2.setId(13L);
+
+
+        clientDTOList.add(clientDTO1);
+        clientDTOList.add(clientDTO2);
+
+        given(clientRegistrationService.findClientByUfnContaining("UFN1")).willReturn(clientDTOList);
+
+        mockMvc.perform(get("/client/containingUfn/UFN1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.*", hasSize(2)))
+                .andExpect(jsonPath("$.[0].id", equalTo(12)))
+                .andExpect(jsonPath("$.[1].id", equalTo(13)))
+                .andExpect(jsonPath("$.[0].ufn", equalTo("UFN12")))
+                .andExpect(jsonPath("$.[1].ufn", equalTo("UFN13")));
+
+        verify(clientRegistrationService, times(1)).findClientByUfnContaining("UFN1");
+
+    }
 
     @Test
     public void updateClientWhenInputsAreValidShouldSaveClient() throws Exception {

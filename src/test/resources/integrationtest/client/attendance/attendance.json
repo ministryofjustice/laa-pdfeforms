@@ -1,0 +1,12 @@
+{
+  "ufn": "UFN10",
+  "scope": "N",
+  "allegations": "Y",
+  "custody": "custody",
+  "bail": "bail",
+  "allegations_text": "allegations_text",
+  "instructions": "instructions",
+  "advice": "advice",
+  "result": "result",
+  "action": "action_text"
+}

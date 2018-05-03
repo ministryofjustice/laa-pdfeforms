@@ -7,7 +7,7 @@ import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrati
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.service.client.registration.ClientRegistrationService;
-import com.moj.digital.laa.util.JsonUtil;
+import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ClientRegistrationController.class)
-@Import({FieldsErrorExtractor.class,JsonUtil.class})
+@Import({FieldsErrorExtractor.class,JsonTestUtil.class})
 public class ClientRegistrationControllerTest {
 
     @Autowired
-    private JsonUtil jsonUtil;
+    private JsonTestUtil jsonTestUtil;
 
     @Autowired
     private MockMvc mockMvc;
@@ -154,10 +154,10 @@ public class ClientRegistrationControllerTest {
     }
 
     private ClientDTO clientDTOFromJson() throws IOException {
-        return jsonUtil.clientDTOFromJson();
+        return jsonTestUtil.clientDTOFromJson();
     }
 
     private String asJsonString(ClientDTO clientDTO) throws JsonProcessingException {
-        return jsonUtil.asJsonString(clientDTO);
+        return jsonTestUtil.asJsonString(clientDTO);
     }
 }

@@ -4,7 +4,7 @@ import com.moj.digital.laa.entity.client.registration.Address;
 import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.model.client.registration.AddressDTO;
 import com.moj.digital.laa.model.client.registration.ClientDTO;
-import com.moj.digital.laa.util.JsonUtil;
+import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
@@ -26,14 +26,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class ClientEntityDTOMapperTest {
 
     @Autowired
-    private JsonUtil jsonUtil;
+    private JsonTestUtil jsonTestUtil;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Test
     public void verifyclientDTOtoClientEntityMapping() throws IOException {
-        ClientDTO clientDTO = jsonUtil.clientDTOFromJson();
+        ClientDTO clientDTO = jsonTestUtil.clientDTOFromJson();
         clientDTO.setId(123L);
 
         Person client = modelMapper.map(clientDTO,Person.class);
@@ -43,7 +43,7 @@ public class ClientEntityDTOMapperTest {
 
     @Test
     public void verifyClientEntityToClientDTOMapping() throws IOException {
-        Person client = jsonUtil.clientFromJson();
+        Person client = jsonTestUtil.clientFromJson();
         client.setId(123L);
 
         ClientDTO clientDTO = modelMapper.map(client, ClientDTO.class);

@@ -1,7 +1,7 @@
 package com.moj.digital.laa.integrationtest;
 
 import com.moj.digital.laa.model.client.registration.ClientDTO;
-import com.moj.digital.laa.util.JsonUtil;
+import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Import(JsonUtil.class)
+@Import(JsonTestUtil.class)
 @AutoConfigureTestDatabase
 public class CleintRegistrationIntegrationTest {
 
@@ -26,7 +26,7 @@ public class CleintRegistrationIntegrationTest {
     private TestRestTemplate testRestTemplate;
 
     @Autowired
-    private JsonUtil jsonUtil;
+    private JsonTestUtil jsonTestUtil;
 
     @Test
     public void persistClientWhenInputsAreValidShouldSaveClient() throws Exception {
@@ -99,13 +99,13 @@ public class CleintRegistrationIntegrationTest {
 
 
     private ClientDTO clientDTOFromJson() throws IOException {
-        return jsonUtil.clientDTOFromJson();
+        return jsonTestUtil.clientDTOFromJson();
     }
 
     private HttpEntity<String> httpEntity(ClientDTO clientDTO) throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        return new HttpEntity<>(jsonUtil.asJsonString(clientDTO), headers);
+        return new HttpEntity<>(jsonTestUtil.asJsonString(clientDTO), headers);
     }
 
 }

@@ -1,0 +1,6 @@
+test:
+  json:
+    files:
+      client: /integrationtest/client/
+      attendanceNote: /integrationtest/client/attendancenote/
+      attendance: /integrationtest/client/attendance/

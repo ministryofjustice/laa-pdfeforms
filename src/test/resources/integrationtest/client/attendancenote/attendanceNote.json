@@ -1,0 +1,21 @@
+{
+  "ufn": "UFN10",
+  "attendanceDate": "1988-01-22",
+  "status": "N",
+  "freeEarner": "free earner",
+  "venue": "venue",
+  "riskNeededForCheck": "Y",
+  "conflictCheck": "Y",
+  "clientAttend": "client attend",
+  "clientCps": "client_cps",
+  "attendWitness": "attend_witness",
+  "attendOther": "attend_other",
+  "prep": "prep",
+  "callsMade": "calls_made",
+  "travel": "travel",
+  "advoc": "advoc",
+  "waiting": "waiting",
+  "mileage": 10,
+  "otherDisabilities": "other_disabilities",
+  "instructionNotes": "some instructions"
+}

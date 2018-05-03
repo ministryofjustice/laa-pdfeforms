@@ -6,7 +6,7 @@ import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
 import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.service.client.attendance.ClientAttendanceService;
-import com.moj.digital.laa.util.JsonUtil;
+import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ClientAttendanceController.class)
-@Import({FieldsErrorExtractor.class, JsonUtil.class})
+@Import({FieldsErrorExtractor.class, JsonTestUtil.class})
 
 public class ClientAttendanceControllerTest {
 
     @Autowired
-    private JsonUtil jsonUtil;
+    private JsonTestUtil jsonTestUtil;
 
     @Autowired
     private MockMvc mockMvc;
@@ -43,22 +43,26 @@ public class ClientAttendanceControllerTest {
     @Test
     public void persistClientWhenServiceFailureOccursShouldReturnInternalServerErrorStatusCode() throws Exception {
         doThrow(new InvalidClientAttendanceDataException("", new Exception())).when(clientAttendanceService).save(any(AttendanceDTO.class));
-        ClientDTO clientDTO = clientDTOFromJson();
+        AttendanceDTO attendanceDTO = attendanceDTOFromJson();
 
         mockMvc.perform(post("/client/attendance/make")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(clientDTO)))
+                .content(asJsonString(attendanceDTO)))
                 .andExpect(status().isInternalServerError());
 
         verify(clientAttendanceService, times(1)).save(any(AttendanceDTO.class));
     }
 
-    private ClientDTO clientDTOFromJson() throws IOException {
-        return jsonUtil.clientDTOFromJson();
+    private AttendanceDTO attendanceDTOFromJson() throws IOException {
+        return jsonTestUtil.attendanceDTOFromJson();
     }
 
-    private String asJsonString(ClientDTO clientDTO) throws JsonProcessingException {
-        return jsonUtil.asJsonString(clientDTO);
+    private ClientDTO clientDTOFromJson() throws IOException {
+        return jsonTestUtil.clientDTOFromJson();
+    }
+
+    private String asJsonString(Object object) throws JsonProcessingException {
+        return jsonTestUtil.asJsonString(object);
     }
 
 }

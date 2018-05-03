@@ -1,7 +1,7 @@
 package com.moj.digital.laa.repository.client.registration;
 
 import com.moj.digital.laa.entity.client.registration.Person;
-import com.moj.digital.laa.util.JsonUtil;
+import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ClientRegistrationRepositoryTest {
     public static final String UFN_189 = "UFN189";
 
     @Autowired
-    private JsonUtil jsonUtil;
+    private JsonTestUtil jsonTestUtil;
 
 
     @Autowired
@@ -35,7 +35,7 @@ public class ClientRegistrationRepositoryTest {
 
     @Test
     public void findByUfnWhenAValidUFNIsSentShouldReturnPerson() throws IOException {
-        Person client = jsonUtil.clientFromJson();
+        Person client = jsonTestUtil.clientFromJson();
         client.setUfn(UFN_189);
 
         testEntityManager.persistAndFlush(client);

@@ -42,13 +42,13 @@ public class ClientAttendanceNoteController {
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "forID/{id}")
     public ResponseEntity<ClientDTO> findAttendanceNoteById(@PathVariable Long id) {
         log.debug("findAttendanceById invoked with id {} ", id);
         return new ResponseEntity(clientAttendanceNoteService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{ufn}")
+    @GetMapping(path = "allForUFN/{ufn}")
     public ResponseEntity<List<AttendanceNoteDTO>> findAttendanceNoteByUfn(@PathVariable String ufn) {
         log.debug("findAttendanceByUfn invoked with ufn {} ", ufn);
         return new ResponseEntity<List<AttendanceNoteDTO>>(clientAttendanceNoteService.findByUfn(ufn), HttpStatus.OK);

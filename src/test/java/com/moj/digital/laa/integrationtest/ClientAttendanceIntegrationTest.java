@@ -4,7 +4,6 @@ import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
 import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.model.common.ResponseWrapper;
 import com.moj.digital.laa.util.JsonTestUtil;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 @AutoConfigureTestDatabase
 public class ClientAttendanceIntegrationTest {
 
-    public static final String UFN = "UFN10";
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -33,10 +31,9 @@ public class ClientAttendanceIntegrationTest {
     @Autowired
     private JsonTestUtil jsonTestUtil;
 
-    @Before
-    public void insertClientInDB() throws Exception {
+    public void insertClientInDB(String ufn) throws Exception {
         ClientDTO clientDTO = jsonTestUtil.clientDTOFromJson();
-        clientDTO.setUfn(UFN);
+        clientDTO.setUfn(ufn);
         ResponseEntity<String> result = testRestTemplate.postForEntity
                 ("/client/register", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -44,24 +41,27 @@ public class ClientAttendanceIntegrationTest {
 
     @Test
     public void persistAttendanceWhenInputsAreValidShouldSaveAttendance() throws Exception {
-        ResponseEntity<ResponseWrapper> result = createAttendance(UFN);
+        insertClientInDB("UFN14");
+        ResponseEntity<ResponseWrapper> result = createAttendance("UFN14");
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
     @Test
     public void persistAttendanceWhenAttendancePertainingToNonExitingClientIsPassedShouldReturnInternalErrorStatusCode() throws Exception {
-        ResponseEntity<ResponseWrapper> result = createAttendance("UFN2");
+        insertClientInDB("UFN15");
+        ResponseEntity<ResponseWrapper> result = createAttendance("abc");
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
     @Test
     public void updateAttendanceWhenTryingToUpdateAnExistingAttendanceShouldReturnCreatedStatusCode() throws Exception {
-        ResponseEntity<ResponseWrapper> result = createAttendance(UFN);
+        insertClientInDB("UFN16");
+        ResponseEntity<ResponseWrapper> result = createAttendance("UFN16");
         Long attendanceId = result.getBody().getId();
 
         AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
-        attendanceDTO.setUfn(UFN);
+        attendanceDTO.setUfn("UFN16");
         attendanceDTO.setId(attendanceId);
 
         ResponseEntity<ResponseWrapper> updateResult = testRestTemplate.exchange("/client/attendance/update", HttpMethod.PUT, httpEntity(attendanceDTO), ResponseWrapper.class);

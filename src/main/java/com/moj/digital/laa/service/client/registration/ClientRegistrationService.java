@@ -28,7 +28,7 @@ public class ClientRegistrationService {
         this.modelMapper = modelMapper;
     }
 
-    public void save(ClientDTO clientDTO) {
+    public Long save(ClientDTO clientDTO) {
         log.debug("save client called with client {}", clientDTO);
         try {
             Person client = modelMapper.map(clientDTO, Person.class);
@@ -38,7 +38,8 @@ public class ClientRegistrationService {
             });
 
             log.debug("Person to be updated {}", client);
-            clientRegistrationRepository.save(client);
+            Person savedClient = clientRegistrationRepository.save(client);
+            return savedClient.getId();
         } catch (Exception e) {
             log.error("Could not persist client details because of exception {}", e);
             throw new InvalidClientRegistrationDataException(CLIENT_PERSIST_ERROR.message() + e.getMessage(), e);
@@ -65,10 +66,10 @@ public class ClientRegistrationService {
         return modelMapper.map(clientList, targetType);
     }
 
-    public void update(ClientDTO clientDTO) {
+    public Long update(ClientDTO clientDTO) {
         log.debug("update client called with client {}", clientDTO);
         ClientDTO existingClientDTO = findByUfn(clientDTO.getUfn());
         clientDTO.setId(existingClientDTO.getId());
-        save(clientDTO);
+        return save(clientDTO);
     }
 }

@@ -1,4 +1,4 @@
-package com.moj.digital.laa.entity.client;
+package com.moj.digital.laa.entity.client.registration;
 
 import com.moj.digital.laa.entity.client.registration.Address;
 import com.moj.digital.laa.entity.client.registration.Person;
@@ -32,7 +32,7 @@ public class ClientEntityDTOMapperTest {
     private ModelMapper modelMapper;
 
     @Test
-    public void verifyclientDTOtoClientEntityMapping() throws IOException {
+    public void verifyClientDTOtoClientEntityMapping() throws IOException {
         ClientDTO clientDTO = jsonTestUtil.clientDTOFromJson();
         clientDTO.setId(123L);
 

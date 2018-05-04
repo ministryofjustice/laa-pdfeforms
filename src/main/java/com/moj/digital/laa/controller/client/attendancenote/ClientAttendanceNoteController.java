@@ -29,16 +29,16 @@ public class ClientAttendanceNoteController {
     @PostMapping(path = "/make")
     public ResponseEntity<ResponseWrapper> makeAttendanceNote(@Valid @RequestBody AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("makeAttendanceNote invoked with attendance note {} ", attendanceNoteDTO);
-        clientAttendanceNoteService.save(attendanceNoteDTO);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Attendance note created for client with UFN %s", attendanceNoteDTO.getUfn()));
+        Long savedId = clientAttendanceNoteService.save(attendanceNoteDTO);
+        ResponseWrapper responseWrapper = new ResponseWrapper(savedId, String.format("Attendance note created for client with UFN %s", attendanceNoteDTO.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseWrapper> updateAttendanceNote(@Valid @RequestBody AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("updateAttendance invoked with attendance note {} ", attendanceNoteDTO);
-        clientAttendanceNoteService.update(attendanceNoteDTO);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Attendance note updated for client with UFN %s", attendanceNoteDTO.getUfn()));
+        Long updatedId = clientAttendanceNoteService.update(attendanceNoteDTO);
+        ResponseWrapper responseWrapper = new ResponseWrapper(updatedId, String.format("Attendance note updated for client with UFN %s", attendanceNoteDTO.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 

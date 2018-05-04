@@ -1,5 +1,6 @@
 package com.moj.digital.laa.service.client.attendancenote;
 
+import com.moj.digital.laa.entity.client.attendance.Attendance;
 import com.moj.digital.laa.entity.client.attendancenote.AttendanceNote;
 import com.moj.digital.laa.exception.client.attendance.InvalidClientAttendanceDataException;
 import com.moj.digital.laa.exception.client.attendancenote.ClientAttendanceNoteNotFoundException;
@@ -45,8 +46,15 @@ public class ClientAttendanceNoteServiceTest {
 
     @Test
     public void saveWhenThereIsNoInternalErrorClientShouldBeSaved() {
-        AttendanceNoteDTO clientDTO = new AttendanceNoteDTO();
-        clientAttendanceNoteService.save(clientDTO);
+        AttendanceNote attendanceNote = new AttendanceNote();
+        attendanceNote.setId(12L);
+
+        when(clientAttendanceNoteRepository.save(any(AttendanceNote.class))).thenReturn(attendanceNote);
+
+        AttendanceNoteDTO attendanceNoteDTO = new AttendanceNoteDTO();
+        Long savedId = clientAttendanceNoteService.save(attendanceNoteDTO);
+
+        assertThat(savedId).isEqualTo(attendanceNote.getId());
     }
 
     @Test
@@ -103,7 +111,14 @@ public class ClientAttendanceNoteServiceTest {
 
     @Test
     public void updateWhenThereIsNoInternalErrorAttendanceShouldBeSaved() {
-        when(clientAttendanceNoteRepository.findById(12L)).thenReturn(Optional.of(new AttendanceNote()));
+
+        AttendanceNote attendanceNote = new AttendanceNote();
+        attendanceNote.setId(12L);
+        when(clientAttendanceNoteRepository.findById(12L)).thenReturn(Optional.of(attendanceNote));
+
+        when(clientAttendanceNoteRepository.save(any(AttendanceNote.class))).thenReturn(attendanceNote);
+
+
 
         AttendanceNoteDTO attendanceDTO = new AttendanceNoteDTO();
         attendanceDTO.setId(12L);

@@ -29,16 +29,16 @@ public class ClientAttendanceController {
     @PostMapping(path = "/make")
     public ResponseEntity<ResponseWrapper> makeAttendance(@Valid @RequestBody AttendanceDTO attendanceDTO) {
         log.debug("makeAttendance invoked with attendance {} ", attendanceDTO);
-        clientAttendanceService.save(attendanceDTO);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Attendance created for client with UFN %s", attendanceDTO.getUfn()));
+        Long savedId = clientAttendanceService.save(attendanceDTO);
+        ResponseWrapper responseWrapper = new ResponseWrapper(savedId, String.format("Attendance created for client with UFN %s", attendanceDTO.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseWrapper> updateAttendance(@Valid @RequestBody AttendanceDTO attendanceDTO) {
         log.debug("updateAttendance invoked with attendance note {} ", attendanceDTO);
-        clientAttendanceService.update(attendanceDTO);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Attendance updated for client with UFN %s", attendanceDTO.getUfn()));
+        Long updatedId = clientAttendanceService.update(attendanceDTO);
+        ResponseWrapper responseWrapper = new ResponseWrapper(updatedId, String.format("Attendance updated for client with UFN %s", attendanceDTO.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 

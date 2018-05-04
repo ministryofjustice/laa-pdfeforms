@@ -45,6 +45,11 @@ public class ClientAttendanceServiceTest {
 
     @Test
     public void saveWhenThereIsNoInternalErrorClientShouldBeSaved() {
+        Attendance attendance = new Attendance();
+        attendance.setId(12L);
+
+        when(clientAttendanceRepository.save(any(Attendance.class))).thenReturn(attendance);
+
         AttendanceDTO attendanceDTO = new AttendanceDTO();
         clientAttendanceService.save(attendanceDTO);
     }
@@ -103,7 +108,10 @@ public class ClientAttendanceServiceTest {
 
     @Test
     public void updateWhenThereIsNoInternalErrorAttendanceShouldBeSaved() {
-        when(clientAttendanceRepository.findById(12L)).thenReturn(Optional.of(new Attendance()));
+        Attendance attendance = new Attendance();
+        attendance.setId(12L);
+        when(clientAttendanceRepository.findById(12L)).thenReturn(Optional.of(attendance));
+        when(clientAttendanceRepository.save(any(Attendance.class))).thenReturn(attendance);
 
         AttendanceDTO attendanceDTO = new AttendanceDTO();
         attendanceDTO.setId(12L);

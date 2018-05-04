@@ -27,8 +27,8 @@ public class ClientRegistrationController {
     @PostMapping(path = "/register")
     public ResponseEntity<ResponseWrapper> registerClient(@Valid @RequestBody ClientDTO client) {
         log.debug("registerClient invoked with client {} ", client);
-        clientRegistrationService.save(client);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Client with UFN %s registered", client.getUfn()));
+        Long savedClientId = clientRegistrationService.save(client);
+        ResponseWrapper responseWrapper = new ResponseWrapper(savedClientId, String.format("Client with UFN %s registered", client.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.CREATED);
 
     }
@@ -36,8 +36,8 @@ public class ClientRegistrationController {
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseWrapper> updateClientRegistration(@Valid @RequestBody ClientDTO client) {
         log.debug("updateClientRegistration invoked with client {} ", client);
-        clientRegistrationService.update(client);
-        ResponseWrapper responseWrapper = new ResponseWrapper(String.format("Client with UFN %s updated", client.getUfn()));
+        Long updatedClientId = clientRegistrationService.update(client);
+        ResponseWrapper responseWrapper = new ResponseWrapper(updatedClientId, String.format("Client with UFN %s updated", client.getUfn()));
         return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.ACCEPTED);
     }
 

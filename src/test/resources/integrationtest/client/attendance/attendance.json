@@ -8,5 +8,5 @@
   "instructions": "instructions",
   "advice": "advice",
   "result": "result",
-  "action": "action_text"
+  "actionText": "action_text"
 }

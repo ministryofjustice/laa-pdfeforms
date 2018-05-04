@@ -55,7 +55,7 @@ public class ClientAttendanceNoteControllerTest {
 
     @Test
     public void persistAttendanceWhenInputsAreValidShouldSaveAttendance() throws Exception {
-        doNothing().when(clientAttendanceNoteService).save(any(AttendanceNoteDTO.class));
+        doReturn(-1L).when(clientAttendanceNoteService).save(any(AttendanceNoteDTO.class));
         AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
 
         mockMvc.perform(post("/client/attendanceNote/make")
@@ -141,7 +141,7 @@ public class ClientAttendanceNoteControllerTest {
 
     @Test
     public void updateAttendanceWhenInputsAreValidShouldSaveAttendance() throws Exception {
-        doNothing().when(clientAttendanceNoteService).update(any(AttendanceNoteDTO.class));
+        doReturn(-1L).when(clientAttendanceNoteService).update(any(AttendanceNoteDTO.class));
 
         AttendanceNoteDTO attendanceDTO = jsonTestUtil.attendanceNoteDTOFromJson();
         attendanceDTO.setUfn("UFN1");

@@ -1,5 +1,6 @@
 package com.moj.digital.laa.service.client.registration;
 
+import com.moj.digital.laa.entity.client.attendancenote.AttendanceNote;
 import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.exception.client.registration.ClientNotFoundException;
 import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Import;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -42,6 +44,11 @@ public class ClientRegistrationServiceTest {
 
     @Test
     public void saveWhenThereIsNoInternalErrorClientShouldBeSaved() {
+        Person person = new Person();
+        person.setId(12L);
+
+        when(clientRegistrationRepository.save(any(Person.class))).thenReturn(person);
+
         ClientDTO clientDTO = new ClientDTO();
         clientRegistrationService.save(clientDTO);
     }
@@ -96,7 +103,11 @@ public class ClientRegistrationServiceTest {
 
     @Test
     public void updateWhenThereIsNoInternalErrorClientShouldBeSaved() {
-        when(clientRegistrationRepository.findByUfn("UFN1")).thenReturn(new Person());
+        Person person = new Person();
+        person.setId(12L);
+
+        when(clientRegistrationRepository.findByUfn("UFN1")).thenReturn(person);
+        when(clientRegistrationRepository.save(any(Person.class))).thenReturn(person);
 
         ClientDTO clientDTOtoBeUpdated = new ClientDTO();
         clientDTOtoBeUpdated.setUfn("UFN1");

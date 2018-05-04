@@ -28,14 +28,14 @@ public class ClientAttendanceService {
         this.modelMapper = modelMapper;
     }
 
-    public void save(AttendanceDTO attendanceDTO) {
+    public Long save(AttendanceDTO attendanceDTO) {
         log.debug("save attendance called with {}", attendanceDTO);
         try {
             Attendance attendance = modelMapper.map(attendanceDTO, Attendance.class);
-            log.debug("Attendance to be updated {}", attendance);
-            clientAttendanceRepository.save(attendance);
+            Attendance savedAttendance = clientAttendanceRepository.save(attendance);
+            return savedAttendance.getId();
         } catch (Exception e) {
-            log.error("Could not persist attendance details because of exception {}", e);
+            log.error("Could not persist attendance details because of exception {}", e.getMessage());
             throw new InvalidClientAttendanceDataException(ATTENDANCE_PERSIST_ERROR.message() + e.getMessage(), e);
         }
     }
@@ -60,11 +60,11 @@ public class ClientAttendanceService {
         return modelMapper.map(attendanceNote.get(), AttendanceDTO.class);
     }
 
-    public void update(AttendanceDTO attendanceDTO) {
+    public Long update(AttendanceDTO attendanceDTO) {
         log.debug("update attendance called with attendance note {}", attendanceDTO);
         AttendanceDTO existingAttendanceDTO = findById(attendanceDTO.getId());
         attendanceDTO.setId(existingAttendanceDTO.getId());
-        save(attendanceDTO);
+        return save(attendanceDTO);
     }
 
 }

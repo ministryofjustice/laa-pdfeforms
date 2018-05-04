@@ -16,7 +16,6 @@ import java.util.Optional;
 
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOTE_NOT_FOUND;
 import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.ATTENDANCE_NOTE_PERSIST_ERROR;
-import static com.moj.digital.laa.exception.common.errormessage.ErrorMessage.CLIENT_PERSIST_ERROR;
 
 @Service
 @Slf4j
@@ -29,12 +28,13 @@ public class ClientAttendanceNoteService {
         this.modelMapper = modelMapper;
     }
 
-    public void save(AttendanceNoteDTO attendanceNoteDTO) {
+    public Long save(AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("save attendance note called with {}", attendanceNoteDTO);
         try {
             AttendanceNote attendanceNote = modelMapper.map(attendanceNoteDTO, AttendanceNote.class);
             log.debug("Attendance note to be updated {}", attendanceNote);
-            clientAttendanceNoteRepository.save(attendanceNote);
+            AttendanceNote savedAttendanceNote = clientAttendanceNoteRepository.save(attendanceNote);
+            return savedAttendanceNote.getId();
         } catch (Exception e) {
             log.error("Could not persist attendance note details because of exception {}", e);
             throw new InvalidClientAttendanceNoteDataException(ATTENDANCE_NOTE_PERSIST_ERROR.message() + e.getMessage(), e);
@@ -61,11 +61,11 @@ public class ClientAttendanceNoteService {
         return modelMapper.map(attendanceNote.get(), AttendanceNoteDTO.class);
     }
 
-    public void update(AttendanceNoteDTO attendanceNoteDTO) {
+    public Long update(AttendanceNoteDTO attendanceNoteDTO) {
         log.debug("update attendance note called with attendance note {}", attendanceNoteDTO);
         AttendanceNoteDTO existingAttendanceNoteDTO = findById(attendanceNoteDTO.getId());
         attendanceNoteDTO.setId(existingAttendanceNoteDTO.getId());
-        save(attendanceNoteDTO);
+        return save(attendanceNoteDTO);
     }
 
 }

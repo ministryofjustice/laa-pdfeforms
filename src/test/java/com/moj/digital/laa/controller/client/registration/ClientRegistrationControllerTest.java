@@ -60,7 +60,7 @@ public class ClientRegistrationControllerTest {
 
     @Test
     public void persistClientWhenInputsAreValidShouldSaveClient() throws Exception {
-        doNothing().when(clientRegistrationService).save(any(ClientDTO.class));
+        doReturn(-1L).when(clientRegistrationService).save(any(ClientDTO.class));
         ClientDTO clientDTO = clientDTOFromJson();
 
         mockMvc.perform(post("/client/register")
@@ -145,7 +145,7 @@ public class ClientRegistrationControllerTest {
 
     @Test
     public void updateClientWhenInputsAreValidShouldSaveClient() throws Exception {
-        doNothing().when(clientRegistrationService).update(any(ClientDTO.class));
+        doReturn(-1L).when(clientRegistrationService).update(any(ClientDTO.class));
 
         ClientDTO clientDTO = clientDTOFromJson();
         clientDTO.setUfn("UFN1");

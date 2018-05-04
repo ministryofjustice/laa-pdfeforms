@@ -20,7 +20,7 @@ import java.io.IOException;
 @ComponentScan(basePackages = "com.moj.digital.laa.util")
 public class ClientRegistrationRepositoryTest {
 
-    public static final String UFN_189 = "UFN189";
+    private static final String UFN_189 = "UFN189";
 
     @Autowired
     private JsonTestUtil jsonTestUtil;
@@ -34,7 +34,7 @@ public class ClientRegistrationRepositoryTest {
 
 
     @Test
-    public void findByUfnWhenAValidUFNIsSentShouldReturnPerson() throws IOException {
+    public void findByUfnWhenAValidUFNIsPassedShouldReturnPerson() throws IOException {
         Person client = jsonTestUtil.clientFromJson();
         client.setUfn(UFN_189);
 

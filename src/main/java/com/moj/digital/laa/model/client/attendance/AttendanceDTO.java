@@ -29,4 +29,6 @@ public class AttendanceDTO {
     private String result;
 
     private String action;
+
+    private String actionText;
 }

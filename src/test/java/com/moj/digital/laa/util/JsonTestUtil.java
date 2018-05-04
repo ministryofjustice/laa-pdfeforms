@@ -3,6 +3,8 @@ package com.moj.digital.laa.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moj.digital.laa.common.config.MapperConfiguration;
+import com.moj.digital.laa.entity.client.attendance.Attendance;
+import com.moj.digital.laa.entity.client.attendancenote.AttendanceNote;
 import com.moj.digital.laa.entity.client.registration.Person;
 import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
 import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;
@@ -54,8 +56,16 @@ public class JsonTestUtil {
         return objectMapper.readValue(is, AttendanceDTO.class);
     }
 
+    public Attendance attendanceFromJson() throws IOException {
+        return modelMapper.map(attendanceDTOFromJson(),Attendance.class);
+    }
+
     public AttendanceNoteDTO attendanceNoteDTOFromJson() throws IOException {
         InputStream is = JsonTestUtil.class.getResourceAsStream(testJsonFileAttendanceNote + "attendanceNote.json");
         return objectMapper.readValue(is, AttendanceNoteDTO.class);
+    }
+
+    public AttendanceNote attendanceNoteFromJson() throws IOException {
+        return modelMapper.map(attendanceDTOFromJson(),AttendanceNote.class);
     }
 }

@@ -1,12 +1,18 @@
 package com.moj.digital.laa.model.common;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class ResponseWrapper {
-    private final String responseMessage;
+    private Long id;
+    private String responseMessage;
 
-    public ResponseWrapper(String responseMessage) {
+    public ResponseWrapper(){
+        super();
+    }
+
+    public ResponseWrapper(Long id, String responseMessage) {
+        this.id = id;
         this.responseMessage = responseMessage;
     }
 }

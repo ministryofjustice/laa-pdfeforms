@@ -1,9 +1,11 @@
 package com.moj.digital.laa.integrationtest;
 
 import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
+import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;
 import com.moj.digital.laa.model.client.registration.ClientDTO;
 import com.moj.digital.laa.model.common.ResponseWrapper;
 import com.moj.digital.laa.util.JsonTestUtil;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,14 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
@@ -68,44 +74,51 @@ public class ClientAttendanceIntegrationTest {
         assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
     }
 
-    /*
 
     @Test
-    public void updateClientWhenTryingToUpdateANonExistingClientShouldReturnNotFoundHttpStatusCode() throws Exception {
-        ClientDTO clientDTO = clientDTOFromJson();
-        clientDTO.setUfn("UFN4");
+    public void updateAttendanceWhenTryingToUpdateANonExistingClientShouldReturnNotFoundHttpStatusCode() throws Exception {
+        insertClientInDB("UFN17");
 
-        ResponseEntity<String> updateResult = testRestTemplate.exchange("/client/update", HttpMethod.PUT, httpEntity(clientDTO), String.class);
+        AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();
+        attendanceDTO.setUfn("UFN17");
+        attendanceDTO.setId(12L);
+
+        ResponseEntity<ResponseWrapper> updateResult = testRestTemplate.exchange("/client/attendance/update", HttpMethod.PUT, httpEntity(attendanceDTO), ResponseWrapper.class);
         assertThat(updateResult.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test
-    public void findClientByUfnWhenValidUFNPassedShouldReturnCorrespondingClient() throws Exception {
-        ClientDTO clientDTO = clientDTOFromJson();
-        clientDTO.setUfn("UFN5");
+    public void findAttendanceNoteByIdWhenAValidIdIsPassedShouldReturnAttendance() throws Exception {
+        insertClientInDB("UFN18");
+        ResponseEntity<ResponseWrapper> result = createAttendance("UFN18");
+        Long attendanceId = result.getBody().getId();
 
-        testRestTemplate.postForEntity("/client/register", httpEntity(clientDTO), String.class);
+        ResponseEntity<AttendanceNoteDTO> fetchResult = testRestTemplate.getForEntity("/client/attendance/forID/" + attendanceId, AttendanceNoteDTO.class);
+        assertThat(fetchResult.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(fetchResult.getBody().getId()).isEqualTo(attendanceId);
 
-        ResponseEntity<ClientDTO> result = testRestTemplate.getForEntity("/client/UFN5", ClientDTO.class);
-
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        ClientDTO foundClient = result.getBody();
-        assertThat(clientDTO.getUfn()).isEqualTo(foundClient.getUfn());
     }
 
     @Test
-    public void findClientByUfnWhenInValidUFNPassedShouldReturnNotFoundStatusCode() {
+    public void findAttendanceNoteByUfnWhenAValidUFNIsPassedShouldReturnListOfMatchingAttendance() throws Exception {
+        insertClientInDB("UFN19");
+        ResponseEntity<ResponseWrapper> attendance1 = createAttendance("UFN19");
+        ResponseEntity<ResponseWrapper> attendance2 = createAttendance("UFN19");
 
-        ResponseEntity<ClientDTO> result = testRestTemplate.getForEntity("/client/UFN6", ClientDTO.class);
+        ParameterizedTypeReference<List<AttendanceDTO>> paramType = new ParameterizedTypeReference<List<AttendanceDTO>>() {};
 
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        ResponseEntity<List<AttendanceDTO>> fetchResult = testRestTemplate.exchange("/client/attendance/allForUFN/UFN19", HttpMethod.GET, null,paramType);
+        assertThat(fetchResult.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        ClientDTO foundClient = result.getBody();
-        assertThat(foundClient.getUfn()).isNull();
+        List<AttendanceDTO> attendanceDTOS = fetchResult.getBody();
+        assertThat(attendanceDTOS.size()).isEqualTo(2);
+
+        List<AttendanceDTO> sortedAttendanceDTOS = attendanceDTOS.stream().sorted(Comparator.comparing(AttendanceDTO::getId)).collect(Collectors.toList());
+
+        Assertions.assertThat(sortedAttendanceDTOS.size()).isEqualTo(2);
+        Assertions.assertThat(sortedAttendanceDTOS.get(0).getId()).isEqualTo(attendance1.getBody().getId());
+        Assertions.assertThat(sortedAttendanceDTOS.get(1).getId()).isEqualTo(attendance2.getBody().getId());
     }
-
-*/
 
     private ResponseEntity<ResponseWrapper> createAttendance(String ufn1) throws IOException {
         AttendanceDTO attendanceDTO = jsonTestUtil.attendanceDTOFromJson();

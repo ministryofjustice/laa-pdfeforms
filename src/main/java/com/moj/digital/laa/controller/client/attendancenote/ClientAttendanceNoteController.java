@@ -43,7 +43,7 @@ public class ClientAttendanceNoteController {
     }
 
     @GetMapping(path = "forID/{id}")
-    public ResponseEntity<ClientDTO> findAttendanceNoteById(@PathVariable Long id) {
+    public ResponseEntity<AttendanceNoteDTO> findAttendanceNoteById(@PathVariable Long id) {
         log.debug("findAttendanceById invoked with id {} ", id);
         return new ResponseEntity(clientAttendanceNoteService.findById(id), HttpStatus.OK);
     }

@@ -2,8 +2,6 @@ package com.moj.digital.laa.controller.client.common;
 
 import com.moj.digital.laa.exception.client.common.EntityNotFoundException;
 import com.moj.digital.laa.exception.client.common.InvalidInputDataException;
-import com.moj.digital.laa.exception.client.registration.ClientNotFoundException;
-import com.moj.digital.laa.exception.client.registration.InvalidClientRegistrationDataException;
 import com.moj.digital.laa.exception.common.ErrorDetails;
 import com.moj.digital.laa.exception.common.util.FieldsErrorExtractor;
 import lombok.extern.slf4j.Slf4j;

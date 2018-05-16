@@ -37,7 +37,7 @@ export class EditClientRegistrationComponent extends RegisterClientBaseComponent
     this.clientRegistrationService.updateClientRegistration(this.client).subscribe(
       data => {
         console.log('Update client component ', data);
-        this.router.navigate(['index']);
+        this.router.navigate(['client-index']);
       },
       (err: HttpErrorResponse) => {
         if (err.error.details != null) {

@@ -1,3 +1,4 @@
+import { ClientattendanceNoteService } from './services/client/attendancenote/clientattendancenote.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -9,14 +10,16 @@ import { CreateClientRegistrationComponent } from './components/client/registrat
 import { EditClientRegistrationComponent } from './components/client/registration/edit/editclientregistration.component';
 import { ClientRegistrationIndexComponent } from './components/client/registration/index/clientindex.component';
 import { ClientRegistrationService } from './services/client/registration/clientregistration.service';
-
+import { ClientattendanceService } from './services/client/attendance/clientattendance.service';
+import { ClientAttendancenoteindexComponent } from './components/client/attendancenote/attendancenoteindex/attendancenoteindex.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateClientRegistrationComponent,
     EditClientRegistrationComponent,
-    ClientRegistrationIndexComponent
+    ClientRegistrationIndexComponent,
+    ClientAttendancenoteindexComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { ClientRegistrationService } from './services/client/registration/client
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ClientRegistrationService],
+  providers: [ClientRegistrationService,ClientattendanceService,ClientattendanceNoteService],
   bootstrap: [AppComponent]
 })
 

@@ -46,14 +46,14 @@ public class ClientAttendanceNoteIntegrationTest {
 
     @Test
     public void persistAttendanceNoteWhenInputsAreValidShouldSaveAttendanceNote() throws Exception {
-        insertClientInDB("UFN14");
-        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN14");
+        insertClientInDB("UFN20");
+        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN20");
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
     @Test
     public void persistAttendanceNoteWhenAttendanceNotePertainingToNonExitingClientIsPassedShouldReturnInternalErrorStatusCode() throws Exception {
-        insertClientInDB("UFN15");
+        insertClientInDB("UFN21");
         ResponseEntity<ResponseWrapper> result = createAttendanceNote("abc");
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -61,12 +61,12 @@ public class ClientAttendanceNoteIntegrationTest {
 
     @Test
     public void updateAttendanceNoteWhenTryingToUpdateAnExistingAttendanceNoteShouldReturnCreatedStatusCode() throws Exception {
-        insertClientInDB("UFN16");
-        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN16");
+        insertClientInDB("UFN22");
+        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN22");
         Long attendanceId = result.getBody().getId();
 
         AttendanceNoteDTO attendanceNoteDTO = jsonTestUtil.attendanceNoteDTOFromJson();
-        attendanceNoteDTO.setUfn("UFN16");
+        attendanceNoteDTO.setUfn("UFN22");
         attendanceNoteDTO.setId(attendanceId);
 
         ResponseEntity<ResponseWrapper> updateResult = testRestTemplate.exchange("/client/attendanceNote/update", HttpMethod.PUT, httpEntity(attendanceNoteDTO), ResponseWrapper.class);
@@ -76,10 +76,10 @@ public class ClientAttendanceNoteIntegrationTest {
 
     @Test
     public void updateAttendanceNoteWhenTryingToUpdateANonExistingClientShouldReturnNotFoundHttpStatusCode() throws Exception {
-        insertClientInDB("UFN17");
+        insertClientInDB("UFN23");
 
         AttendanceNoteDTO attendanceNoteDTO = jsonTestUtil.attendanceNoteDTOFromJson();
-        attendanceNoteDTO.setUfn("UFN17");
+        attendanceNoteDTO.setUfn("UFN23");
         attendanceNoteDTO.setId(12L);
 
         ResponseEntity<ResponseWrapper> updateResult = testRestTemplate.exchange("/client/attendanceNote/update", HttpMethod.PUT, httpEntity(attendanceNoteDTO), ResponseWrapper.class);
@@ -88,8 +88,8 @@ public class ClientAttendanceNoteIntegrationTest {
 
     @Test
     public void findAttendanceNoteNoteByIdWhenAValidIdIsPassedShouldReturnAttendanceNote() throws Exception {
-        insertClientInDB("UFN18");
-        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN18");
+        insertClientInDB("UFN24");
+        ResponseEntity<ResponseWrapper> result = createAttendanceNote("UFN24");
         Long attendanceId = result.getBody().getId();
 
         ResponseEntity<AttendanceNoteDTO> fetchResult = testRestTemplate.getForEntity("/client/attendanceNote/forID/" + attendanceId, AttendanceNoteDTO.class);
@@ -100,13 +100,13 @@ public class ClientAttendanceNoteIntegrationTest {
 
     @Test
     public void findAttendanceNoteNoteByUfnWhenAValidUFNIsPassedShouldReturnListOfMatchingAttendanceNote() throws Exception {
-        insertClientInDB("UFN19");
-        ResponseEntity<ResponseWrapper> attendance1 = createAttendanceNote("UFN19");
-        ResponseEntity<ResponseWrapper> attendance2 = createAttendanceNote("UFN19");
+        insertClientInDB("UFN25");
+        ResponseEntity<ResponseWrapper> attendance1 = createAttendanceNote("UFN25");
+        ResponseEntity<ResponseWrapper> attendance2 = createAttendanceNote("UFN25");
 
         ParameterizedTypeReference<List<AttendanceNoteDTO>> paramType = new ParameterizedTypeReference<List<AttendanceNoteDTO>>() {};
 
-        ResponseEntity<List<AttendanceNoteDTO>> fetchResult = testRestTemplate.exchange("/client/attendanceNote/allForUFN/UFN19", HttpMethod.GET, null,paramType);
+        ResponseEntity<List<AttendanceNoteDTO>> fetchResult = testRestTemplate.exchange("/client/attendanceNote/allForUFN/UFN25", HttpMethod.GET, null,paramType);
         assertThat(fetchResult.getStatusCode()).isEqualTo(HttpStatus.OK);
 
         List<AttendanceNoteDTO> attendanceNoteDTOS = fetchResult.getBody();

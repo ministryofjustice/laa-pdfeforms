@@ -5,13 +5,14 @@ import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../environments/environment';
 import { Client } from './../../../components/client/registration/model/Client';
+import { ClientBaseService } from '../common/ClientBaseService';
 
 @Injectable()
-export class ClientRegistrationService {
+export class ClientRegistrationService extends ClientBaseService {
 
-  private API_URL = environment.API_URL;
-
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+    super();
+  }
 
   registerClient(client: Client): Observable<Object> {
     const uri = `${this.API_URL}/client/register`;
@@ -20,7 +21,6 @@ export class ClientRegistrationService {
 
   updateClientRegistration(client: Client): Observable<Object> {
     const uri = `${this.API_URL}/client/update`;
-    var message;
     return this.http.put(uri, client);
   }
 

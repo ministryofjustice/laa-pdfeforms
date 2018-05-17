@@ -1,4 +1,7 @@
+import { ClientattendanceService } from './../../../../services/client/attendance/clientattendance.service';
+import { Attendance } from './../../registration/model/Attendance';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-attendancenoteedit',
@@ -7,9 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientAttendanceNoteEditComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
   }
-
+  constructor(){}
 }

@@ -1,0 +1,56 @@
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <div id="search-component" [class.error-summary]="serversideErrors">
+  
+            <div class="form-group">
+                <fieldset class="inline">
+                    <legend>
+                        <h1 class="heading-small">
+                            Search Attendance
+                        </h1>
+                    </legend>
+                    <input [ngClass]="{'form-control':true,'form-control-error':serversideErrors}" #searchBox id="search-box" (keyup)="search(searchBox.value)"
+                        type="text" />
+                </fieldset>
+            </div>
+  
+            <div *ngIf="serversideErrors">
+                <span *ngFor="let error of serversideErrors" class="error-message">{{error}}</span>
+            </div>
+  
+            <div *ngIf="(attendance$ | async)?.length > 0 ; else noRecordFound">
+                <table>
+                    <caption class="heading-small">Attendance</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Scope</th>
+                            <th scope="col">Allegations</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+  
+                    <tbody>
+                        <tr *ngFor="let attendance of attendance$ | async">
+                            <td><a [routerLink]="['/client-attendance-view',attendance.id]">{{ attendance.id }}</a></td>
+                            <td>{{ attendance.scope }}</td>
+                            <td>{{ attendance.allegations }}</td>
+                            <td>
+                                <a [routerLink]="['/client-attendance-edit',attendance.id]">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #noRecordFound>
+                <div *ngIf="(searchBox.value) && !serversideErrors">
+                    <div class="panel panel-border-wide">
+                        <p class="lede">
+                            No matching attendance record found.
+                        </p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+  </div>

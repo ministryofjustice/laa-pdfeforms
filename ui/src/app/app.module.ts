@@ -14,6 +14,8 @@ import { ClientattendanceService } from './services/client/attendance/clientatte
 import { ClientAttendancenoteindexComponent } from './components/client/attendancenote/attendancenoteindex/attendancenoteindex.component';
 import { ClientAttendanceNoteViewComponent } from './components/client/attendancenote/attendancenoteview/attendancenoteview.component';
 import { ClientAttendanceNoteEditComponent } from './components/client/attendancenote/attendancenoteedit/attendancenoteedit.component';
+import { AttendanceviewComponent } from './components/client/attendance/attendanceview/attendanceview.component';
+import { AttendanceindexComponent } from './components/client/attendance/attendanceindex/attendanceindex.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ClientAttendanceNoteEditComponent } from './components/client/attendanc
     ClientAttendancenoteindexComponent,
     ClientAttendanceNoteViewComponent,
     ClientAttendanceNoteEditComponent,
+    AttendanceviewComponent,
+    AttendanceindexComponent,
   ],
   imports: [
     BrowserModule,

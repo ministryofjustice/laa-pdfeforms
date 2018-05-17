@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClientAttendanceNoteViewComponent implements OnInit {
 
-  attednanceNote: AttendanceNote;
+  attednanceNote = new AttendanceNote();
 
   constructor(protected route: ActivatedRoute, protected router: Router, protected clientattendanceNoteService: ClientattendanceNoteService) { }
 

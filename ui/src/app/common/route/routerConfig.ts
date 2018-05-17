@@ -3,6 +3,8 @@ import { CreateClientRegistrationComponent } from './../../components/client/reg
 import { ClientRegistrationIndexComponent } from "../../components/client/registration/index/clientindex.component";
 import { ClientAttendancenoteindexComponent } from '../../components/client/attendancenote/attendancenoteindex/attendancenoteindex.component';
 import { Routes } from "@angular/router";
+import { ClientAttendanceNoteEditComponent } from '../../components/client/attendancenote/attendancenoteedit/attendancenoteedit.component';
+import { ClientAttendanceNoteViewComponent } from '../../components/client/attendancenote/attendancenoteview/attendancenoteview.component';
 
 export const appRoutes: Routes = [
     {
@@ -20,6 +22,14 @@ export const appRoutes: Routes = [
     {
         path: 'client-attendancenote-index',
         component: ClientAttendancenoteindexComponent
+    },
+    {
+        path: 'client-attendancenote-edit/:id',
+        component: ClientAttendanceNoteEditComponent
+    },
+    {
+        path: 'client-attendancenote-view/:id',
+        component: ClientAttendanceNoteViewComponent
     }
 
 ];

@@ -32,11 +32,11 @@
 
                   <tbody>
                       <tr *ngFor="let attendanceNote of attendanceNote$ | async">
-                          <td>{{ attendanceNote.id }}</td>
+                          <td><a [routerLink]="['/client-attendancenote-view',attendanceNote.id]">{{ attendanceNote.id }}</a></td>
                           <td>{{ attendanceNote.attendanceDate }}</td>
                           <td>{{ attendanceNote.status }}</td>
                           <td>
-                              <a [routerLink]="['/edit',attendanceNote.id]">Edit</a>
+                              <a [routerLink]="['/client-attendancenote-edit',attendanceNote.id]">Edit</a>
                           </td>
                       </tr>
                   </tbody>

@@ -12,6 +12,8 @@ import { ClientRegistrationIndexComponent } from './components/client/registrati
 import { ClientRegistrationService } from './services/client/registration/clientregistration.service';
 import { ClientattendanceService } from './services/client/attendance/clientattendance.service';
 import { ClientAttendancenoteindexComponent } from './components/client/attendancenote/attendancenoteindex/attendancenoteindex.component';
+import { ClientAttendanceNoteViewComponent } from './components/client/attendancenote/attendancenoteview/attendancenoteview.component';
+import { ClientAttendanceNoteEditComponent } from './components/client/attendancenote/attendancenoteedit/attendancenoteedit.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ClientAttendancenoteindexComponent } from './components/client/attendan
     EditClientRegistrationComponent,
     ClientRegistrationIndexComponent,
     ClientAttendancenoteindexComponent,
+    ClientAttendanceNoteViewComponent,
+    ClientAttendanceNoteEditComponent,
   ],
   imports: [
     BrowserModule,

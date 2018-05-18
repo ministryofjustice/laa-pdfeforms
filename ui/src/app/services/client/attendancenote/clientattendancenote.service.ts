@@ -13,12 +13,12 @@ export class ClientattendanceNoteService extends ClientBaseService{
     super();
   }
 
-  makeAttendance(attendanceNote: AttendanceNote): Observable<Object> {
+  makeAttendanceNote(attendanceNote: AttendanceNote): Observable<Object> {
     const uri = `${this.API_URL}/attendanceNote/make`;
     return this.http.post(uri, attendanceNote);
   }
 
-  findAttendancesByUfn(ufn: string): Observable<AttendanceNote[]> {
+  findAttendanceNotesByUfn(ufn: string): Observable<AttendanceNote[]> {
     const uri = `${this.API_URL}/client/attendanceNote/allForUFN/${ufn}`;
     console.log('search URI ', uri);
 
@@ -28,7 +28,7 @@ export class ClientattendanceNoteService extends ClientBaseService{
     return this.http.get<AttendanceNote[]>(uri);
   }
 
-  findAttendanceById(id: string): Observable<AttendanceNote> {
+  findAttendanceNoteById(id: string): Observable<AttendanceNote> {
     const uri = `${this.API_URL}/client/attendanceNote/forID/${id}`;
     if (!id.trim()) {
       return of();
@@ -36,7 +36,7 @@ export class ClientattendanceNoteService extends ClientBaseService{
     return this.http.get<AttendanceNote>(uri);
   }
 
-  updateAttendance(attendanceNote: AttendanceNote): Observable<Object> {
+  updateAttendanceNote(attendanceNote: AttendanceNote): Observable<Object> {
     const uri = `${this.API_URL}/client/attendanceNote/update`;
     return this.http.put(uri, attendanceNote);
   }

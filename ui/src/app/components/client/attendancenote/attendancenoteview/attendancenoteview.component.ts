@@ -17,7 +17,7 @@ export class ClientAttendanceNoteViewComponent implements OnInit {
   ngOnInit() {
     console.log('params ', this.route.params)
     this.route.params.subscribe(params => {
-      this.clientattendanceNoteService.findAttendanceById(params['id']).subscribe(note => {
+      this.clientattendanceNoteService.findAttendanceNoteById(params['id']).subscribe(note => {
         this.attednanceNote = note;
       });
     });

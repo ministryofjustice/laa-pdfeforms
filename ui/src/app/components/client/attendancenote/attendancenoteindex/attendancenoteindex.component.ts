@@ -46,7 +46,7 @@ export class ClientAttendancenoteindexComponent implements OnInit {
       // switch to new search observable each time the term changes
       distinctUntilChanged(),
 
-      switchMap((term: string) => this.clientattendanceNoteService.findAttendancesByUfn(term))
+      switchMap((term: string) => this.clientattendanceNoteService.findAttendanceNotesByUfn(term))
     ).subscribe(
       data => {
         this.attendanceNote$ = of(data);

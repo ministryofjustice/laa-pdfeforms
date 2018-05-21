@@ -1,8 +1,8 @@
-## PDF eForms Architecture, Design and Development Document
+## PDS eForms Architecture, Design and Development Document
 
 
 **Overview**
-	Objective of this implementation is to create a progressive web application in order to avoid hand filing hard copies of PDF documents and redundant data entry from the hard copies to the Visual Files system which holds these records. The new system is expected to allow the users to enter the data once and be rest assured it gets persisted and exported to the Visual Files system in the form of a Comma Separated Values files.
+	Objective of this implementation is to create a progressive web application in order to avoid hand filing hard copies of PDS documents and redundant data entry from the hard copies to the Visual Files system which holds these records. The new system is expected to allow the users to enter the data once and be rest assured it gets persisted and exported to the Visual Files system in the form of a Comma Separated Values files.
 
 **Purpose of this document**
 	Purpose of this document is to capture all relevant information that may correspond to this implementation both non- technical/business and technical requirements so that this acts a single place of reference for anyone to understand the need, objective of this implementation and to know how it's being perceived at the time of this write up, implementation nuances.
@@ -47,7 +47,7 @@
 **Packaging and Deployment Strategy**
 All the application source code and configurations etc are source controlled in Git repositories.
 Two docker images one containing the front end and the other containing the back end application components will be maintained
-The Portal application will be the access point where PDF Forms application will be rendered as a service adhering to the SAML security expectations
+The Portal application will be the access point where PDS Forms application will be rendered as a service adhering to the SAML security expectations
 Two repos will be maintained in Git one for source code and the other for the configuration elements as .yaml files
 Continuous Integration flow would be similar to Git -> build and generate package -> Stick to a Docker Container -> Store in ECR -> Deploy in AWS
 

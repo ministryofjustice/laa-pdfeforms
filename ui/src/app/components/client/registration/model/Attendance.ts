@@ -5,7 +5,7 @@ export class Attendance {
     allegations: string;
     custody: string;
     bail: string;
-    allegations_text: string;
+    allegationsText: string;
     instructions: string;
     advice: string;
     result: string;

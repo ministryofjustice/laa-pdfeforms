@@ -1,12 +1,32 @@
 <div style="text-align:center">
-  <h1>
+  <h1 class="heading-small">
     {{title}}
   </h1>
-  <nav>
-    <a routerLink="client-index" routerLinkActive="active">Search Client</a>|
-    <a routerLink="client-register">PDS2-Register</a>|
-    <a routerLink="client-attendancenote-index">Search Attendance Note</a>|
-    <a routerLink="client-attendance-index">Search Attendance</a>
-  </nav>
-  <router-outlet></router-outlet>
+  <div class="header-proposition">
+    <div class="content">
+      <nav id="proposition-menu">
+        <ul id="proposition-links">
+          <li>
+            <a routerLink="client-register">PDS2-Register</a>
+          </li>
+          <li>
+            <a routerLink="client-index" routerLinkActive="active">PDS2-Search</a>
+          </li>
+          <li>
+            <a routerLink="client-attendancenote-make">PDS3-Attendance Note</a>
+          </li>
+          <li>
+            <a routerLink="client-attendancenote-index">PDS3-Search</a>
+          </li>
+          <li>
+            <a routerLink="client-attendance-make">PDS4-Attendance</a>
+          </li>          
+          <li>
+            <a routerLink="client-attendance-index">PDS4-Search</a>
+          </li>
+        </ul>
+        <router-outlet></router-outlet>
+      </nav>
+    </div>
+  </div>
 </div>

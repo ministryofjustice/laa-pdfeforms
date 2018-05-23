@@ -7,6 +7,8 @@ import { Routes } from "@angular/router";
 import { ClientAttendanceNoteEditComponent } from '../../components/client/attendancenote/attendancenoteedit/attendancenoteedit.component';
 import { ClientAttendanceNoteViewComponent } from '../../components/client/attendancenote/attendancenoteview/attendancenoteview.component';
 import { AttendanceviewComponent } from '../../components/client/attendance/attendanceview/attendanceview.component';
+import { AttendanceNoteCreateComponent } from '../../components/client/attendancenote/attendancenotecreate/attendancenotecreate.component';
+import { AttendanceEditComponent } from '../../components/client/attendance/attendanceedit/attendanceedit.component';
 
 export const appRoutes: Routes = [
     {
@@ -33,13 +35,18 @@ export const appRoutes: Routes = [
         path: 'client-attendancenote-view/:id',
         component: ClientAttendanceNoteViewComponent
     },
+
+    {
+        path: 'client-attendancenote-make',
+        component: AttendanceNoteCreateComponent
+    },
     {
         path: 'client-attendance-index',
         component: AttendanceindexComponent
     },
     {
         path: 'client-attendance-edit/:id',
-        component: AttendanceviewComponent
+        component: AttendanceEditComponent
     },
     {
         path: 'client-attendance-view/:id',

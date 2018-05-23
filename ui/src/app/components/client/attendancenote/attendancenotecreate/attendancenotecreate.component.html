@@ -1,0 +1,88 @@
+<div class="grid-row">
+  <h3 class="heading-small">Edit Attendance Note</h3>
+  <div class="column-two-thirds">
+      <div *ngIf="serversideErrors">
+          <font color='red'>
+              <p *ngFor="let error of serversideErrors">{{error}}</p>
+          </font>
+      </div>
+      <form (ngSubmit)="makeAttendanceNote()" #editClientForm="ngForm">
+
+          <div class="form-group">
+              <label class="form-label" for="UFN">UFN</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.ufn" name='ufn' #ufn="ngModel"/>
+          </div>
+          
+          <div class="form-group">
+              <label class="form-label" for="Attendance Date">Attendance Date</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.attendanceDate" name='attendanceDate' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Status">status</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.status" name='status' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Free Earner">Free Earner</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.freeEarner" name='freeEarner' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Venue">Venue</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.venue" name='venue' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Risk Needed For Check">Risk Needed For Check</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.riskNeededForCheck" name='riskNeededForCheck' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Conflict Check">Conflict Check</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.conflictCheck" name='conflictCheck' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Client Attend">Client Attend</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.clientAttend" name='clientAttend' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Client Cps">Client Cps</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.clientCps" name='clientCps' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Attend Witness">Attend Witness</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.attendWitness" name='attendWitness' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Attend Other">Attend Other</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.attendOther" name='attendOther' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Prep">Prep</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.prep" name='prep' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Calls Made">Calls Made</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.callsMade" name='callsMade' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Attendance Date">Travel</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.travel" name='travel' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Advoc">Advoc</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.advoc" name='advoc' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Waiting">Waiting</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.waiting" name='waiting' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Mileage">Mileage</label>
+              <input class="form-control" type="text" [(ngModel)]="attednanceNote.mileage" name='mileage' />
+          </div>
+          <div class="form-group">
+              <label class="form-label" for="Attendance Date">Instruction Notes</label>
+              <textarea class="form-control form-control-3-4" rows="4" [(ngModel)]="attednanceNote.instructionNotes" name='instructionNotes'></textarea>
+          </div>
+          <button class="button" type="submit">Save Note</button>
+
+      </form>
+  </div>
+</div>

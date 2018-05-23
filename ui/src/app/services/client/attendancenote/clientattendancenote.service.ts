@@ -14,7 +14,7 @@ export class ClientattendanceNoteService extends ClientBaseService{
   }
 
   makeAttendanceNote(attendanceNote: AttendanceNote): Observable<Object> {
-    const uri = `${this.API_URL}/attendanceNote/make`;
+    const uri = `${this.API_URL}/client/attendanceNote/make`;
     return this.http.post(uri, attendanceNote);
   }
 

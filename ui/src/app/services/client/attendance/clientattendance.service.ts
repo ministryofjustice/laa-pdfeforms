@@ -13,7 +13,7 @@ export class ClientattendanceService extends ClientBaseService {
   }
 
   makeAttendance(attendance: Attendance): Observable<Object> {
-    const uri = `${this.API_URL}/attendance/make`;
+    const uri = `${this.API_URL}/client/attendance/make`;
     return this.http.post(uri, attendance);
   }
 

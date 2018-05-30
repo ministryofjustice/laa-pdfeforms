@@ -1,0 +1,30 @@
+{
+  "name": "pdfeforms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ministryofjustice/laa-pdfeforms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ministryofjustice/laa-pdfeforms/issues"
+  },
+  "homepage": "https://github.com/ministryofjustice/laa-pdfeforms#readme",
+  "dependencies": {
+    "govuk-elements-sass": "^3.1.2",
+    "govuk_frontend_toolkit": "^7.5.0",
+    "govuk_template_mustache": "^0.24.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "require-dir": "^1.0.0",
+    "run-sequence": "^2.2.1"
+  }
+}

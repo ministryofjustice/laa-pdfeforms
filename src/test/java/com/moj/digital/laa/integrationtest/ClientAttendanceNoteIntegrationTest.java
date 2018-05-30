@@ -40,7 +40,7 @@ public class ClientAttendanceNoteIntegrationTest {
         ClientDTO clientDTO = jsonTestUtil.clientDTOFromJson();
         clientDTO.setUfn(ufn);
         ResponseEntity<String> result = testRestTemplate.postForEntity
-                ("/client/register", httpEntity(clientDTO), String.class);
+                ("/client/registration", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 

@@ -33,7 +33,7 @@ public class ClientRegistrationIntegrationTest {
         ClientDTO clientDTO = clientDTOFromJson();
         clientDTO.setUfn("UFN1");
         ResponseEntity<String> result = testRestTemplate.postForEntity
-                ("/client/register", httpEntity(clientDTO), String.class);
+                ("/client/registration", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 
@@ -42,11 +42,11 @@ public class ClientRegistrationIntegrationTest {
         ClientDTO clientDTO = clientDTOFromJson();
         clientDTO.setUfn("UFN2");
         testRestTemplate.postForEntity
-                ("/client/register", httpEntity(clientDTO), String.class);
+                ("/client/registration", httpEntity(clientDTO), String.class);
 
         clientDTO.setUfn("UFN2");
         ResponseEntity<String> result = testRestTemplate.postForEntity
-                ("/client/register", httpEntity(clientDTO), String.class);
+                ("/client/registration", httpEntity(clientDTO), String.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -55,7 +55,7 @@ public class ClientRegistrationIntegrationTest {
         ClientDTO clientDTO = clientDTOFromJson();
         clientDTO.setUfn("UFN3");
 
-        testRestTemplate.postForEntity("/client/register", httpEntity(clientDTO), String.class);
+        testRestTemplate.postForEntity("/client/registration", httpEntity(clientDTO), String.class);
 
         clientDTO.setUfn("UFN3");
         ResponseEntity<String> updateResult = testRestTemplate.exchange("/client/update", HttpMethod.PUT, httpEntity(clientDTO), String.class);
@@ -76,7 +76,7 @@ public class ClientRegistrationIntegrationTest {
         ClientDTO clientDTO = clientDTOFromJson();
         clientDTO.setUfn("UFN5");
 
-        testRestTemplate.postForEntity("/client/register", httpEntity(clientDTO), String.class);
+        testRestTemplate.postForEntity("/client/registration", httpEntity(clientDTO), String.class);
 
         ResponseEntity<ClientDTO> result = testRestTemplate.getForEntity("/client/UFN5", ClientDTO.class);
 

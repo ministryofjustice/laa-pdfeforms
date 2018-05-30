@@ -3,31 +3,31 @@
 <main id="content" role="main">
     <div class="grid-row">
         <div class="column-two-thirds">
-
             <table>
                 <caption class="heading-small">Matching Clients</caption>
                 <thead>
                 <tr>
                     <th scope="col">UFN</th>
-                    <th scope="col">Forename</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Surname</th>
+                    <th scope="col">Forename</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
-                {{#data}}
                 <tbody>
+                {{#client}}
                 <tr>
-                    <td>{{ . }}</td>
-                    <td>{{ . }}</td>
-                    <td>{{ . }}</td>
+                    <td>{{ ufn }}</td>
+                    <td>{{ title }}</td>
+                    <td>{{ surname }}</td>
+                    <td>{{ forename }}</td>
                     <td>
                         <a>Edit</a>
                     </td>
                 </tr>
+                {{/client}}
                 </tbody>
-                {{/data}}
             </table>
-
         </div>
     </div>
 

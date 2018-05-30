@@ -10,16 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(path = "ui")
+@RequestMapping()
 public class HelloController {
 
     @Value("${assetPath}")
     private String assetPath;
 
     @GetMapping(path = "/")
-    public ModelAndView index() {
-        Map<String, String> params = new HashMap<>();
-        params.put("assetPath", assetPath);
-        return new ModelAndView("index", params);
+    public String index() {
+        return "redirect:/ui/registration/index";
     }
 }

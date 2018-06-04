@@ -64,6 +64,20 @@ public class AttendanceViewController {
 
     }
 
+    @PostMapping(path = "/update")
+    public ModelAndView update(@ModelAttribute AttendanceDTO attendance) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("assetPath", assetPath);
+
+        try{
+            clientAttendanceService.save(attendance);
+        }catch (Exception e){
+            params.put("Exception", "Exception");
+        }
+
+        return new ModelAndView("/client/attendance/search", params);
+
+    }
 
 
 }

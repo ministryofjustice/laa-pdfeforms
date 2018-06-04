@@ -20,7 +20,7 @@ public class AttendanceDTO {
 
     private String bail;
 
-    private String allegations_text;
+    private String allegationsText;
 
     private String instructions;
 

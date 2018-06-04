@@ -1,0 +1,44 @@
+{{>/fragments/pre-content}}
+
+<main id="content" role="main">
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            {{^attendance}}
+            <h3 class="heading-medium">No attendance record found</h3>
+            {{/attendance}}
+
+            {{^no-records-found}}
+                <table>
+                    <caption class="heading-small">Matching Attendance Notes</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">UFN</th>
+                        <th scope="col">Scope</th>
+                        <th scope="col">Allegations</th>
+                        <th scope="col">Custody</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#attendance}}
+                    <tr>
+                        <td>{{ ufn }}</td>
+                        <td>{{ scope }}</td>
+                        <td>{{ allegations }}</td>
+                        <td>{{ custody }}</td>
+                        <td>
+                            <a href="/ui/client/attendance/edit/{{id}}">Edit</a>
+                        </td>
+                    </tr>
+                    {{/attendance}}
+                    </tbody>
+                </table>
+
+            {{/no-records-found}}
+        </div>
+    </div>
+
+
+</main>
+
+{{>/fragments/post-content}}

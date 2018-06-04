@@ -2,7 +2,6 @@ package com.moj.digital.laa.entity.client.registration;
 
 import com.moj.digital.laa.entity.client.attendance.Attendance;
 import com.moj.digital.laa.model.client.attendance.AttendanceDTO;
-import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;
 import com.moj.digital.laa.util.JsonTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,7 +48,7 @@ public class AttendanceEntityDTOMapperTest {
 
     private void assertDTOAndEntityAttributes(AttendanceDTO attendanceDTO, Attendance attendance) {
         assertThat(attendance.getScope()).isEqualTo(attendanceDTO.getScope());
-        assertThat(attendance.getAllegations_text()).isEqualTo(attendanceDTO.getAllegations_text());
+        assertThat(attendance.getAllegationsText()).isEqualTo(attendanceDTO.getAllegationsText());
         assertThat(attendance.getCustody()).isEqualTo(attendanceDTO.getCustody());
         assertThat(attendance.getBail()).isEqualTo(attendanceDTO.getBail());
         assertThat(attendance.getAdvice()).isEqualTo(attendanceDTO.getAdvice());

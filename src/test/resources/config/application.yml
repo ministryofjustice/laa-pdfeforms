@@ -2,5 +2,5 @@ test:
   json:
     files:
       client: /integrationtest/client/
-      attendanceNote: /integrationtest/client/attendancenote/
+      attendanceNote: /integrationtest/client/attendanceNote/
       attendance: /integrationtest/client/attendance/

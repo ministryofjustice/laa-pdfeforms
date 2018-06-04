@@ -1,0 +1,84 @@
+{{>/fragments/pre-content}}
+
+<main id="content" role="main">
+    <div class="grid-row">
+        <h3 class="heading-small">Edit Attendance</h3>
+        <div class="column-two-thirds">
+            {{^attendance}}
+            <div>
+                <font color='red'>
+                    <p>Could not find matching record</p>
+                </font>
+            </div>
+            {{/attendance}}
+
+
+            {{#attendance}}
+                <form action="">
+
+                    <div class="form-group">
+                        <label class="form-label" for="id">ID</label>
+                        <input class="form-control" type="text" readonly name="id" value="{{id}}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="ufn">UFN</label>
+                        <input class="form-control" type="text" readonly name="ufn" value="{{ufn}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="scope">Scope</label>
+                        <input class="form-control" type="text"  name="scope" value="{{scope}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="allegations">Allegations</label>
+                        <input class="form-control" type="text"  name="allegations" value="{{allegations}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="custody">Custody</label>
+                        <input class="form-control" type="text"  name="custody" value="{{custody}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bail">Bail</label>
+                        <input class="form-control" type="text"  name="bail" value="{{bail}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="allegationsText">Allegations Text</label>
+                        <input class="form-control" type="text"  name="allegationsText"
+                               value="{{allegationsText}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="instructions">Instructions</label>
+                        <input class="form-control" type="text"  name="instructions" value="{{instructions}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="advice">Advice</label>
+                        <input class="form-control" type="text"  name="advice" value="{{advice}}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="result">Result</label>
+                        <input class="form-control" type="text"  name="result" value="{{result}}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="action">Action</label>
+                        <input class="form-control" type="text"  name="action" value="{{action}}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="actionText">Action Text</label>
+                        <input class="form-control" type="text"  name="actionText" value="{{actionText}}"/>
+                    </div>
+
+                    <button class="button" type="submit">Update Attendance</button>
+
+                </form>
+
+            {{/attendance}}
+
+        </div>
+    </div>
+
+</main>
+
+{{>/fragments/post-content}}

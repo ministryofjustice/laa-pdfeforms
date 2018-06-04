@@ -1,8 +1,6 @@
 package com.moj.digital.laa.service.client.attendancenote;
 
-import com.moj.digital.laa.entity.client.attendance.Attendance;
 import com.moj.digital.laa.entity.client.attendancenote.AttendanceNote;
-import com.moj.digital.laa.exception.client.attendance.InvalidClientAttendanceDataException;
 import com.moj.digital.laa.exception.client.attendancenote.ClientAttendanceNoteNotFoundException;
 import com.moj.digital.laa.exception.client.attendancenote.InvalidClientAttendanceNoteDataException;
 import com.moj.digital.laa.model.client.attendancenote.AttendanceNoteDTO;

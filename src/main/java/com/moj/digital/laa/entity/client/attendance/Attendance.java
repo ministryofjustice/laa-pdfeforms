@@ -32,8 +32,8 @@ public class Attendance {
     @Column(name="bail")
     private String bail;
 
-    @Column(name="allegations_text")
-    private String allegations_text;
+    @Column(name="allegationsText")
+    private String allegationsText;
 
     @Column(name="instructions")
     private String instructions;

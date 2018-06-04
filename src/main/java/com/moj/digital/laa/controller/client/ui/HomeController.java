@@ -11,13 +11,13 @@ import java.util.Map;
 
 @Controller
 @RequestMapping()
-public class HelloController {
+public class HomeController {
 
     @Value("${assetPath}")
     private String assetPath;
 
     @GetMapping(path = "/")
     public String index() {
-        return "redirect:/ui/registration/index";
+        return "redirect:/ui/client/registration/search";
     }
 }

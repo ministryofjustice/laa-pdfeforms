@@ -3,31 +3,38 @@
 <main id="content" role="main">
     <div class="grid-row">
         <div class="column-two-thirds">
-            <table>
-                <caption class="heading-small">Matching Clients</caption>
-                <thead>
-                <tr>
-                    <th scope="col">UFN</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Forename</th>
-                    <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#client}}
-                <tr>
-                    <td>{{ ufn }}</td>
-                    <td>{{ title }}</td>
-                    <td>{{ surname }}</td>
-                    <td>{{ forename }}</td>
-                    <td>
-                        <a>Edit</a>
-                    </td>
-                </tr>
-                {{/client}}
-                </tbody>
-            </table>
+            {{^client}}
+            <h3 class="heading-medium">No client record found</h3>
+            {{/client}}
+
+            {{^no-records-found}}
+                <table>
+                    <caption class="heading-small">Matching Clients</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">UFN</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Forename</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#client}}
+                    <tr>
+                        <td>{{ ufn }}</td>
+                        <td>{{ title }}</td>
+                        <td>{{ surname }}</td>
+                        <td>{{ forename }}</td>
+                        <td>
+                            <a>Edit</a>
+                        </td>
+                    </tr>
+                    {{/client}}
+                    </tbody>
+                </table>
+
+            {{/no-records-found}}
         </div>
     </div>
 

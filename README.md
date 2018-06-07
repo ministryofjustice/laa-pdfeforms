@@ -13,22 +13,16 @@
 **Sate Machine**
 	To be identified and a diagram to be pasted in here
 
-**Runtime View**
-		The angular based front end component will run on its own embedded web server  and the Spring Boot based back end component will run on its own embedded web server and be exposed as REST services. The angular component will invoke the back end REST services to cater to the state- machine of the application. This way the front end and back end application are loosely coupled and fairly independent of each other.
-
 **Front End**
-	The front end will be developed as a progressive web application capable of working offline catering to the needs to slow network speed, network unavailability, provide responsive user interface. Even in case of non availability of the network, the users of this application will be able to save the data captured in the html forms and the system in- turn will sync up with the actual database at the back end when the network becomes available. The front end is proposed to developed using the following technology stack subject to the agreement of relevant tech team members
-- AngularJS 5
-- HTML
-- CSS (GDS standard)
-- Service Works Javascript framework
-- NPM
+	The html is generated at the server side and there is no javascript dependency. Mustache templates are used to generate
+	the html pages using spring mvc. Spring Web and Spring Mustache are the two dependencies included in the gradle file.
+	To know how a spring boot mvc application can be developed using mustache templates, please visit the mustache prototype
+	![link](https://github.com/ministryofjustice/SpringBoot-Mustach-GovukStyle)
 
 **Back End**
 	The back end will developed as a set of REST services catering to the CRUD operations of the entities that get persisted into the database after applying various business rules. Integration with the upstream/downstream systems will be catered too with appropriate integration mechanism as the case may be say for e.g. REST service based or direct DB updates etc. The back end is proposed to developed using the following technology stack subject to the agreement of relevant tech team members
 - Java 8
 - Spring Boot
-- Spring Security
 - Postgres Database
 - JPA
 
@@ -75,8 +69,6 @@ A system built this way will greatly reduce the redundant data entry and ensure 
 
 **Assumptions**
 
-- HTML, CSS, layout -  we are expected to adhere to the GDS standard. Need confirmation if there are any specific expectation around this from the users of the system.
-- SAML security integration is yet to be explored and understood.
 - Need to explore how this eForms application will be integrated into the existing portal as one of the service providers.
 - CI/CD pipeline infrastructure, create docker images from the code adhering to the overall scaffolding infrastructure needs to be understood and explored upon.
 - As this will be an Angular based implementation, the front end will be non- functional on browsers that do not support standard javascript features, and in browsers where javascript support is disabled.

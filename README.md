@@ -58,13 +58,14 @@ The new eForms to be equivalent to the paper forms that are currently being used
 The system should be capable of exporting the data stored in the database in the form of a predefined CVS (Comma Separated Version) template to the desired destination. This CVS will then be used by a downstream system to import the content and thereby ensure the Visual Files system is able to operate on them as if it was keyed in by the solicitors in the current system.
 A system built this way will greatly reduce the redundant data entry and ensure the data gets persisted into the database eventually.
 
-**Pending Information**
+**Pending Work/Information**
 - The state machine of the over all eForms system is not yet defined.
 - The logic to generate UFN has not been arrived at as yet.
 - Search based on UFN or any other data/filter criteria to be defined.
 - What data will be allowed to edit, what record will be allowed to delete etc are not yet clearly defined.
 - Drop downs, checkboxes etc are dependent on static data which would be in a way hard coded in the html template.
 - Validation rules, regular expression requirements etc on html form fields etc are not yet clearly defined. It's better to define a matrix which clearly states what kind of validations are required at field level.
+- Package the application in the required aws deployment pattern followed within MOJ (dockerized) in coordination with the AWS team.
 
 
 **Assumptions**

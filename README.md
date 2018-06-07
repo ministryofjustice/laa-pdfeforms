@@ -17,7 +17,7 @@
 	The html is generated at the server side and there is no javascript dependency. Mustache templates are used to generate
 	the html pages using spring mvc. Spring Web and Spring Mustache are the two dependencies included in the gradle file.
 	To know how a spring boot mvc application can be developed using mustache templates, please visit the mustache prototype
-	![link](https://github.com/ministryofjustice/SpringBoot-Mustach-GovukStyle)
+	[link](https://github.com/ministryofjustice/SpringBoot-Mustach-GovukStyle)
 
 **Back End**
 	The back end will developed as a set of REST services catering to the CRUD operations of the entities that get persisted into the database after applying various business rules. Integration with the upstream/downstream systems will be catered too with appropriate integration mechanism as the case may be say for e.g. REST service based or direct DB updates etc. The back end is proposed to developed using the following technology stack subject to the agreement of relevant tech team members

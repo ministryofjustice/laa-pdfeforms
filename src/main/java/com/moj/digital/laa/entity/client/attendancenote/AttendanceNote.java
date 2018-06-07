@@ -1,11 +1,10 @@
 package com.moj.digital.laa.entity.client.attendancenote;
 
-import com.moj.digital.laa.common.util.LocalDateSQLDateConverter;
+import com.moj.digital.laa.common.util.StringDateSQLDateConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Data
@@ -23,8 +22,8 @@ public class AttendanceNote {
     private String ufn;
 
     @Column(name="attendance_date")
-    @Convert(converter = LocalDateSQLDateConverter.class)
-    private LocalDate attendanceDate;
+    @Convert(converter = StringDateSQLDateConverter.class)
+    private String attendanceDate;
 
     @Column(name="status")
     private String status;

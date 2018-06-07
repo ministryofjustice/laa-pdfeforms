@@ -1,6 +1,6 @@
 package com.moj.digital.laa.entity.client.registration;
 
-import com.moj.digital.laa.common.util.LocalDateSQLDateConverter;
+import com.moj.digital.laa.common.util.StringDateSQLDateConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -38,7 +38,7 @@ public class Person {
     private Address residenceAddress;
 
     @Column(name = "date_of_birth", nullable = false)
-    @Convert(converter = LocalDateSQLDateConverter.class)
+    @Convert(converter = StringDateSQLDateConverter.class)
     private LocalDate dateOfBirth;
 
     @Column(name = "age", nullable = false)
@@ -103,7 +103,7 @@ public class Person {
     private String previousConviction;
 
     @Column(name = "funding_date", nullable = false)
-    @Convert(converter = LocalDateSQLDateConverter.class)
+    @Convert(converter = StringDateSQLDateConverter.class)
     private LocalDate fundingDate;
 
     @Column(name = "advice_and_assistance", nullable = false)
@@ -134,7 +134,7 @@ public class Person {
     private String conflictCheckName;
 
     @Column(name = "conflict_check_date", nullable = false)
-    @Convert(converter = LocalDateSQLDateConverter.class)
+    @Convert(converter = StringDateSQLDateConverter.class)
     private LocalDate conflictCheckDate;
 
     @Column(name = "risk_assessment_done", nullable = false)

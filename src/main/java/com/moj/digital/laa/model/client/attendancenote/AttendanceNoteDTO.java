@@ -1,5 +1,6 @@
 package com.moj.digital.laa.model.client.attendancenote;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +14,7 @@ public class AttendanceNoteDTO {
     @NotEmpty
     private String ufn;
 
-    private LocalDate attendanceDate;
+    private String attendanceDate;
     private String status;
     private String freeEarner;
     private String venue;

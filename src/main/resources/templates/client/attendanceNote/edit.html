@@ -1,0 +1,123 @@
+{{>/fragments/pre-content}}
+
+<main id="content" role="main">
+    <div class="grid-row">
+        <h3 class="heading-small">Edit Attendance Note</h3>
+        <div class="column-two-thirds">
+            {{^attendanceNote}}
+            <div>
+                <font color='red'>
+                    <p>Could not find matching record</p>
+                </font>
+            </div>
+            {{/attendanceNote}}
+
+
+            <form action="/ui/client/attendanceNote/update" method="post" name="attendance">
+
+                <div class="form-group">
+                    <label class="form-label" for="id">ID</label>
+                    <input class="form-control" type="text" readonly name="id" value="{{attendanceNote.id}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="ufn">UFN</label>
+                    <input class="form-control" type="text" readonly name="ufn" value="{{attendanceNote.ufn}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="attendanceDate">Attendance date</label>
+                    <input class="form-control" type="text" name="attendanceDate" value="{{attendanceNote.attendanceDate}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="status">Status</label>
+                    <input class="form-control" type="text" name="status" value="{{attendanceNote.status}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="freeEarner">Free earner</label>
+                    <input class="form-control" type="text" name="freeEarner" value="{{attendanceNote.freeEarner}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="venue">Venue</label>
+                    <input class="form-control" type="text" name="venue" value="{{attendanceNote.venue}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="riskNeededForCheck">Risk need for check</label>
+                    <input class="form-control" type="text" name="riskNeededForCheck"
+                           value="{{attendanceNote.riskNeededForCheck}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="conflictCheck">Conflict check</label>
+                    <input class="form-control" type="text" name="conflictCheck" value="{{attendanceNote.conflictCheck}}"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="clientAttend">Client attend</label>
+                    <input class="form-control" type="text" name="clientAttend" value="{{attendanceNote.clientAttend}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="clientCps">Client cps</label>
+                    <input class="form-control" type="text" name="clientCps" value="{{attendanceNote.clientCps}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="attendWitness">Attend witness</label>
+                    <input class="form-control" type="text" name="attendWitness" value="{{attendanceNote.attendWitness}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="attendOther">Attend other</label>
+                    <input class="form-control" type="text" name="attendOther" value="{{attendanceNote.attendOther}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="prep">Prep</label>
+                    <input class="form-control" type="text" name="prep" value="{{attendanceNote.prep}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="callsMade">Calls made</label>
+                    <input class="form-control" type="text" name="callsMade" value="{{attendanceNote.callsMade}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="travel">Travel</label>
+                    <input class="form-control" type="text" name="travel" value="{{attendanceNote.travel}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="advoc">Advoc</label>
+                    <input class="form-control" type="text" name="advoc" value="{{attendanceNote.advoc}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="waiting">Waiting</label>
+                    <input class="form-control" type="text" name="waiting" value="{{attendanceNote.waiting}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mileage">Mieage</label>
+                    <input class="form-control" type="text" name="mileage" value="{{attendanceNote.mileage}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="otherDisabilities">Other disabilities</label>
+                    <input class="form-control" type="text" name="otherDisabilities" value="{{attendanceNote.otherDisabilities}}"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="instructionNotes">Instruction notes</label>
+                    <input class="form-control" type="text" name="instructionNotes" value="{{attendanceNote.instructionNotes}}"/>
+                </div>
+
+                <button class="button" type="submit">Update Attendance</button>
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+</main>
+
+{{>/fragments/post-content}}

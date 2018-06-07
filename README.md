@@ -8,7 +8,7 @@
 	Purpose of this document is to capture all relevant information that may correspond to this implementation both non- technical/business and technical requirements so that this acts a single place of reference for anyone to understand the need, objective of this implementation and to know how it's being perceived at the time of this write up, implementation nuances.
 
 **Architecture**
-![architecture](https://github.com/ministryofjustice/laa-pdfeforms/blob/master/PdfeFormsArchitecture.jpeg)
+![architecture](https://github.com/ministryofjustice/laa-pdfeforms/blob/master/PdfeFormsArchitecture.png)
 
 **Sate Machine**
 	To be identified and a diagram to be pasted in here

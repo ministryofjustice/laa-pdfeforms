@@ -8,6 +8,7 @@ public class StringDateSQLDateConverter implements AttributeConverter<String, Da
 
     @Override
     public Date convertToDatabaseColumn(String locDate) {
+        System.out.println("incoming date "+locDate);
         return (locDate == null ? null : Date.valueOf(locDate));
     }
 

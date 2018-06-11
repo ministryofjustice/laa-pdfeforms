@@ -23,7 +23,7 @@ public class ClientDTO {
 
     private AddressDTO residenceAddress;
 
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
 
     private int age;
 
@@ -67,7 +67,7 @@ public class ClientDTO {
 
     private String previousConviction;
 
-    private LocalDate fundingDate;
+    private String fundingDate;
 
     private String adviceAndAssistance;
 
@@ -87,7 +87,7 @@ public class ClientDTO {
 
     private String conflictCheckName;
 
-    private LocalDate conflictCheckDate;
+    private String conflictCheckDate;
 
     private String riskAssessmentDone;
 

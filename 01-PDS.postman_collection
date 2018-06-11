@@ -1,0 +1,175 @@
+{
+	"variables": [],
+	"info": {
+		"name": "01-PDS",
+		"_postman_id": "7d2b86c1-1996-8a72-1197-2b4169a72d29",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "02-attendancenote",
+			"description": "",
+			"item": [
+				{
+					"name": "03-AttendanceNoteForID",
+					"request": {
+						"url": "http://localhost:8080/client/attendanceNote/forID/103",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "02-AttendanceNotesForUFN",
+					"request": {
+						"url": "http://localhost:8080/client/attendanceNote/allForUFN/UFN10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "01-CreateAttendanceNote",
+					"request": {
+						"url": "http://localhost:8080/client/attendanceNote/make",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ufn\": \"UFN200\",\n  \"attendanceDate\": \"1988-01-22\",\n  \"status\": \"N\",\n  \"freeEarner\": \"free earner\",\n  \"venue\": \"venue\",\n  \"riskNeededForCheck\": \"Y\",\n  \"conflictCheck\": \"Y\",\n  \"clientAttend\": \"client attend\",\n  \"clientCps\": \"client_cps\",\n  \"attendWitness\": \"attend_witness\",\n  \"attendOther\": \"attend_other\",\n  \"prep\": \"prep\",\n  \"callsMade\": \"calls_made\",\n  \"travel\": \"travel\",\n  \"advoc\": \"advoc\",\n  \"waiting\": \"waiting\",\n  \"mileage\": 10,\n  \"otherDisabilities\": \"other_disabilities\",\n  \"instructionNotes\": \"some instructions\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03-attendance",
+			"description": "",
+			"item": [
+				{
+					"name": "03-AttendanceForID",
+					"request": {
+						"url": "http://localhost:8080/client/attendance/forID/108",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "02-AttendanceForUFN",
+					"request": {
+						"url": "http://localhost:8080/client/attendance/allForUFN/UFN200",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "01-CreateAttendance",
+					"request": {
+						"url": "http://localhost:8080/client/attendance/make",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ufn\": \"UFN200\",\n    \"scope\": \"N\",\n    \"allegations\": \"Y\",\n    \"custody\": \"custody\",\n    \"bail\": \"bail\",\n    \"allegations_text\": \"allegations_text\",\n    \"instructions\": \"instructions\",\n    \"advice\": \"advice\",\n    \"result\": \"result\",\n    \"action\": \"action_text\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "01-client",
+			"description": "",
+			"item": [
+				{
+					"name": "01-Register Client",
+					"request": {
+						"url": "http://localhost:8080/client/registration",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ufn\": \"UFN200\",\n    \"title\": \"Mrs\",\n    \"surname\": \"MARY\",\n    \"forename\": \"KIM\",\n    \"residenceAddress\": {\n        \"addressLine1\": \"FLAT 13\",\n        \"addressLine2\": \"EAST CROYDON\",\n        \"addressLine3\": \"CROYDON\",\n        \"postCode\": \"CR2 7EQ\"\n    },\n    \"dateOfBirth\": \"1988-01-23\",\n    \"niNumber\": \"SN221211\",\n    \"employmentStatus\": \"Unemployed\",\n    \"relationshipStatus\": \"Married\",\n    \"telephoneNumber\": \"4422341234\",\n    \"correspondenceAddress\": {\n        \"addressLine1\": \"FLAT 14\",\n        \"addressLine2\": \"EAST CROYDON\",\n        \"addressLine3\": \"CROYDON\",\n        \"postCode\": \"CR2 7EQ\"\n    },\n    \"ethnicity\": \"White\",\n    \"sourceOfBusiness\": \"E - Off Street\",\n    \"existingClient\": \"Y\",\n    \"requestSpecificSolicitor\": \"Y\",\n    \"requestSpecificSolicitorText\": \"SOL TEXT\",\n    \"policeStation1\": \"P1\",\n    \"magistrateCourt\": \"MC\",\n    \"crownCourt\": \"CC\",\n    \"nationality\": \"BRITISH\",\n    \"venue\": \"E.W\",\n    \"allegation\": \"A1\",\n    \"previousConviction\": \"Y\",\n    \"fundingDate\": \"2018-04-22\",\n    \"adviceAndAssistance\": \"AA\",\n    \"proofOfBenefitsRequested\": \"PBS\",\n    \"policeStation2\": \"P2\",\n    \"preOrderWork\": \"PRE\",\n    \"repOrderAppliedFor\": \"REP\",\n    \"repOrderGranted\": \"REP GR\",\n    \"crm3Advocate\": \"CRM\",\n    \"conflictCheck\": \"Y\",\n    \"conflictCheckName\": \"CON\",\n    \"conflictCheckDate\": \"2018-02-09\",\n    \"riskAssessmentDone\": \"Y\",\n    \"coAccused\": \"CC\",\n    \"disabilities\": [\n        {\n            \"disabilityOption\": \"option2\"\n        },\n        {\n            \"disabilityOption\": \"option3\"\n        },\n        {\n            \"disabilityOption\": \"option4\"\n        }\n    ]\n}"
+						},
+						"description": "Save"
+					},
+					"response": []
+				},
+				{
+					"name": "02-Fetch Client By UFN",
+					"request": {
+						"url": "http://localhost:8080/client/UFN200",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "03-Update Client",
+					"request": {
+						"url": "http://localhost:8080/client/update",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 195,\n    \"ufn\": \"UFN144\",\n    \"title\": \"Mrs\",\n    \"surname\": \"MARY\",\n    \"forename\": \"KIM1\",\n    \"residenceAddress\": {\n        \"id\": 204,\n        \"addressLine1\": \"FLAT 13\",\n        \"addressLine2\": \"EAST CROYDON\",\n        \"addressLine3\": \"CROYDON\",\n        \"postCode\": \"CR2 7EQ\"\n    },\n    \"dateOfBirth\": \"1988-01-23\",\n    \"niNumber\": \"SN221211\",\n    \"employmentStatus\": \"Unemployed\",\n    \"relationshipStatus\": \"Married\",\n    \"telephoneNumber\": \"4422341234\",\n    \"correspondenceAddress\": {\n        \"id\": 203,\n        \"addressLine1\": \"FLAT 14\",\n        \"addressLine2\": \"EAST CROYDON\",\n        \"addressLine3\": \"CROYDON\",\n        \"postCode\": \"CR2 7EQ\"\n    },\n    \"ethnicity\": \"White\",\n    \"sourceOfBusiness\": \"E - Off Street\",\n    \"existingClient\": \"Y\",\n    \"requestSpecificSolicitor\": \"Y\",\n    \"requestSpecificSolicitorText\": \"SOL TEXT\",\n    \"policeStation1\": \"P1\",\n    \"magistrateCourt\": \"MC\",\n    \"crownCourt\": \"CC\",\n    \"nationality\": \"BRITISH\",\n    \"venue\": \"E.W\",\n    \"allegation\": \"A1\",\n    \"previousConviction\": \"Y\",\n    \"fundingDate\": \"2018-04-22\",\n    \"adviceAndAssistance\": \"AA\",\n    \"proofOfBenefitsRequested\": \"PBS\",\n    \"policeStation2\": \"P2\",\n    \"preOrderWork\": \"PRE\",\n    \"repOrderAppliedFor\": \"REP\",\n    \"repOrderGranted\": \"REP GR\",\n    \"crm3Advocate\": \"CRM\",\n    \"conflictCheck\": \"Y\",\n    \"conflictCheckName\": \"CON\",\n    \"conflictCheckDate\": \"2018-02-09\",\n    \"riskAssessmentDone\": \"Y\",\n    \"coAccused\": \"CC\",\n    \"disabilities\": [\n        {\n            \"id\": 199,\n            \"personID\": 187,\n            \"disabilityOption\": \"option2\"\n        },\n        {\n            \"id\": 200,\n            \"personID\": 187,\n            \"disabilityOption\": \"option3\"\n        }\n    ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "04-Fetch Clients Matching UFN Pattern",
+					"request": {
+						"url": "http://localhost:8080/client/containingUfn/UFN",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

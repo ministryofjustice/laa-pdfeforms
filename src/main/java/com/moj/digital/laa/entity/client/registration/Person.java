@@ -39,7 +39,7 @@ public class Person {
 
     @Column(name = "date_of_birth", nullable = false)
     @Convert(converter = StringDateSQLDateConverter.class)
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
 
     @Column(name = "age", nullable = false)
     private Integer age;
@@ -104,7 +104,7 @@ public class Person {
 
     @Column(name = "funding_date", nullable = false)
     @Convert(converter = StringDateSQLDateConverter.class)
-    private LocalDate fundingDate;
+    private String fundingDate;
 
     @Column(name = "advice_and_assistance", nullable = false)
     private String adviceAndAssistance;
@@ -135,7 +135,7 @@ public class Person {
 
     @Column(name = "conflict_check_date", nullable = false)
     @Convert(converter = StringDateSQLDateConverter.class)
-    private LocalDate conflictCheckDate;
+    private String conflictCheckDate;
 
     @Column(name = "risk_assessment_done", nullable = false)
     private String riskAssessmentDone;

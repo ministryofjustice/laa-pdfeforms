@@ -77,9 +77,8 @@ in the current system.A system built this way will greatly reduce the redundant 
 - Packaging and deploying of the application adhering to the AWS pipeline.
 
 
-** To run and test the application locally **
-- Please make yourself aware of spring boot mustache application using government style spec through this prototype
-[link](https://github.com/ministryofjustice/SpringBoot-Mustach-GovukStyle)
+**To run and test the application locally**
+- Please make yourself aware of spring boot mustache application using government style spec through this prototype [link](https://github.com/ministryofjustice/SpringBoot-Mustach-GovukStyle)
 - install and configure postgress DB (jdbc:postgresql://localhost/pdfeforms is the DB URL configured in application.yml)
 - Clone this repository
 - gradle bootRun or running it inside IDE as in the case of any spring boot application.

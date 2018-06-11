@@ -83,9 +83,9 @@ in the current system.A system built this way will greatly reduce the redundant 
 - Clone this repository
 - gradle bootRun or running it inside IDE as in the case of any spring boot application.
 - Use postman and import the 01-PDS.postman_collection.
--- 01-client has the PDS2 related CRUD
--- 02-attendanceNote has the PDS3 related CRUD
--- 03-attendance has the PDS4 related CRUD
+    * 01-client has the PDS2 related CRUD
+    * 02-attendanceNote has the PDS3 related CRUD
+    * 03-attendance has the PDS4 related CRUD
 
 - Create client, attendance note and attendance entries in the database using the REST end points.
 - http://localhost:8080 should bring up the UI where you can search for an existing client or his/her attendance note or attendance entries.
